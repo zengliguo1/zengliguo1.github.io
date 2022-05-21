@@ -12,12 +12,11 @@ MarkText-root-url: ../../CALL1CE.github.io
 math: false
 mermaid: true
 
-image:
-
-
+image: 
+    src:/assets/blog_res/2022-05-21-hello-world.assets/
 ---
 
-# 感谢关注～
+# 测试～
 
 这里可以放代码片段噢～
 
