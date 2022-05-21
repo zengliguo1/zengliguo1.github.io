@@ -8,12 +8,11 @@ author: CALL1CE
 
 toc: true
 comments: true
-MarkText-root-url: ../../CALL1CE.github.io
 math: false
 mermaid: true
 
 image: 
-    src:/assets/blog_res/2022-05-21-hello-world.assets/
+    src:/assets/blog_res/2022-05-21-hello-world.assets/wallhaven-281d5y.png
 ---
 
 # 测试～
