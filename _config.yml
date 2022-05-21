@@ -42,7 +42,7 @@ social:
   email: 563638083@qq.com            # change to your email address
   links:
     # The first element serves as the copyright owner's link
-    563638083   # change to your twitter homepage
+    # change to your twitter homepage
     - https://github.com/username       # change to your github homepage
     # Uncomment below to add more social links
     # - https://www.facebook.com/username
