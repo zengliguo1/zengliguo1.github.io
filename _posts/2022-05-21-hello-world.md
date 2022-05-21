@@ -22,5 +22,7 @@ int main(){
   hello world;
 }
 ```
-	图片一直上传不上picgo，就只是因为仓库名打成ImgStge了，少了个a
+
+    图片一直上传不上picgo，就只是因为仓库名打成ImgStge了，少了个a
+
 ![](https://raw.githubusercontent.com/CALL1CE/ImgStage/main/202205211713850.jpg)
