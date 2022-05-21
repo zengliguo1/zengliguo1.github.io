@@ -25,4 +25,4 @@ int main(){
 }
 ```
 
-![wallhaven-95doex.jpg](assets\blog_res\2022-05-21-hello-world.assets\05ffdbaee1d88dc96d3294f51d45fdfbd4dac3b9.jpg)
+![wallhaven-95doex.jpg]({{ site.url }}\assets\blog_res\2022-05-21-hello-world.assets\05ffdbaee1d88dc96d3294f51d45fdfbd4dac3b9.jpg)
