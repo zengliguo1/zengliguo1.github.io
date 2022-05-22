@@ -2,7 +2,7 @@
 title: 游戏设计艺术-学习笔记
 date: 2022-05-22 14:45:00 +0800
 categories: [游戏设计]
-tags: [学习笔记]
+tags: [学习笔记,]
 pin: true
 author: CALL1CE
 
@@ -13,8 +13,6 @@ mermaid: true
 
 
 ---
-
-# 游戏设计艺术 学习笔记
 
 ## 第一章 太初之时，有设计师
 
