@@ -4,8 +4,9 @@ date: 2022-05-21 17:14:00 +0800
 categories: [随笔]
 tags: [生活]
 pin: true
-author: CALL1CE
-
+author: 
+    name: CALL1CE
+    link: https://space.bilibili.com/9330604
 toc: true
 comments: true
 math: false
