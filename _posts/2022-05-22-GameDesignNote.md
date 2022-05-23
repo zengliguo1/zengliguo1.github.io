@@ -4,7 +4,7 @@ date: 2022-05-22 14:45:00 +0800
 categories: [游戏设计]
 tags: [学习笔记, 游戏设计艺术]
 
-pin: true
+pin: false
 author: 
     name: CALL1CE
     link: https://space.bilibili.com/9330604
@@ -20,6 +20,8 @@ mermaid: true
 ​ 游戏设计师最重要的技能是**倾听**
 
 ​ 五种倾听：倾听 *团队、受众、游戏、客户、自己* 的声音 。
+
+
 
 ## 第二章 设计师创造体验
 
