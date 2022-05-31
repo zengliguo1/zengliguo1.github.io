@@ -93,11 +93,11 @@ comments:
     shortname:   # fill with the Disqus shortname. › https://help.disqus.com/en/articles/1717111-what-s-a-shortname
   # utterances settings › https://utteranc.es/
   utterances:
-    repo:      "CALL1CE/CALL1CE.github.io"   # <gh-username>/<repo>
-    issue_term:  "title" # < url | pathname | title | ...>
-    label: "Comment"
-    theme: "preferred-color-scheme"
-    crossorigin: "anonymous"
+    repo:         # <gh-username>/<repo>
+    issue_term:   # < url | pathname | title | ...>
+    label: 
+    theme: 
+    crossorigin: 
   # Giscus options › https://giscus.app
   giscus:
     repo:     # <gh-username>/<repo>
