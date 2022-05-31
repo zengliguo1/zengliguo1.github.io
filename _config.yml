@@ -94,7 +94,7 @@ comments:
   # utterances settings › https://utteranc.es/
   utterances:
     repo:         # <gh-username>/<repo>
-    issue_term:  pathname # < url | pathname | title | ...>
+    issue_term:   # < url | pathname | title | ...>
   # Giscus options › https://giscus.app
   giscus:
     repo:   CALL1CE/CALL1CE.github.io  # <gh-username>/<repo>
