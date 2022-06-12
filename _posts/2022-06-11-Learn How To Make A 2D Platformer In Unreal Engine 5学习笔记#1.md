@@ -13,7 +13,10 @@ comments: true
 math: false
 mermaid: true
 
+
 ---
+
+## demo视频地址：[Learn How To Make A 2D Platformer In Unreal Engine 5学习记录#1](https://www.bilibili.com/video/BV1ZS4y1i74r?spm_id_from=333.999.0.0&vd_source=f4a853b19ac511f1de91664a40bf16e9)
 
 ## 1.1Introduction
 
@@ -324,3 +327,5 @@ mermaid: true
    ![](https://raw.githubusercontent.com/CALL1CE/ImgStage/main/202206112328749.jpg)
 
 9. 将滑墙系统中mutiply节点的x从50改为5（这个距离就是碰撞检测的距离）
+   
+   ![](https://raw.githubusercontent.com/CALL1CE/ImgStage/main/202206112329185.jpg)
