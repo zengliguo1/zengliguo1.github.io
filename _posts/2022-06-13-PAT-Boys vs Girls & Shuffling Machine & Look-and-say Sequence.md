@@ -1,7 +1,7 @@
 ---
 title: PAT-Boys vs Girls & Shuffling Machine & Look-and-say Sequence
 date: 2022-06-13 14:52:00 +0800
-categories: [算法刷题]
+categories: [算法刷题, PAT]
 tags: [模拟]
 
 pin: false
@@ -180,15 +180,13 @@ int main()
         d = tmp;//更新d
     }
     cout<<d;
-    
+
 }
 ```
 
     首先，这道题要先弄清楚题意，不是统计上一个字符串中每种数字一共有几个，而是连续的有几个，一旦不连续了就要重新算的。比如111222333111222就是：1323331323（3个1，3个2，3个3，3个1，3个2）而不是162633.
 
     第二，想用memset就要包含`<cstdio>`和`<cstring>`这两个头文件才行
-
-
 
 ## 小结
 
