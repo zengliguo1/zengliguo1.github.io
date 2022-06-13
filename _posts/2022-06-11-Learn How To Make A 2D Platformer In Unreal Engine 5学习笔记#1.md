@@ -1,5 +1,5 @@
 ---
-title: Learn How To Make A 2D Platformer In Unreal Engine 5学习笔记#1
+title: Learn How To Make A 2D Platformer In Unreal Engine 5学习笔记#1角色动作和滑墙系统
 date: 2022-06-11 23:30:00 +0800
 categories: [Unreal5]
 tags: [学习笔记, 蓝图]
