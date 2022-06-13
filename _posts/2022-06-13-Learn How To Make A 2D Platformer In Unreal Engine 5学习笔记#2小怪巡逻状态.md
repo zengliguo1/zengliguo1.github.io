@@ -16,6 +16,8 @@ mermaid: true
 
 ---
 
+## demo视频地址：[# Learn How To Make A 2D Platformer In Unreal Engine 5学习记录#2小怪巡逻状态](https://www.bilibili.com/video/BV1mF411F7gE/)
+
 ## 2.1How we are going to set up are enemy characters
 
 1. 在sprite文件夹中创建Enemies文件夹并将资源的Enemies文件夹内容拖入
