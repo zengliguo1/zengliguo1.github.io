@@ -1,6 +1,6 @@
 ---
 title: PAT-Boys vs Girls & Shuffling Machine & Look-and-say Sequence
-date: 2022-06-13 14:52:00 +0800
+date: 2022-06-13 13:42:00 +0800
 categories: [算法刷题, PAT]
 tags: [模拟]
 
