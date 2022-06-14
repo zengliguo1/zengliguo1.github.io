@@ -1,7 +1,7 @@
 ---
 title: PAT-Raffle for Weibo Followers & Shortest Distance & A+B and C (64bit)
 date: 2022-06-14 18:44:00 +0800
-categories: [PAT, 算法刷题]
+categories: [算法刷题, PAT]
 tags: [模拟]
 
 pin: false
