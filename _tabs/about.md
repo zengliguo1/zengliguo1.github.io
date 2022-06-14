@@ -1,7 +1,7 @@
 ---
 title: 简历
 icon: fas fa-info
-order: 3
+order: 4
 
 ---
 
@@ -13,7 +13,7 @@ order: 3
 
 - 性 别：男&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;年 龄：21
 
-- 手 机：18713958771&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;邮 箱：[563638083@qq.com](mailto:563638083@qq.com)
+- 手 机：*******8771&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;邮 箱：[563638083@qq.com](mailto:563638083@qq.com)
 
 - 专 业：数字媒体技术&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;岗 位：游戏研发工程师
 
