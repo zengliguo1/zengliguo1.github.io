@@ -24,7 +24,7 @@ mermaid: true
 
 2. 在Enemies文件夹右键（在Create advanced asset下）blueprints -> enumeration，命名ListOfEnemies，双击打开，点击new（我这里是add enumerator）新建三个enumerators，命名分别为：MushroomEnemy，GoblinEnemy，FlyingEnemy，（我已经受不了一会大写一会小写了，教程中的老师MushroomEnemy的e小写了，蚌埠住了），点击save保存
    
-   ![](https://raw.githubusercontent.com/CALL1CE/ImgStage/main/202206122010203.jpg)
+   [![X5X7Sf.jpg](https://s1.ax1x.com/2022/06/14/X5X7Sf.jpg)](https://imgtu.com/i/X5X7Sf)
 
 ## 2.2Setting Up Structures
 
@@ -36,7 +36,7 @@ mermaid: true
 
 4. 创建7个New Variable，类型：paperFlipbook -> objects reference,命名为：Idle、Moving、Attacking、Ranged Attack、Damaged、Die、Dead Body
    
-   ![](https://raw.githubusercontent.com/CALL1CE/ImgStage/main/202206122022381.jpg)
+   [![X5XHl8.jpg](https://s1.ax1x.com/2022/06/14/X5XHl8.jpg)](https://imgtu.com/i/X5XHl8)
 
 ## 2.3Setting Up The Data Table
 
@@ -60,7 +60,7 @@ mermaid: true
 
 10. 回到EnemyDataTable为蘑菇怪添加动画
     
-    ![](https://raw.githubusercontent.com/CALL1CE/ImgStage/main/202206132128307.jpg)
+    [![X5Xb6S.jpg](https://s1.ax1x.com/2022/06/14/X5Xb6S.jpg)](https://imgtu.com/i/X5Xb6S)
 
 ## 2.4Modifying The Data Table
 
@@ -96,7 +96,7 @@ mermaid: true
 
 16. 以上节点意思就是通过遍历data table，匹配目标，利用其预设的动画，为paperCharacter的flipbook类型的变量赋值
     
-    ![](https://raw.githubusercontent.com/CALL1CE/ImgStage/main/202206132222635.jpg)
+    [![X5XOmQ.jpg](https://s1.ax1x.com/2022/06/14/X5XOmQ.jpg)](https://imgtu.com/i/X5XOmQ)
 
 ## 2.5Creating The Enemy Pt 1
 
@@ -110,7 +110,7 @@ mermaid: true
 
 5. 接下来创建一套节点，判断当有速度时选择设置flip book：
    
-   ![](https://raw.githubusercontent.com/CALL1CE/ImgStage/main/202206132235883.jpg)
+   [![X5XqOg.jpg](https://s1.ax1x.com/2022/06/14/X5XqOg.jpg)](https://imgtu.com/i/X5XqOg)
 
 6. 添加一个float变量enemyDirection默认值是1
 
@@ -122,7 +122,7 @@ mermaid: true
 
 10. sequence节点的then 1指向add movement input节点，其x设置为1，scale连接get enemy direction节点
     
-    ![](https://raw.githubusercontent.com/CALL1CE/ImgStage/main/202206132256947.jpg)
+    [![X5XXwj.jpg](https://s1.ax1x.com/2022/06/14/X5XXwj.jpg)](https://imgtu.com/i/X5XXwj)
 
 ## 2.6Creating The Enemy Pt 2
 
@@ -144,7 +144,7 @@ mermaid: true
 
 9. 将set enemy direction节点再指向 do once 节点的reset（双击连接线可以增加控制点调整曲线）
    
-   ![](https://raw.githubusercontent.com/CALL1CE/ImgStage/main/202206132320296.jpg)
+   [![X5XjTs.jpg](https://s1.ax1x.com/2022/06/14/X5XjTs.jpg)](https://imgtu.com/i/X5XjTs)
 
 10. 点击运行按钮那一行里后面的三个点按钮，选择simulate可以直接在编辑视图运行
 
@@ -158,11 +158,8 @@ mermaid: true
 
 15. 如过没有碰撞就掉头了，这的branch就可以连接上面写的掉头do once了
     
-    ![](https://raw.githubusercontent.com/CALL1CE/ImgStage/main/202206132337016.jpg)
+    [![X5Xxkn.jpg](https://s1.ax1x.com/2022/06/14/X5Xxkn.jpg)](https://imgtu.com/i/X5Xxkn)
 
 16. 效果：
-    ![](https://raw.githubusercontent.com/CALL1CE/ImgStage/main/202206132340558.jpg)
-
-[![X5XzYq.jpg](https://s1.ax1x.com/2022/06/14/X5XzYq.jpg)](https://imgtu.com/i/X5XzYq)
-
-
+    
+    [![X5XzYq.jpg](https://s1.ax1x.com/2022/06/14/X5XzYq.jpg)](https://imgtu.com/i/X5XzYq)
