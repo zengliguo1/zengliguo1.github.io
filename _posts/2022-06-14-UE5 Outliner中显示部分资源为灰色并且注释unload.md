@@ -17,12 +17,30 @@ mermaid: true
 
     今天一打开UE5的场景，发现角色和小怪都不见了，一看Outliner，显示两个actor都变灰色了，并且注释着（unload），google了一下：
 
+
+
 [![XIQrSP.jpg](https://s1.ax1x.com/2022/06/14/XIQrSP.jpg)](https://imgtu.com/i/XIQrSP)
+
+    
 
     一开始还不知道这world partition是什么，又搜了下world partition，才知道是这个：
 
+
+
 [![XIl074.jpg](https://s1.ax1x.com/2022/06/14/XIl074.jpg)](https://imgtu.com/i/XIl074)
-    先左键长按拖拽选中全部
+
+
+
+先左键长按拖拽选中全部
+
+
+
 [![XIlwBF.jpg](https://s1.ax1x.com/2022/06/14/XIlwBF.jpg)](https://imgtu.com/i/XIlwBF)
-    再右键，选第一个全加载就可以了
+   
+
+
+再右键，选第一个全加载就可以了
+
+
+
 [![XIlUXT.jpg](https://s1.ax1x.com/2022/06/14/XIlUXT.jpg)](https://imgtu.com/i/XIlUXT)
