@@ -66,7 +66,7 @@ mermaid: true
 
 7. 右键创建节点，添加之前创建的Moveright，点击箭头（exec执行）创建新节点Add movement input，并将Moveright的Axis Value连接至Scale Value，将Add movement input中world Direction设置**x=1**
    
-   ![](https://raw.githubusercontent.com/CALL1CE/ImgStage/main/202206111456290.jpg)
+   [![X5XNyF.jpg](https://s1.ax1x.com/2022/06/14/X5XNyF.jpg)](https://imgtu.com/i/X5XNyF)
 
 8. 在左侧components下点击add添加springArm并点击视图中上侧的旋转按钮，将方向旋转-90°
 
@@ -80,7 +80,7 @@ mermaid: true
 
 13. 更改人物和灰色地块的y为0，并将灰色地块拉长
     
-    ![](https://raw.githubusercontent.com/CALL1CE/ImgStage/main/202206111432085.jpg)
+    [![X5XJzT.jpg](https://s1.ax1x.com/2022/06/14/X5XJzT.jpg)](https://imgtu.com/i/X5XJzT)
 
 ## 1.4Setting up the player character pt2
 
@@ -102,13 +102,13 @@ mermaid: true
 
 9. 复制一份get controler节点、is valid节点、set control rotation节点、make rotator节点
    
-   ![](https://raw.githubusercontent.com/CALL1CE/ImgStage/main/202206111516020.jpg)
+   [![X5XUL4.jpg](https://s1.ax1x.com/2022/06/14/X5XUL4.jpg)](https://imgtu.com/i/X5XUL4)
 
 10. 将compare float的<指向复制的isValid的exec，并将复制的make rotator的z改为180
 
 11. 以上是为了当x速度大于0时，人物朝右，小于0时，人物朝左
     
-    ![](https://raw.githubusercontent.com/CALL1CE/ImgStage/main/202206111521286.jpg)
+    [![X5XtQU.jpg](https://s1.ax1x.com/2022/06/14/X5XtQU.jpg)](https://imgtu.com/i/X5XtQU)
 
 12. 我看接下来意思要搞一个状态机来判断朝左朝右
 
@@ -128,11 +128,11 @@ mermaid: true
 
 20. 新branch的false也指向add movement input节点（感觉这一条线会在松开小键盘右键时触发）
     
-    ![](https://raw.githubusercontent.com/CALL1CE/ImgStage/main/202206111658915.jpg)
+    [![X5XGWV.jpg](https://s1.ax1x.com/2022/06/14/X5XGWV.jpg)](https://imgtu.com/i/X5XGWV)
 
 21. 前往更改朝向的蓝图区域，将compare float的==指向一个branch，branch的condition分支设置为Get ismovingright，如果true，就执行上方（朝右看）的is Valid，false就执行下方的is Valid
     
-    ![](https://raw.githubusercontent.com/CALL1CE/ImgStage/main/202206111659978.jpg)
+    [![X5XdeJ.jpg](https://s1.ax1x.com/2022/06/14/X5XdeJ.jpg)](https://imgtu.com/i/X5XdeJ)
 
 22. 点击左上角compile编译后，设置ismovingright的默认为true
 
@@ -142,7 +142,7 @@ mermaid: true
 
 1. 选中下面这部分蓝图，按下C键，分组为处理输入事件
    
-   ![](https://raw.githubusercontent.com/CALL1CE/ImgStage/main/202206111701153.jpg)
+   [![X5Xww9.jpg](https://s1.ax1x.com/2022/06/14/X5Xww9.jpg)](https://imgtu.com/i/X5Xww9)
 
 2. 新建节点custom event，命名Updateanimation
 
@@ -180,7 +180,7 @@ mermaid: true
 
 19. 同上，为jump和fall创建variable（Jumping、Falling）（我不知道为啥这里首字母要大写，之前的run和idle不大写）
     
-    ![](https://raw.githubusercontent.com/CALL1CE/ImgStage/main/202206111740964.jpg)
+    [![X5XrJx.jpg](https://s1.ax1x.com/2022/06/14/X5XrJx.jpg)](https://imgtu.com/i/X5XrJx)
 
 ## 1.6Changing The Player Characters Speed
 
@@ -194,7 +194,7 @@ mermaid: true
 
 5. 编译后，点击playerspeed，然后就可以设置速度啦
    
-   ![](https://raw.githubusercontent.com/CALL1CE/ImgStage/main/202206111802611.jpg)
+   [![X5XDF1.jpg](https://s1.ax1x.com/2022/06/14/X5XDF1.jpg)](https://imgtu.com/i/X5XDF1)
 
 ## 1.7Adding Sprinting
 
@@ -214,7 +214,7 @@ mermaid: true
 
 8. 复制冲刺的节点，改成冲刺完的节点，需要把SprintingSpeed换成之前创建的Playerspeed
    
-   ![](https://raw.githubusercontent.com/CALL1CE/ImgStage/main/202206111802612.jpg)
+   [![X5X0oR.jpg](https://s1.ax1x.com/2022/06/14/X5X0oR.jpg)](https://imgtu.com/i/X5X0oR)
 
 ## 1.8Creating Dash Ability
 
@@ -222,7 +222,7 @@ mermaid: true
 
 2. 编辑下地图
    
-   ![](https://raw.githubusercontent.com/CALL1CE/ImgStage/main/202206112010940.jpg)
+   [![X5XsW6.jpg](https://s1.ax1x.com/2022/06/14/X5XsW6.jpg)](https://imgtu.com/i/X5XsW6)
 
 3. 创建dash的fipbook
 
@@ -250,7 +250,7 @@ mermaid: true
 
 15. 最后retriggerable delay节点再指向set isdashing?节点（这次就不勾了false）
     
-    ![](https://raw.githubusercontent.com/CALL1CE/ImgStage/main/202206112056585.jpg)
+    [![X5X6SK.jpg](https://s1.ax1x.com/2022/06/14/X5X6SK.jpg)](https://imgtu.com/i/X5X6SK)
 
 16. 前往处理动画板块
 
@@ -262,7 +262,7 @@ mermaid: true
 
 20. 修改下dash的距离：3300，并修改falling lateral friction 为2.5
     
-    ![](https://raw.githubusercontent.com/CALL1CE/ImgStage/main/202206112104587.jpg)
+    [![X5XcQO.jpg](https://s1.ax1x.com/2022/06/14/X5XcQO.jpg)](https://imgtu.com/i/X5XcQO)
 
 ## 1.9Creating Wall Slide Mechanic
 
@@ -292,7 +292,7 @@ mermaid: true
 
 13. 在最开始的branch节点的false指向 set Wallslide?节点（不勾选意味着不是falling状态就不能是wallslide状态）
     
-    ![](https://raw.githubusercontent.com/CALL1CE/ImgStage/main/202206112251538.jpg)
+    [![X5X2Oe.jpg](https://s1.ax1x.com/2022/06/14/X5X2Oe.jpg)](https://imgtu.com/i/X5X2Oe)
 
 14. 回到处理动画板块，在判断是否在空中的branch的true后新建branch，用于判断 is Wallslide状态，false就跟以前一样
 
@@ -300,11 +300,11 @@ mermaid: true
 
 16. 添加wallslide动画（flipbook）变量
     
-    ![](https://raw.githubusercontent.com/CALL1CE/ImgStage/main/202206112251539.jpg)
+    [![X5Xfwd.jpg](https://s1.ax1x.com/2022/06/14/X5Xfwd.jpg)](https://imgtu.com/i/X5Xfwd)
 
 17. 向上找到event tick后面的 wall Slide Mechanic节点，指向一个branch，根据wallslide状态判断，如果false跟以前一样
     
-    ![](https://raw.githubusercontent.com/CALL1CE/ImgStage/main/202206112251540.jpg)
+    [![X5X5FI.jpg](https://s1.ax1x.com/2022/06/14/X5X5FI.jpg)](https://imgtu.com/i/X5X5FI)
 
 ## 1.10Creating Wall Jump
 
@@ -324,8 +324,8 @@ mermaid: true
 
 8. 复制capsule component节点和set capsule radius节点，当不再空中时，胶囊半径恢复
    
-   ![](https://raw.githubusercontent.com/CALL1CE/ImgStage/main/202206112328749.jpg)
+   [![X5XIYt.jpg](https://s1.ax1x.com/2022/06/14/X5XIYt.jpg)](https://imgtu.com/i/X5XIYt)
 
 9. 将滑墙系统中mutiply节点的x从50改为5（这个距离就是碰撞检测的距离）
    
-   ![](https://raw.githubusercontent.com/CALL1CE/ImgStage/main/202206112329185.jpg)
+   [![X5XofP.jpg](https://s1.ax1x.com/2022/06/14/X5XofP.jpg)](https://imgtu.com/i/X5XofP)
