@@ -15,6 +15,8 @@ mermaid: true
 
 ---
 
+## demo演示视频：[# Learn How To Make A 2D Platformer In Unreal Engine 5学习记录#3Hud和攻击] (https://www.bilibili.com/video/BV1d3411g7iR/?vd_source=f4a853b19ac511f1de91664a40bf16e9)
+
 ## 3.1Creating a HUD For The Players Health
 
 1. 添加hearts图片资源
@@ -231,3 +233,7 @@ mermaid: true
 6. set完后消失，指向destrory节点
    
    [![XHX7qK.jpg](https://s1.ax1x.com/2022/06/16/XHX7qK.jpg)](https://imgtu.com/i/XHX7qK)
+
+效果：
+
+[![XbSSfg.jpg](https://s1.ax1x.com/2022/06/16/XbSSfg.jpg)](https://imgtu.com/i/XbSSfg)
