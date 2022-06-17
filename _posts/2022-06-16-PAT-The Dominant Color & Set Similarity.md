@@ -1,5 +1,5 @@
 ---
-title: PAT-The Dominant Color & Shortest Distance & A+B and C (64bit)
+title: PAT-The Dominant Color & Set Similarity
 date: 2022-06-16 23:57:00 +0800
 categories: [算法刷题, PAT]
 tags: [模拟]
