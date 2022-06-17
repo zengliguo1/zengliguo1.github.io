@@ -15,7 +15,7 @@ mermaid: true
 
 ---
 
-## demo演示视频：[# Learn How To Make A 2D Platformer In Unreal Engine 5学习记录#3Hud和攻击] (https://www.bilibili.com/video/BV1d3411g7iR/?vd_source=f4a853b19ac511f1de91664a40bf16e9)
+## demo演示视频：[Learn How To Make A 2D Platformer In Unreal Engine 5学习记录#3Hud和攻击]](https://www.bilibili.com/video/BV1d3411g7iR/?vd_source=f4a853b19ac511f1de91664a40bf16e9)
 
 ## 3.1Creating a HUD For The Players Health
 
