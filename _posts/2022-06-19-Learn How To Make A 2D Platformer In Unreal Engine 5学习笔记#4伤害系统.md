@@ -155,3 +155,64 @@ mermaid: true
 15. enemy在攻击时也不能移动，加上这个条件
     
     [![Xjdp6I.jpg](https://s1.ax1x.com/2022/06/19/Xjdp6I.jpg)](https://imgtu.com/i/Xjdp6I)
+    
+    ## 4.7Creating A Ranged Enemy Pt 1
+
+    由于第5节内容较少，所以和第3节合并
+
+1. 复制enemy 蓝图，命名rangeEnemy
+
+2. 进入rangeEnemy蓝图，删掉处理动作板块，将handle movement改为handle rotation（因为要小怪面向玩家），蓝图如下：（可以从伤害板块找到部分节点）
+   [![jSBdER.jpg](https://s1.ax1x.com/2022/06/21/jSBdER.jpg)](https://imgtu.com/i/jSBdER)
+
+3. 修改attack的box
+
+4. 修改 overlap begin事件（删掉end事件和begin doonce之后的节点）
+
+5. 将isAttack改为isRangeAttack，并修改之前的动画
+
+6. 动画播放完毕就生成子弹，蓝图：
+   
+   [![jSBUb9.jpg](https://s1.ax1x.com/2022/06/21/jSBUb9.jpg)](https://imgtu.com/i/jSBUb9)
+
+7. 将子弹精灵图片提取出来，将第一帧命名为mushroom projectile
+
+8. 将axe的actor复制一份拖到enemy文件夹，命名mushroom projectile
+
+9. 修改精灵图，将Projectilemovement的速度修改为700
+
+10. 将actor has tag节点的tag修改为enemy
+
+11. 为enemy添加enemy  tag
+
+12. 回到mushroom projectile蓝图，add scene，作为发射点
+
+13. 最后一个delay完成后要指向do once的reset。蓝图：
+    
+    [![jSvC4A.jpg](https://s1.ax1x.com/2022/06/21/jSvC4A.jpg)](https://imgtu.com/i/jSvC4A)
+
+## 4.8Creating A Ranged Enemy Pt 2
+
+1. 由于投掷的斧子触碰到怪物的攻击碰撞盒也会触发，所以要去修改怪物的攻击碰撞盒，collision中的presets修改为custom，ignore world static和worldDynamic
+
+2. Blueprint Runtime Error: "Attempted to access Axe_C_0 via property K2Node_ComponentBoundEvent_OtherActor, but Axe_C_0 is not valid (pending kill or garbage)". Node:  Branch Graph:  EventGraph Function:  Execute Ubergraph Mushroom Projectile Blueprint:  MushroomProjectile
+   
+   [![jSvNE4.jpg](https://s1.ax1x.com/2022/06/21/jSvNE4.jpg)](https://imgtu.com/i/jSvNE4)
+
+3. 解决这个问题，意思就是飞斧打到怪物的子弹，想要造成伤害，但子弹没有受到伤害节点，所以就报错了
+
+4. 前往axe的蓝图，在begin overlap后加一个is valid节点，other actor指向其 input object
+
+5. 在mushroomProjectile蓝图中做相同的事情
+
+## 4.9How To Add New Enemy Sprites
+
+1. 处理goblin精灵图（创建动作文件夹Attack、Death、Idle、Projectile、run、damaged、rangeattack），提取精灵图、创建flipbookf
+
+2. 前往enemydata table，添加哥布林
+
+3. 可以通过修改enmey蓝图的type直接更改enemy
+
+4. 将蓝图中，初始化精灵图的节点复制到construction script中去，可以在开始游戏前就看到更换的效果
+   
+   [![jSx2LT.jpg](https://s1.ax1x.com/2022/06/21/jSx2LT.jpg)](https://imgtu.com/i/jSx2LT)
