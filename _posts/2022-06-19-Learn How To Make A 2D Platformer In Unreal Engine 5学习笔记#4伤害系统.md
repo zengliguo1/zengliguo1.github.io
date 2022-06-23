@@ -15,6 +15,8 @@ mermaid: true
 
 ---
 
+## demo演示地址：[Learn How To Make A 2D Platformer In Unreal Engine 5学习记录#4伤害系统](https://www.bilibili.com/video/BV1FB4y1q7as)
+
 ## 4.1Damaging The Enemy
 
 1. 把enemies文件夹托在content里
