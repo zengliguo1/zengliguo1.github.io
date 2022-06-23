@@ -15,7 +15,7 @@ mermaid: true
 
 ---
 
-    在2dCharacter中创建了Lives变量（float），但在playerHud_WB中text的content上bind该变量时，发现找不到，明明可以看到像Melee Damage这样的float值，换成integer类型后就可以看到了，但这治标不治本，万一下次真的需要用到包含小数的变量呢？
+    在2dCharacter中创建了Lives变量（float），但在playerHud_WB中text的content上bind该变量时，发现找不到（明明可以看到像Melee Damage这样的float值），换成integer类型后就可以看到了，但这治标不治本，万一下次真的需要用到包含小数的变量呢？
 
     [![jPCs0I.jpg](https://s1.ax1x.com/2022/06/23/jPCs0I.jpg)](https://imgtu.com/i/jPCs0I)
     [![jPCrnA.jpg](https://s1.ax1x.com/2022/06/23/jPCrnA.jpg)](https://imgtu.com/i/jPCrnA)
