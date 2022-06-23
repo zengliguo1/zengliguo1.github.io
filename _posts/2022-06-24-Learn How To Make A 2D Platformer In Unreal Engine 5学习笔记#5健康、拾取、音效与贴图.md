@@ -1,5 +1,5 @@
 ---
-title: Learn How To Make A 2D Platformer In Unreal Engine 5学习笔记#4生命、检查点、拾取、音效与贴图
+title: Learn How To Make A 2D Platformer In Unreal Engine 5学习笔记#5生命、检查点、拾取、音效与贴图
 date: 2022-06-24 00:36:00 +0800
 categories: [Unreal5, Learn How To Make A 2D Platformer]
 tags: [学习笔记, 蓝图]
