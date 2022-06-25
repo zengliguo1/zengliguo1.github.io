@@ -309,6 +309,4 @@ mermaid: true
 
 2. 回到编辑器，点击play旁边的platforms->windows->（选择shipping）package project(vs要安装NET.SDK)
 
-
-
 ## 完结撒花啦~

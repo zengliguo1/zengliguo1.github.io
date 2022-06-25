@@ -15,6 +15,8 @@ mermaid: true
 
 ---
 
+## demo演示地址：[Learn How To Make A 2D Platformer In Unreal Engine 5学习笔记#5生命、检查点、拾取、音效与贴图](https://www.bilibili.com/video/BV1AU4y197Ys)
+
 ## 5.1How to create a moving platform
 
 1. 创建一个actor蓝图，命名moving platform
