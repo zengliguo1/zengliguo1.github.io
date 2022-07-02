@@ -1,5 +1,5 @@
 ---
-title: PAT-Speech Patterns & Read Number in Chinese & string的erase()用法
+title: PAT-Speech Patterns & Read Number in Chinese 
 date: 2022-07-02 14:25:00 +0800
 categories: [算法刷题, PAT]
 tags: [模拟]
@@ -18,7 +18,7 @@ mermaid: true
 ## A1071. [Speech Patterns](https://pintia.cn/problem-sets/994805342720868352/problems/994805398257647616)
 
 ```cpp
-#include<iostream>u
+#include<iostream>
 #include<unordered_map>
 #include<string>
 #include<cctype>
