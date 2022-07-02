@@ -163,7 +163,7 @@ int main()
 
 - 语法
 
-> iterator erase( iterator pos );
+>  iterator erase( iterator pos );
 >  iterator erase( iterator start, iterator end );
 >  basic_string &erase( size_type index = 0, size_type num = npos );
 > 
@@ -180,3 +180,9 @@ int main()
     分组这种方法，一开始还没看懂，一直纠结当长度为8或者4怎么办，看到后面发现，这种情况相当于直接跳过了。
 
     1,0000,5000，用上面的程序，这个数字输出是一亿五千，并没有错，我以为要读一亿零五千。
+
+
+
+## 报错传不上github的原因：
+
+    大概是因为之前的erase语法那里，我是完全copy的c++的API手册，里面是有内部链接的，但因为是内部链接，所以在这肯定无效，所以上传也出了错
