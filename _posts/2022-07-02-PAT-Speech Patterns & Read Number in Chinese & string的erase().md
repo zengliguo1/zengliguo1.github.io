@@ -1,7 +1,6 @@
 ---
-
 title: PAT-Speech Patterns & Read Number in Chinese & string的erase()用法
-date: 2022-07-02 17:25:00 +0800
+date: 2022-07-02 14:25:00 +0800
 categories: [算法刷题, PAT]
 tags: [模拟]
 
