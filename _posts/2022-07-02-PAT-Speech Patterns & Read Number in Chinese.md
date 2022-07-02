@@ -93,9 +93,7 @@ int main()
     string num;
     cin>>num;//读取input
     vector<string> ans;//记录最终答案
-    vector<string> cnNum = {"ling", "yi", "er", "san", "si", "wu", "liu", "qi", "ba", "jiu"};//存储中文数字
-    vector<string> smallUnit = {"Shi", "Bai", "Qian"};//存储中文单位，万和亿单独算
-    vector<string> biglUnit = {"Wan", "Yi"};
+
     //如果是负数
     if(num[0] == '-')
     {
