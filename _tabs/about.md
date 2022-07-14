@@ -32,7 +32,7 @@ order: 4
 
 - 通过英语六级
 
-- 具有GameMaker Studio2和Unity3D制作单机游戏经验
+- 具有GameMaker Studio2、Unity3D、Unreal5制作单机游戏经验
 
 - 了解C4D建模、Pr、Ps的使用
 
@@ -48,12 +48,25 @@ order: 4
    
    - 实现了RPG基础功能、外加随机地图功能、光照系统功能
    - 运用了回溯算法生成块状分割型迷宫，难点在于块状分割与回溯迷宫的结合；运用选择性光阻拦方法实现光照系统，难点在于影子的计算与柔和的计算
+   - demo演示地址:[蜕心之歌V1.0](https://www.bilibili.com/video/BV1Zf4y1Z7Kz)
 
 3. 学校 - Unity3D开发手机AR游戏宝可梦Go - 独立开发 - 2022.5
    
    - 实现地图、捕捉、仓库功能
    
    - 运用了GoMap插件LBS基于地理的服务功能，运用了Vuforia制作AR场景。难点在于手指滑动投掷精灵球功能
+   
+   - demo演示地址:[虚拟现实课程设计：基于Unity3D的AR手机游戏《宝可梦Go》](https://www.bilibili.com/video/BV12Y4y1g7qc?spm_id_from=333.999.0.0&vd_source=f4a853b19ac511f1de91664a40bf16e9)
+
+4. 学校 - Unreal5开发2D平面游戏 - 独立开发 - 2022.6
+   
+   - 实现了平面游戏基础功能
+   
+   - 全程使用蓝图，此项目用于入门Unreal5引擎。比较复杂的就是生命系统了，涉及到了使用蓝图调用数组，还要更新角色Hud
+   
+   - 学习笔记：[Learn How To Make A 2D Platformer](https://call1ce.github.io/categories/learn-how-to-make-a-2d-platformer/)
+   
+   - demo演示地址：[【UE5】2D平面游戏](https://www.bilibili.com/video/BV1pa411W7tq)
 
 ## 校园经历
 
@@ -77,9 +90,11 @@ order: 4
 
 - 学年专业二等奖学金 × 2
 
-- 蓝桥杯省三
+- 蓝桥杯C/C++程序设计省三
 
 - PAT 60/100
+
+- 软件著作权 × 1
 
 ## 其他信息
 
