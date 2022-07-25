@@ -244,27 +244,23 @@ n
   $$
 
 * 所以$M_{persp\rightarrow ortho}^{(4\times 4)}$的第三行(0 0 A B)
-  
-  $$
-  \left(
-\begin{matrix}
-0 & 0 & A & B
-\end{matrix}
-\right)\left(
-\begin{matrix}
-x\\
-y\\
-n\\
-1
-\end{matrix}
-\right)
 
-=
-
-n^2
-  $$
-  
-  
+$$
+\left(
+  \begin{matrix}
+  0 & 0 & A & B
+  \end{matrix}
+  \right)\left(
+  \begin{matrix}
+  x\\
+  y\\
+  n\\
+  1
+  \end{matrix}
+  \right)
+  =
+  n^2
+$$
 
 * 取远平面的中心点(0,0,f)，代到公式中
   
