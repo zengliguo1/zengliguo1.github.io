@@ -1,5 +1,5 @@
 ---
-title: GAMES101-Lecture 04 Transformation Cont.
+title: GAMES101-Lecture 04 Transformation Cont. & 作业0
 date: 2022-07-25 22:09:00 +0800
 categories: [计算机图形学, GAMES101]
 tags: [图形学, 学习笔记]
@@ -305,3 +305,105 @@ B=-nf
   $$
   M_{persp}=M_{ortho}M_{persp\rightarrow ortho}
   $$
+
+### 作业0
+
+* 作业描述：给定一个点 P=(2,1), 将该点绕原点先逆时针旋转 45◦，再平移 (1,2), 计算出
+  
+  变换后点的坐标（要求用齐次坐标进行计算）。
+
+* 先配置环境，我没有按照文档里的使用虚拟机，直接给我vs2022安装Eigen库了，很简单，参考博客：[Eigen库下载安装并配置到VS_勤勉的一只洋的博客-CSDN博客_eigen库下载](https://blog.csdn.net/weixin_44438749/article/details/104967836)
+
+* 配置完后，可以先读读Eigen的官方文档:[Eigen: Matrix and vector arithmetic](https://eigen.tuxfamily.org/dox/group__TutorialMatrixArithmetic.html)
+
+* 然后可以把框架里没有的代码试着补全（和、乘、点积、叉积等）：
+  
+  ```cpp
+  #include<cmath>
+  #include<Eigen/Core>
+  #include<Eigen/Dense>
+  #include<iostream>
+  
+  int main()
+  {
+      // Basic Example of cpp
+      std::cout << "Example of cpp \n";
+      float a = 1.0, b = 2.0;
+      std::cout << a << std::endl;
+      std::cout << a / b << std::endl;
+      std::cout << std::sqrt(b) << std::endl;
+      std::cout << std::acos(-1) << std::endl;
+      std::cout << std::sin(30.0 / 180.0 * acos(-1)) << std::endl;
+  
+      // Example of vector
+      std::cout << "Example of vector \n";
+      // vector definition
+      Eigen::Vector3f v(1.0f, 2.0f, 3.0f);
+      Eigen::Vector3f w(1.0f, 0.0f, 0.0f);
+      // vector output
+      std::cout << "Example of output \n";
+      std::cout << v << std::endl;
+      // vector add
+      std::cout << "Example of add \n";
+      std::cout << v + w << std::endl;
+      // vector scalar multiply
+      std::cout << "Example of scalar multiply \n";
+      std::cout << v * 3.0f << std::endl;
+      std::cout << 2.0f * v << std::endl;
+  
+      // Example of matrix
+      std::cout << "Example of matrix \n";
+      // matrix definition
+      Eigen::Matrix3f i, j;
+      i << 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0;
+      j << 2.0, 3.0, 1.0, 4.0, 6.0, 5.0, 9.0, 7.0, 8.0;
+      // matrix output
+      std::cout << "Example of output \n";
+      std::cout << i << std::endl;
+      // matrix add i + j
+      std::cout << i + j << std::endl;
+      // matrix scalar multiply i * 2.0
+      std::cout << i * 2.0 << std::endl;
+      // matrix multiply i * j
+      std::cout << i * j << std::endl;
+      // matrix multiply vector i * v
+      std::cout << i * v << std::endl;
+      //dot product
+      std::cout << v.dot(w) << std::endl;
+      //cross product
+      std::cout << v.cross(w) << std::endl;
+    }
+  ```
+
+* 在最后实现了题目：
+  
+  ```cpp
+      //P点
+      Eigen::Vector3f P(2.0, 1.0, 1.0);
+      //变换矩阵
+      Eigen::Matrix3f transform;
+      //可以直接写一个矩阵，因为先旋转再平移
+      transform << std::cos(45.0 / 180.0 * acos(-1)), -std::sin(45.0 / 180.0 * acos(-1)), 1.0,
+          std::sin(45.0 / 180.0 * acos(-1)), std::cos(45.0 / 180.0 * acos(-1)), 2.0,
+          0.0, 0.0, 1.0;
+      //变换后的点：
+      Eigen::Vector3f Pprime;
+      Pprime = transform * P;
+      std::cout << Pprime;
+  ```
+
+* 答案：
+  
+  $$
+  P\prime
+=
+\left(
+\begin{matrix}
+1.70711\\
+4.12132\\
+      1
+\end{matrix}
+\right)
+  $$
+  
+  
