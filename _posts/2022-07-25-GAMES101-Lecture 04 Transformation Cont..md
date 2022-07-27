@@ -401,9 +401,7 @@ B=-nf
 \begin{matrix}
 1.70711\\
 4.12132\\
-      1
+1
 \end{matrix}
 \right)
   $$
-  
-  
