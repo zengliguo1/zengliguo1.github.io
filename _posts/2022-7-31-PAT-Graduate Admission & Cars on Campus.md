@@ -2,7 +2,7 @@
 title: PAT-Graduate Admission & Cars on Campus
 date: 2022-07-31 16:59:00 +0800
 categories: [算法刷题, PAT]
-tags: [排序]
+tags: [排序, 哈希表]
 
 pin: false
 author: 
@@ -154,114 +154,114 @@ using namespace std;
 
 struct carRecord
 {
-	string plate;
-	int time;//转换成s
-	string state;//记录车的状态
-	carRecord(string _plate, int _time, string _state) :plate(_plate), time(_time), state(_state) {}
+    string plate;
+    int time;//转换成s
+    string state;//记录车的状态
+    carRecord(string _plate, int _time, string _state) :plate(_plate), time(_time), state(_state) {}
 };
 bool comp(carRecord& r1, carRecord& r2)
 {
-	if (r1.plate != r2.plate) return r1.plate < r2.plate;
-	else return r1.time < r2.time;
+    if (r1.plate != r2.plate) return r1.plate < r2.plate;
+    else return r1.time < r2.time;
 }
 bool comp2(carRecord& r1, carRecord& r2)
 {
-	return r1.time < r2.time;
+    return r1.time < r2.time;
 }
 int main()
 {
-	int N, K;//N个记录，K个询问
-	cin >> N >> K;
-	vector<carRecord> record;
-	//读取记录
-	while (N--)
-	{
-		string _plate, _state;
-		int hh, mm, ss;
-		//scanf读取string的方法：
-		_plate.resize(8);
-		_state.resize(4);
-		scanf("%s %d:%d:%d %s", &_plate[0], &hh, &mm, &ss, &_state[0]);
-		record.emplace_back(carRecord(_plate, hh * 3600 + mm * 60 + ss, _state));
-	}
-	//排序
-	sort(record.begin(), record.end(), comp);
-	//提取有效数据
-	vector<carRecord> valid;
-	map<string, int> totalTime;//记录每辆车的总时间
-	int maxTime = 0;
-	string in = "in";
-	string out = "out";
-	in.resize(4);
-	out.resize(4);
-	for (int i = 0; i < record.size() - 1; i++)
-	{
-		//检查相邻两个是不是能够配对
-		if (record[i].plate == record[i + 1].plate)//如果相邻两个记录车牌号一样
-		{
-			//检查是否一进一出
-			string r1 = record[i].state;
-			string r2 = record[i + 1].state;
-			if (r1 == in && r2 == out)
-			{
-				valid.emplace_back(record[i]);
-				valid.emplace_back(record[i + 1]);
-				totalTime[record[i].plate] += (record[i + 1].time - record[i].time);
-				if (totalTime[record[i].plate] > maxTime) maxTime = totalTime[record[i].plate];//记录最久时间
-			}
-		}
-	}
-	//把valid按时间排序
-	sort(valid.begin(), valid.end(), comp2);
-	//开始处理询问
-	int now = 0, numCar = 0;//now指当前询问的车辆序号
-	for (int i = 0; i < K; i++)
-	{
-		int hh, mm, ss;
-		scanf("%d:%d:%d", &hh, &mm, &ss);
-		int curTime = hh * 3600 + mm * 60 + ss;
-		while (now < valid.size() && valid[now].time <= curTime)
-		{
-			if (valid[now].state == in)numCar++;
-			else numCar--;
-			now++;
-		}
-		printf("%d\n", numCar);
-	}
-	/*int curNum = 0;//记录当前停的车
-	int curIndex = 0;//记录遍历到的valid下标
-	while (K--)
-	{
-		int hh, mm, ss;
-		scanf("%d:%d:%d", &hh, &mm, &ss);
-		int curTime = hh * 3600 + mm * 60 + ss;//当前时间
-		//遍历记录
+    int N, K;//N个记录，K个询问
+    cin >> N >> K;
+    vector<carRecord> record;
+    //读取记录
+    while (N--)
+    {
+        string _plate, _state;
+        int hh, mm, ss;
+        //scanf读取string的方法：
+        _plate.resize(8);
+        _state.resize(4);
+        scanf("%s %d:%d:%d %s", &_plate[0], &hh, &mm, &ss, &_state[0]);
+        record.emplace_back(carRecord(_plate, hh * 3600 + mm * 60 + ss, _state));
+    }
+    //排序
+    sort(record.begin(), record.end(), comp);
+    //提取有效数据
+    vector<carRecord> valid;
+    map<string, int> totalTime;//记录每辆车的总时间
+    int maxTime = 0;
+    string in = "in";
+    string out = "out";
+    in.resize(4);
+    out.resize(4);
+    for (int i = 0; i < record.size() - 1; i++)
+    {
+        //检查相邻两个是不是能够配对
+        if (record[i].plate == record[i + 1].plate)//如果相邻两个记录车牌号一样
+        {
+            //检查是否一进一出
+            string r1 = record[i].state;
+            string r2 = record[i + 1].state;
+            if (r1 == in && r2 == out)
+            {
+                valid.emplace_back(record[i]);
+                valid.emplace_back(record[i + 1]);
+                totalTime[record[i].plate] += (record[i + 1].time - record[i].time);
+                if (totalTime[record[i].plate] > maxTime) maxTime = totalTime[record[i].plate];//记录最久时间
+            }
+        }
+    }
+    //把valid按时间排序
+    sort(valid.begin(), valid.end(), comp2);
+    //开始处理询问
+    int now = 0, numCar = 0;//now指当前询问的车辆序号
+    for (int i = 0; i < K; i++)
+    {
+        int hh, mm, ss;
+        scanf("%d:%d:%d", &hh, &mm, &ss);
+        int curTime = hh * 3600 + mm * 60 + ss;
+        while (now < valid.size() && valid[now].time <= curTime)
+        {
+            if (valid[now].state == in)numCar++;
+            else numCar--;
+            now++;
+        }
+        printf("%d\n", numCar);
+    }
+    /*int curNum = 0;//记录当前停的车
+    int curIndex = 0;//记录遍历到的valid下标
+    while (K--)
+    {
+        int hh, mm, ss;
+        scanf("%d:%d:%d", &hh, &mm, &ss);
+        int curTime = hh * 3600 + mm * 60 + ss;//当前时间
+        //遍历记录
 
-		for (int i = curIndex; i < valid.size(); i++)
-		{
-			//如果当前询问时间早于或等于这辆车的时间，那么就要输出询问
-			if (curTime < valid[i].time)
-			{
-				curIndex = i;//下标不变
-				printf("%d\n", curNum);
-				break;//输出完当前询问的结果后跳出这个循环，去执行下个询问
-			}
-			else//如果i车还没到点，统计当前停的车的数量
-			{
-				if (valid[i].state == in) curNum++;
-				else curNum--;//车要出去
-			}
-		}
-	}*/
-	//输出停车时间最长的车
-	for (auto c : totalTime)
-	{
-		if (c.second == maxTime)//打印最久车
-		{
-			printf("%s ", c.first.c_str());
-		}
-	}
-	printf("%02d:%02d:%02d", maxTime / 3600, maxTime / 60 % 60, maxTime % 60);
+        for (int i = curIndex; i < valid.size(); i++)
+        {
+            //如果当前询问时间早于或等于这辆车的时间，那么就要输出询问
+            if (curTime < valid[i].time)
+            {
+                curIndex = i;//下标不变
+                printf("%d\n", curNum);
+                break;//输出完当前询问的结果后跳出这个循环，去执行下个询问
+            }
+            else//如果i车还没到点，统计当前停的车的数量
+            {
+                if (valid[i].state == in) curNum++;
+                else curNum--;//车要出去
+            }
+        }
+    }*/
+    //输出停车时间最长的车
+    for (auto c : totalTime)
+    {
+        if (c.second == maxTime)//打印最久车
+        {
+            printf("%s ", c.first.c_str());
+        }
+    }
+    printf("%02d:%02d:%02d", maxTime / 3600, maxTime / 60 % 60, maxTime % 60);
 }
 ```
 
@@ -276,3 +276,49 @@ int main()
 * 最后一个问题，也是我到现在也不太清楚的问题：就是当前车辆数目计算的方法，我自己写的方法和算法笔记的方法含义一样，只不过我用的for循环，他用的while，但我的代码，测试点1、2就是过不去，他的代码能过去，这一点挺匪夷所思的，我的代码写在注释里了，但我不懂为啥不行。不知道未来能否解决这个问题。只能说以后如果遇到类似的问题，还是得精准控制想要使用的变量，尽量别交给for循环去++，当然，不出错的话就直接for循环没关系。
 
 
+
+## A1092 [To Buy or Not to Buy](https://pintia.cn/problem-sets/994805342720868352/problems/994805374509498368)
+
+```cpp
+#include<iostream>
+#include<string>
+#include<unordered_map>
+using namespace std;
+
+int main()
+{
+	string shop, Eva;//商店的珠子和eva想要的珠子
+	cin >> shop >> Eva;
+	bool answer = true;
+	//将商店的珠子存入哈希表
+	unordered_map<char, int> mapShop;
+	for (int i = 0; i < shop.size(); i++)
+	{
+		mapShop[shop[i]]++;
+	}
+	//去查是否能买够
+	int lesscnt = 0;//缺的珠子数
+	for (int i = 0; i < Eva.size(); i++)
+	{
+		if (!mapShop.count(Eva[i]) || mapShop[Eva[i]] <= 0)//如果想要的珠子没有
+		{
+			answer = false;
+			lesscnt++;
+		}
+		else
+		{
+			mapShop[Eva[i]]--;
+		}
+	}
+	if (answer)
+	{
+		cout << "Yes" << ' ' << shop.size() - Eva.size();
+	}
+	else
+	{
+		cout << "No" << ' ' << lesscnt;
+	}
+}
+```
+
+    简单的哈希表，第一次提交竟然没全对，忘了减商店的珠子了 ......
