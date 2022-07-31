@@ -1,5 +1,5 @@
 ---
-title: PAT-Graduate Admission & Cars on Campus
+title: PAT-Graduate Admission & Cars on Campus & To Buy or Not to Buy
 date: 2022-07-31 16:59:00 +0800
 categories: [算法刷题, PAT]
 tags: [排序, 哈希表]
@@ -275,8 +275,6 @@ int main()
 
 * 最后一个问题，也是我到现在也不太清楚的问题：就是当前车辆数目计算的方法，我自己写的方法和算法笔记的方法含义一样，只不过我用的for循环，他用的while，但我的代码，测试点1、2就是过不去，他的代码能过去，这一点挺匪夷所思的，我的代码写在注释里了，但我不懂为啥不行。不知道未来能否解决这个问题。只能说以后如果遇到类似的问题，还是得精准控制想要使用的变量，尽量别交给for循环去++，当然，不出错的话就直接for循环没关系。
 
-
-
 ## A1092 [To Buy or Not to Buy](https://pintia.cn/problem-sets/994805342720868352/problems/994805374509498368)
 
 ```cpp
@@ -287,37 +285,37 @@ using namespace std;
 
 int main()
 {
-	string shop, Eva;//商店的珠子和eva想要的珠子
-	cin >> shop >> Eva;
-	bool answer = true;
-	//将商店的珠子存入哈希表
-	unordered_map<char, int> mapShop;
-	for (int i = 0; i < shop.size(); i++)
-	{
-		mapShop[shop[i]]++;
-	}
-	//去查是否能买够
-	int lesscnt = 0;//缺的珠子数
-	for (int i = 0; i < Eva.size(); i++)
-	{
-		if (!mapShop.count(Eva[i]) || mapShop[Eva[i]] <= 0)//如果想要的珠子没有
-		{
-			answer = false;
-			lesscnt++;
-		}
-		else
-		{
-			mapShop[Eva[i]]--;
-		}
-	}
-	if (answer)
-	{
-		cout << "Yes" << ' ' << shop.size() - Eva.size();
-	}
-	else
-	{
-		cout << "No" << ' ' << lesscnt;
-	}
+    string shop, Eva;//商店的珠子和eva想要的珠子
+    cin >> shop >> Eva;
+    bool answer = true;
+    //将商店的珠子存入哈希表
+    unordered_map<char, int> mapShop;
+    for (int i = 0; i < shop.size(); i++)
+    {
+        mapShop[shop[i]]++;
+    }
+    //去查是否能买够
+    int lesscnt = 0;//缺的珠子数
+    for (int i = 0; i < Eva.size(); i++)
+    {
+        if (!mapShop.count(Eva[i]) || mapShop[Eva[i]] <= 0)//如果想要的珠子没有
+        {
+            answer = false;
+            lesscnt++;
+        }
+        else
+        {
+            mapShop[Eva[i]]--;
+        }
+    }
+    if (answer)
+    {
+        cout << "Yes" << ' ' << shop.size() - Eva.size();
+    }
+    else
+    {
+        cout << "No" << ' ' << lesscnt;
+    }
 }
 ```
 
