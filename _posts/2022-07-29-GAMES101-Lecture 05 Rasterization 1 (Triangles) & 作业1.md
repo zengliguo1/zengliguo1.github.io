@@ -189,5 +189,3 @@ Eigen::Matrix4f get_projection_matrix(float eye_fov, float aspect_ratio,
 - 有一个问题就是，在main函数中`r.set_projection(get_projection_matrix(45, 1, -0.1, -50));`，函数传入的zNear和zFar要改成-的，不然会显示反着。
 
 - 有个问题我还是不太懂，就是view矩阵，他其实就是做了个平移，相当于是z减少了5。问题就是相机的初始位置到底在哪里呢？很奇怪，是（0,0）吗，相机的注视方向呢？是沿着Z轴吗？相机的头顶方向呢？其实只要矩阵写对了，就能看到三角形，也许这道作业就是为了让我们了解下model变换和透视投影变换吧，其他的问题可能会在后面解决吧。
-
-
