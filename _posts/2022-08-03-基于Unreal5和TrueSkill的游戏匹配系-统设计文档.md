@@ -1,5 +1,5 @@
 ---
-title: 基于Unreal5和TrueSkill的游戏匹配系-统设计文档
+title: 基于Unreal5和TrueSkill的游戏匹配系统-设计文档
 date: 2022-08-03 11:26:00 +0800
 categories: [Unreal5, 多人在线游戏匹配系统]
 tags: [多人在线, TrueSkill]
@@ -280,5 +280,3 @@ for (int i = 0; i < NumberOfPlayers; i++)
 [4]谢白羽. 游戏思考系列03：游戏匹配机制(MMR、ELO、trueskill2、皇家战争、Glicko等，详细讲ELO，其他的简略)[EB/OL].2021[2022-7-12]. https://blog.csdn.net/weixin_43679037/article/details/121855591.
 [5]Jeff Moser. Computing Your Skill[EB/OL]. 2010[2022-7-12]. http://www.moserware.com/2010/03/computing-your-skill.html.
 [6]白婷. TrueSkill 原理及实现[EB/OL]. 2016[2022-7-12]. https://www.cnblogs.com/baiting/p/5591614.html.
-
-
