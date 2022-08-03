@@ -10,7 +10,7 @@ author:
     link: https://space.bilibili.com/9330604
 toc: true
 comments: true
-math: false
+math: true
 mermaid: true
 
 ---
