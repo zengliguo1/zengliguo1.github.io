@@ -35,7 +35,7 @@ mermaid: true
    
    可以根据配置来选择用哪种模式（监听服务器还是专用服务器模式）
 
-## 2. Testing Multiplayer
+### 2. Testing Multiplayer
 
 #### 2.1 Testing in editor
 
