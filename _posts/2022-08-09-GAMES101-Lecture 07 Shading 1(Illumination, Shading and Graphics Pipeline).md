@@ -6,8 +6,8 @@ tags: [图形学, 学习笔记]
 
 pin: false
 author: 
-name: CALL1CE
- link: https://space.bilibili.com/9330604
+    name: CALL1CE
+    link: https://space.bilibili.com/9330604
 toc: true
 comments: true
 math: true
