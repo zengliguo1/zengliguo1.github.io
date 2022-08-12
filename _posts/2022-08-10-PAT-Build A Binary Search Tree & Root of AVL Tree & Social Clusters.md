@@ -245,91 +245,89 @@ int n;//记录节点总数
 // 寻找x的根父亲节点 函数
 int FindFather(int x)
 {
-	int a = x;//储存x，用于接下来路径压缩
-	//只有x = father[x]时，x才是根节点
-	while (x != father[x])
-	{
-		x = father[x];
-	}
-	//循环完也就找到x是根父节点
-	//路径压缩
-	while (a != father[a])
-	{
-		int z = a;
-		a = father[a];//要把a的直接father的父节点也更新
-		father[a] = x;//将a也就是一开始的x的父节点重置为根父节点，这样方便下次查询
-	}
-	return x;//返回父节点
+    int a = x;//储存x，用于接下来路径压缩
+    //只有x = father[x]时，x才是根节点
+    while (x != father[x])
+    {
+        x = father[x];
+    }
+    //循环完也就找到x是根父节点
+    //路径压缩
+    while (a != father[a])
+    {
+        int z = a;
+        a = father[a];//要把a的直接father的父节点也更新
+        father[a] = x;//将a也就是一开始的x的父节点重置为根父节点，这样方便下次查询
+    }
+    return x;//返回父节点
 }
 //合并两个集合的函数
 void Union(int a, int b)
 {
-	//先找到两个人的根节点
-	int fa = FindFather(a);
-	int fb = FindFather(b);
-	//把其中一个人(fb)的父亲节点设置为对方(fa)
-	if(fa != fb)
-	father[fb] = fa;
+    //先找到两个人的根节点
+    int fa = FindFather(a);
+    int fb = FindFather(b);
+    //把其中一个人(fb)的父亲节点设置为对方(fa)
+    if(fa != fb)
+    father[fb] = fa;
 }
 //初始化father数组，每个人在成为集合前，自己是自己的father，也就是说随时可以做某个hobby的根父节点
 void init()
 {
-	for (int i = 1; i <= n; i++)
-	{
-		father[i] = i;
-	}
+    for (int i = 1; i <= n; i++)
+    {
+        father[i] = i;
+    }
 }
 bool comp(int a, int b)
 {
-	return a > b;//大的在前面
+    return a > b;//大的在前面
 }
 int main()
 {
-	//读取节点总数
-	cin >> n;
-	init();
-	for (int i = 1; i <= n; i++)
-	{
-		int _num;
-		cin >> _num;
-		getchar();//吸收冒号
-		while (_num--)
-		{
-			int _hobby;
-			cin >> _hobby;
-			//先检查这个hobby之前有没有人
-			if (hobbyFather[_hobby] == 0)//说明没有人
-			{
-				//那么i就让自己的father自告奋勇，做第一个这个集群的father
-				hobbyFather[_hobby] = i;
-			}
-			//不管有没有人，都将这个i合并到这个爱好的根父节点(之前没有人的话，其实不union也行)
-			Union(FindFather(hobbyFather[_hobby]), i);
-		}
-	}
-	//接下来统计每个人的根父节点是谁
-	for (int i = 1; i <= n; i++)
-	{
-		isRoot[FindFather(i)]++;
-	}
-	int ans = 0;//记录集群总数
-	for (int i = 1; i <= n; i++)
-	{
-		if (isRoot[i] != 0) ans++;
-	}
-	cout << ans << endl;
-	//给集群人数排序
-	sort(isRoot.begin() + 1, isRoot.begin() + 1 + n, comp);
-	for (int i = 1; i <= ans; i++)
-	{
-		if (i == 1) cout << isRoot[i];
-		else cout << ' ' << isRoot[i];
-	}
+    //读取节点总数
+    cin >> n;
+    init();
+    for (int i = 1; i <= n; i++)
+    {
+        int _num;
+        cin >> _num;
+        getchar();//吸收冒号
+        while (_num--)
+        {
+            int _hobby;
+            cin >> _hobby;
+            //先检查这个hobby之前有没有人
+            if (hobbyFather[_hobby] == 0)//说明没有人
+            {
+                //那么i就让自己的father自告奋勇，做第一个这个集群的father
+                hobbyFather[_hobby] = i;
+            }
+            //不管有没有人，都将这个i合并到这个爱好的根父节点(之前没有人的话，其实不union也行)
+            Union(FindFather(hobbyFather[_hobby]), i);
+        }
+    }
+    //接下来统计每个人的根父节点是谁
+    for (int i = 1; i <= n; i++)
+    {
+        isRoot[FindFather(i)]++;
+    }
+    int ans = 0;//记录集群总数
+    for (int i = 1; i <= n; i++)
+    {
+        if (isRoot[i] != 0) ans++;
+    }
+    cout << ans << endl;
+    //给集群人数排序
+    sort(isRoot.begin() + 1, isRoot.begin() + 1 + n, comp);
+    for (int i = 1; i <= ans; i++)
+    {
+        if (i == 1) cout << isRoot[i];
+        else cout << ' ' << isRoot[i];
+    }
 }
 ```
 
     这道题是并查集的一道题，之前从来没做过并查集的题，长见识了，第一次接触还是有点生疏的，注意下面几个点：
 
 * 关于记录根节点，其实只要记录住每个爱好的同好有一个人就行，这样就能直接找到这个爱好所属的集合的根节点，这样的话，都遍历完后，再遍历每个人，去查他的根节点是谁，就可以记录准确的集群人数了
-
-
