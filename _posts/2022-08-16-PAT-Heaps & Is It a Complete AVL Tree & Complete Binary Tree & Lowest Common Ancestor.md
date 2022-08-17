@@ -2,7 +2,7 @@
 title: PAT-Heaps & Is It a Complete AVL Tree & Complete Binary Tree & Lowest Common Ancestor
 date: 2022-08-16 17:39:00 +0800
 categories: [算法刷题, PAT]
-tags: [堆, AVL, 完全二叉树]
+tags: [堆, AVL, 完全二叉树, LCA]
 
 pin: false
 author: 
@@ -301,64 +301,64 @@ vector<bool> isRoot(maxn, true);
 int n;
 int main()
 {
-	//freopen("input.txt", "r", stdin);
-	cin >> n;
-	for (int i = 0; i < n; i++)
-	{
-		string l, r;
-		cin >> l >> r;
-		if (l[0] != '-')
-		{
-			Left[i] = stoi(l);
-			isRoot[stoi(l)] = false;
-		}
-		if (r[0] != '-')
-		{
-			Right[i] = stoi(r);
-			isRoot[stoi(r)] = false;
-		}
-	}
-	int root;
-	for (int i = 0; i < n; i++)
-	{
-		if (isRoot[i] == true) root = i;
-	}
-	queue<int> q;
-	q.push(root);
-	bool flag = false, isComp = true;
-	int last;
-	while (!q.empty())
-	{
-		int top = q.front();
-		q.pop();
-		if (Left[top] == -1)
-		{
-			flag = true;
-		}
-		else
-		{
-			if (flag) isComp = false;
-			q.push(Left[top]);
-		}
-		if (Right[top] == -1)
-		{
-			flag = true;
-		}
-		else
-		{
-			if (flag) isComp = false;
-			q.push(Right[top]);
-		}
-		if (q.empty()) last = top;
-	}
-	if (isComp)
-	{
-		cout << "YES " << last;
-	}
-	else
-	{
-		cout << "NO " << root;
-	}
+    //freopen("input.txt", "r", stdin);
+    cin >> n;
+    for (int i = 0; i < n; i++)
+    {
+        string l, r;
+        cin >> l >> r;
+        if (l[0] != '-')
+        {
+            Left[i] = stoi(l);
+            isRoot[stoi(l)] = false;
+        }
+        if (r[0] != '-')
+        {
+            Right[i] = stoi(r);
+            isRoot[stoi(r)] = false;
+        }
+    }
+    int root;
+    for (int i = 0; i < n; i++)
+    {
+        if (isRoot[i] == true) root = i;
+    }
+    queue<int> q;
+    q.push(root);
+    bool flag = false, isComp = true;
+    int last;
+    while (!q.empty())
+    {
+        int top = q.front();
+        q.pop();
+        if (Left[top] == -1)
+        {
+            flag = true;
+        }
+        else
+        {
+            if (flag) isComp = false;
+            q.push(Left[top]);
+        }
+        if (Right[top] == -1)
+        {
+            flag = true;
+        }
+        else
+        {
+            if (flag) isComp = false;
+            q.push(Right[top]);
+        }
+        if (q.empty()) last = top;
+    }
+    if (isComp)
+    {
+        cout << "YES " << last;
+    }
+    else
+    {
+        cout << "NO " << root;
+    }
 }
 ```
 
@@ -380,54 +380,54 @@ vector<int> preOrder(maxn);
 int m, n;
 void FindLCA(int u, int v)
 {
-	for (int i = 0; i < n; i++)
-	{
-		if ((preOrder[i] > u && preOrder[i] < v) || (preOrder[i] < u && preOrder[i] > v))
-		{
-			printf("LCA of %d and %d is %d.\n", u, v, preOrder[i]);
-			return;
-		}
-		else if (preOrder[i] == u)
-		{
-			printf("%d is an ancestor of %d.\n", u, v);
-			return;
-		}
-		else if (preOrder[i] == v)
-		{
-			printf("%d is an ancestor of %d.\n", v, u);
-			return;
-		}
-	}
+    for (int i = 0; i < n; i++)
+    {
+        if ((preOrder[i] > u && preOrder[i] < v) || (preOrder[i] < u && preOrder[i] > v))
+        {
+            printf("LCA of %d and %d is %d.\n", u, v, preOrder[i]);
+            return;
+        }
+        else if (preOrder[i] == u)
+        {
+            printf("%d is an ancestor of %d.\n", u, v);
+            return;
+        }
+        else if (preOrder[i] == v)
+        {
+            printf("%d is an ancestor of %d.\n", v, u);
+            return;
+        }
+    }
 }
 int main()
 {
-	cin >> m >> n;
-	for (int i = 0; i < n; i++)
-	{
-		cin >> preOrder[i];
-		map[preOrder[i]]++;
-	}
-	for (int i = 0; i < m; i++)
-	{
-		int x, y;
-		cin >> x >> y;
-		if (!map.count(x) && !map.count(y))
-		{
-			printf("ERROR: %d and %d are not found.\n", x, y);
-		}
-		else if (!map.count(x))
-		{
-			printf("ERROR: %d is not found.\n", x);
-		}
-		else if (!map.count(y))
-		{
-			printf("ERROR: %d is not found.\n", y);
-		}
-		else
-		{
-			FindLCA(x, y);
-		}
-	}
+    cin >> m >> n;
+    for (int i = 0; i < n; i++)
+    {
+        cin >> preOrder[i];
+        map[preOrder[i]]++;
+    }
+    for (int i = 0; i < m; i++)
+    {
+        int x, y;
+        cin >> x >> y;
+        if (!map.count(x) && !map.count(y))
+        {
+            printf("ERROR: %d and %d are not found.\n", x, y);
+        }
+        else if (!map.count(x))
+        {
+            printf("ERROR: %d is not found.\n", x);
+        }
+        else if (!map.count(y))
+        {
+            printf("ERROR: %d is not found.\n", y);
+        }
+        else
+        {
+            FindLCA(x, y);
+        }
+    }
 }
 ```
 
