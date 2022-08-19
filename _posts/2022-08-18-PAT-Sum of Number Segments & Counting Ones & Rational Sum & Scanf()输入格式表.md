@@ -2,7 +2,7 @@
 title: PAT-Sum of Number Segments & Counting Ones & Rational Sum & Scanf()输入格式表
 date: 2022-08-18 17:40:00 +0800
 categories: [算法刷题, PAT]
-tags: [数学]
+tags: [数学, 最大公因数， 最小公倍数]
 
 pin: false
 author: 
