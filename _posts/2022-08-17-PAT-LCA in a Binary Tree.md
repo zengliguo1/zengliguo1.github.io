@@ -1,5 +1,5 @@
 ---
-title: LCA in a Binary Tree
+title: PAT-LCA in a Binary Tree
 date: 2022-08-17 21:47:00 +0800
 categories: [算法刷题, PAT]
 tags: [LCA, dfs]
@@ -28,99 +28,99 @@ vector<int> in(maxn);
 vector<int> pre(maxn);
 struct node
 {
-	int val;
-	node* left = nullptr, * right = nullptr;
-	node(int _val) : val(_val) {}
+    int val;
+    node* left = nullptr, * right = nullptr;
+    node(int _val) : val(_val) {}
 }*root;
 int m, n;
 node* build( int inL, int inR, int preL, int preR)
 {
-	if (inL > inR || preL > preR) return nullptr;
-	node* root = new node(pre[preL]);
-	int index;
-	for (int i = inL; i <= inR; i++)
-	{
-		if (in[i] == pre[preL])
-		{
-			index = i;
-			break;
-		}
-	}
-	root->left = build(inL, index - 1,preL + 1, preL + index - inL);
-	root->right = build(index + 1, inR, preL + index - inL + 1, preR);
-	return root;
+    if (inL > inR || preL > preR) return nullptr;
+    node* root = new node(pre[preL]);
+    int index;
+    for (int i = inL; i <= inR; i++)
+    {
+        if (in[i] == pre[preL])
+        {
+            index = i;
+            break;
+        }
+    }
+    root->left = build(inL, index - 1,preL + 1, preL + index - inL);
+    root->right = build(index + 1, inR, preL + index - inL + 1, preR);
+    return root;
 }
 bool flag1, flag2;
 int LCA = -1;
 int search(node* root, int u, int v)
 {
-	if (root == nullptr) return 0;
-	int cnt = 0;
-	cnt = search(root->left, u, v) + search(root->right, u, v);
-	if (root->val == u)
-	{
-		flag1 = true;
-		cnt++;
-	}
-	if (root->val == v)
-	{
-		flag2 = true;
-		cnt++;
-	}
-	if (LCA == -1 && cnt == 2)
-	{
-		LCA = root->val;
-	}
-	return cnt;
+    if (root == nullptr) return 0;
+    int cnt = 0;
+    cnt = search(root->left, u, v) + search(root->right, u, v);
+    if (root->val == u)
+    {
+        flag1 = true;
+        cnt++;
+    }
+    if (root->val == v)
+    {
+        flag2 = true;
+        cnt++;
+    }
+    if (LCA == -1 && cnt == 2)
+    {
+        LCA = root->val;
+    }
+    return cnt;
 }
 int main()
 {
-	//freopen("input.txt", "r", stdin);
-	cin >> m >> n;
-	for (int i = 0; i < n; i++)
-	{
-		cin >> in[i];
-	}
-	for (int i = 0; i < n; i++)
-	{
-		cin >> pre[i];
-	}
-	root =  build(0, n - 1, 0, n - 1);
-	for (int i = 0; i < m; i++)
-	{
-		int u, v;
-		cin >> u >> v;
-		LCA = -1;
-		flag1 = false, flag2 = false;
-		search(root, u, v);
-		if (flag1 && flag2)
-		{
-			if (LCA == u)
-			{
-				printf("%d is an ancestor of %d.\n", u, v);
-			}
-			else if (LCA == v)
-			{
-				printf("%d is an ancestor of %d.\n", v, u);
-			}
-			else
-			{
-				printf("LCA of %d and %d is %d.\n", u, v, LCA);
-			}
-		}
-		else if(!flag1 && !flag2)
-		{
-			printf("ERROR: %d and %d are not found.\n", u, v);
-		}
-		else if (flag1)
-		{
-			printf("ERROR: %d is not found.\n", v);
-		}
-		else
-		{
-			printf("ERROR: %d is not found.\n", u);
-		}
-	}
+    //freopen("input.txt", "r", stdin);
+    cin >> m >> n;
+    for (int i = 0; i < n; i++)
+    {
+        cin >> in[i];
+    }
+    for (int i = 0; i < n; i++)
+    {
+        cin >> pre[i];
+    }
+    root =  build(0, n - 1, 0, n - 1);
+    for (int i = 0; i < m; i++)
+    {
+        int u, v;
+        cin >> u >> v;
+        LCA = -1;
+        flag1 = false, flag2 = false;
+        search(root, u, v);
+        if (flag1 && flag2)
+        {
+            if (LCA == u)
+            {
+                printf("%d is an ancestor of %d.\n", u, v);
+            }
+            else if (LCA == v)
+            {
+                printf("%d is an ancestor of %d.\n", v, u);
+            }
+            else
+            {
+                printf("LCA of %d and %d is %d.\n", u, v, LCA);
+            }
+        }
+        else if(!flag1 && !flag2)
+        {
+            printf("ERROR: %d and %d are not found.\n", u, v);
+        }
+        else if (flag1)
+        {
+            printf("ERROR: %d is not found.\n", v);
+        }
+        else
+        {
+            printf("ERROR: %d is not found.\n", u);
+        }
+    }
 }
 ```
 

@@ -1,6 +1,6 @@
 ---
 title: PAT-Sum of Number Segments & Counting Ones & Rational Sum & Scanf()输入格式表
-date: 2022-08-18 21:47:00 +0800
+date: 2022-08-18 17:40:00 +0800
 categories: [算法刷题, PAT]
 tags: [数学]
 
@@ -133,46 +133,46 @@ vector<long long> numerator(maxn);
 vector<long long> denominator(maxn);
 long long gcd(long long a, long long b)
 {
-	if (b == 0)return a;
-	else return gcd(b, a % b);
+    if (b == 0)return a;
+    else return gcd(b, a % b);
 }
 long long lcm(long long a, long long b)
 {
-	return a * b / gcd(a, b);
+    return a * b / gcd(a, b);
 }
 void Plus(long long a, long long b)
 {
-	long long de = lcm(abs(denominator[a]), abs(denominator[b]));
-	long long nu = numerator[a] * (de / denominator[a]) + numerator[b] * (de / denominator[b]);
-	long long g = gcd(de, abs(nu));
-	numerator[b] = nu / g;
-	denominator[b] = de / g;
+    long long de = lcm(abs(denominator[a]), abs(denominator[b]));
+    long long nu = numerator[a] * (de / denominator[a]) + numerator[b] * (de / denominator[b]);
+    long long g = gcd(de, abs(nu));
+    numerator[b] = nu / g;
+    denominator[b] = de / g;
 }
 
 int n;
 int main()
 {
-	cin >> n;
-	for (int i = 0; i < n; i++)
-	{
-		scanf("%lld/%lld", &numerator[i], &denominator[i]);
-	}
-	for (int i = 0; i < n - 1; i++)
-	{
-		Plus(i, i + 1);
-	}
-	if (numerator[n - 1] % denominator[n - 1] == 0)
-	{
-		cout << numerator[n - 1] / denominator[n - 1];
-	}
-	else if (numerator[n - 1] >= denominator[n - 1])
-	{
-		cout << numerator[n - 1] / denominator[n - 1] << ' ' << numerator[n - 1] - (denominator[n - 1] * (numerator[n - 1] / denominator[n - 1])) << '/' << denominator[n - 1];
-	}
-	else
-	{
-		cout << numerator[n - 1] << '/' << denominator[n - 1];
-	}
+    cin >> n;
+    for (int i = 0; i < n; i++)
+    {
+        scanf("%lld/%lld", &numerator[i], &denominator[i]);
+    }
+    for (int i = 0; i < n - 1; i++)
+    {
+        Plus(i, i + 1);
+    }
+    if (numerator[n - 1] % denominator[n - 1] == 0)
+    {
+        cout << numerator[n - 1] / denominator[n - 1];
+    }
+    else if (numerator[n - 1] >= denominator[n - 1])
+    {
+        cout << numerator[n - 1] / denominator[n - 1] << ' ' << numerator[n - 1] - (denominator[n - 1] * (numerator[n - 1] / denominator[n - 1])) << '/' << denominator[n - 1];
+    }
+    else
+    {
+        cout << numerator[n - 1] << '/' << denominator[n - 1];
+    }
 }
 ```
 
@@ -191,9 +191,3 @@ int main()
 | %e、%le          | 读取一个指数形式的小数，并分别赋值给 float、double 类型                            |
 | %g、%lg          | 既可以读取一个十进制形式的小数，也可以读取一个指数形式的小数，并分别赋值给 float、double 类型         |
 | %s              | 读取一个字符串（以空白符为结束）                                              |
-
-
-
-
-
-
