@@ -2,7 +2,7 @@
 title: PAT-Rational Arithmetic & Prime Factors
 date: 2022-08-19 22:05:00 +0800
 categories: [算法刷题, PAT]
-tags: [数学, 最大公因数， 最小公倍数]
+tags: [数学, 最大公因数, 最小公倍数, 素数, 因式分解]
 
 pin: false
 author: 
@@ -183,67 +183,67 @@ unordered_map<LL, int> map;
 int N;
 bool isPrime(LL n)
 {
-	//LL sqr = sqrt(1.0 * n);
-	for (LL i = 2; i * i<= n; i++)
-	{
-		if (n % i == 0) return false;
-	}
-	return true;
+    //LL sqr = sqrt(1.0 * n);
+    for (LL i = 2; i * i<= n; i++)
+    {
+        if (n % i == 0) return false;
+    }
+    return true;
 }
 void Find()
 {
-	//LL sqr = sqrt(1.0 * N);
-	for (LL i = 2; i * i < N; i++)
-	{
-		if (N % i == 0 && isPrime(i))
-		{
-			primeFactors.emplace_back(i);
-			map[i]++;
-		}
-	}
+    //LL sqr = sqrt(1.0 * N);
+    for (LL i = 2; i * i < N; i++)
+    {
+        if (N % i == 0 && isPrime(i))
+        {
+            primeFactors.emplace_back(i);
+            map[i]++;
+        }
+    }
 }
 
 int main()
 {
-	cin >> N;
-	LL ansN = N;
-	Find();
-	if (primeFactors.size() == 0)
-	{
-		cout << ansN << '=' << ansN;
-		return 0;
-	}
-	for (int i = 0; i < primeFactors.size(); i++)
-	{
-		N /= primeFactors[i];
-	}
-	int j = 0;
-	while (N != 1)
-	{
-		while (N % primeFactors[j] == 0)
-		{
-			map[primeFactors[j]]++;
-			N /= primeFactors[j];
-		}
-		j++;
-	}
-	cout << ansN << '=';
-	for (int i = 0; i < primeFactors.size(); i++)
-	{
-		if (i == 0)
-		{
-			cout << primeFactors[i];
-		}
-		else
-		{
-			cout << '*' << primeFactors[i];
-		}
-		if (map[primeFactors[i]] > 1)
-		{
-			cout << '^' << map[primeFactors[i]];
-		}
-	}
-	return 0;
+    cin >> N;
+    LL ansN = N;
+    Find();
+    if (primeFactors.size() == 0)
+    {
+        cout << ansN << '=' << ansN;
+        return 0;
+    }
+    for (int i = 0; i < primeFactors.size(); i++)
+    {
+        N /= primeFactors[i];
+    }
+    int j = 0;
+    while (N != 1)
+    {
+        while (N % primeFactors[j] == 0)
+        {
+            map[primeFactors[j]]++;
+            N /= primeFactors[j];
+        }
+        j++;
+    }
+    cout << ansN << '=';
+    for (int i = 0; i < primeFactors.size(); i++)
+    {
+        if (i == 0)
+        {
+            cout << primeFactors[i];
+        }
+        else
+        {
+            cout << '*' << primeFactors[i];
+        }
+        if (map[primeFactors[i]] > 1)
+        {
+            cout << '^' << map[primeFactors[i]];
+        }
+    }
+    return 0;
 }
 ```
 
@@ -264,69 +264,69 @@ bool p[maxn] = { false };
 LL n;
 void Era()//使用欧拉筛法算出素数表
 {
-	for (LL i = 2; i < maxn; i++)
-	{
-		if (p[i] == false)
-		{
-			prime.emplace_back(i);
-			for (int j = i * 2; j < maxn; j += i)
-			{
-				p[j] = true;
-			}
-		}
-	}
+    for (LL i = 2; i < maxn; i++)
+    {
+        if (p[i] == false)
+        {
+            prime.emplace_back(i);
+            for (int j = i * 2; j < maxn; j += i)
+            {
+                p[j] = true;
+            }
+        }
+    }
 }
 
 int main()
 {
-	Era();
-	cin >> n;
-	unordered_map<LL, int> map;
-	for (LL p : prime)
-	{
-		if (n % p == 0)
-		{
-			map[p]++;
-			factors.emplace_back(p);
-		}
-	}
-	if (map.empty())
-	{
-		cout << n << '=' << n;
-		return 0;
-	}
-	LL ansN = n;
-	for (LL f : factors)
-	{
-		n /= f;
-	}
-	int j = 0;
-	while (n != 1)
-	{
-		while (n % factors[j] == 0)
-		{
-			n /= factors[j];
-			map[factors[j]]++;
-		}
-		j++;
-	}
-	cout << ansN << '=';
-	for (int i = 0; i < factors.size(); i++)
-	{
-		if (i == 0)
-		{
-			cout << factors[i];
-		}
-		else
-		{
-			cout << '*' << factors[i];
-		}
-		if (map[factors[i]] > 1)
-		{
-			cout << '^' << map[factors[i]];
-		}
-	}
-	return 0;
+    Era();
+    cin >> n;
+    unordered_map<LL, int> map;
+    for (LL p : prime)
+    {
+        if (n % p == 0)
+        {
+            map[p]++;
+            factors.emplace_back(p);
+        }
+    }
+    if (map.empty())
+    {
+        cout << n << '=' << n;
+        return 0;
+    }
+    LL ansN = n;
+    for (LL f : factors)
+    {
+        n /= f;
+    }
+    int j = 0;
+    while (n != 1)
+    {
+        while (n % factors[j] == 0)
+        {
+            n /= factors[j];
+            map[factors[j]]++;
+        }
+        j++;
+    }
+    cout << ansN << '=';
+    for (int i = 0; i < factors.size(); i++)
+    {
+        if (i == 0)
+        {
+            cout << factors[i];
+        }
+        else
+        {
+            cout << '*' << factors[i];
+        }
+        if (map[factors[i]] > 1)
+        {
+            cout << '^' << map[factors[i]];
+        }
+    }
+    return 0;
 }
 ```
 
