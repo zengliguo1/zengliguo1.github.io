@@ -158,9 +158,9 @@ y + t_y\\
 
 - 添加第三位坐标(向量是0，因为向量具有平移不变性)
   
-  - 2D point = (x,y,1)^T
+  - 2D point = $(x,y,1)^T$
   
-  - 2D vector = (x,y,0)^T
+  - 2D vector = $(x,y,0)^T$
 
 - 如果w坐标是1或者0，点和向量的运算也是有效的
   
@@ -210,15 +210,15 @@ $$
 
 - 绕C点旋转：先平移，使C移到原点，旋转后，再移回去
   
-  T(c)\cdot R(\alpha)\cdot T(-c)
+  $T(c)\cdot R(\alpha)\cdot T(-c)$
 
 ### 11. 3D Transforms
 
 - 再一次使用齐次坐标
 
-- 3D point = (x,y,z,1)^T
+- $3D point = (x,y,z,1)^T$
 
-- 3D vector = (x,y,z,0)^T
+- $3D vector = (x,y,z,0)^T$
 
 - 使用4×4的矩阵表示仿射变换
 
