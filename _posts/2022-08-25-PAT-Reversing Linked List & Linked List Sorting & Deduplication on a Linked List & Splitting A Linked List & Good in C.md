@@ -1,8 +1,8 @@
 ---
-title: PAT-Reversing Linked List & Linked List Sorting & Deduplication on a Linked List & Splitting A Linked List
-date: 2022-08-25 16:53:00 +0800
+title: PAT-Reversing Linked List & Linked List Sorting & Deduplication on a Linked List & Splitting A Linked List & Good in C
+date: 2022-08-25 19:01:00 +0800
 categories: [算法刷题, PAT]
-tags: [链表]
+tags: [链表, 模拟]
 
 pin: false
 author: 
@@ -314,3 +314,115 @@ int main()
 ```
 
     8分17秒拿下，pat的链表题属于是套路题了，记得换行，遍历链表的时候记得更新指针为next，不然会内存超限。
+
+## A1164 [Good in C](https://pintia.cn/problem-sets/994805342720868352/problems/1478635767601967104)
+
+```cpp
+#include<iostream>
+#include<string>
+#include<vector>
+using namespace std;
+
+vector<vector<string>> letter(26, vector<string>(7));
+
+int main()
+{
+    for (int i = 0; i < 26; i++)
+    {
+        for (int j = 0; j < 7; j++)
+        {
+            cin >> letter[i][j];
+        }
+    }
+    getchar();
+    string s;
+    getline(cin, s);
+    //while (!s.empty() && !isupper(s[0])) s.erase(s.begin());
+    vector<char> word;
+    for (int i = 0; i < s.size(); i++)
+    {
+        if(isupper(s[i]) && i == s.size() - 1) word.emplace_back(s[i]);
+        if ((!isupper(s[i]) || i == s.size() - 1) && !word.empty())
+        {
+            while (i < s.size()-1 && !isupper(s[i+1]))
+            {
+                i++;
+            }
+            for (int j = 0; j < 7; j++)
+            {
+                for (int k = 0; k < word.size(); k++)
+                {
+                    cout << letter[word[k] - 'A'][j];
+                    if (k != word.size() - 1) cout << ' ';
+                }
+                cout << endl;
+            }
+            if (i < s.size() - 1) cout << endl;
+
+            word.clear();
+        }
+        else
+        {
+            word.emplace_back(s[i]);
+        }
+    }
+}
+```
+
+    这个题这段代码，18/20分，测试点1有段错误，我看了好久，终于发现哪里数组越界了。就是`cout << letter[word[k] - 'A'][j];`这里，我的这个`if ((!isupper(s[i]) || i == s.size() - 1) && !word.empty())`条件其实并不准确，如果word是空而且不是大写字幕的话，那么就会到else那里，就把非大写字母插到word里了，那么之后自然会段错误。
+
+```cpp
+#include<iostream>
+#include<string>
+#include<vector>
+using namespace std;
+
+vector<vector<string>> letter(26, vector<string>(7));
+
+int main()
+{
+    for (int i = 0; i < 26; i++)
+    {
+        for (int j = 0; j < 7; j++)
+        {
+            cin >> letter[i][j];
+        }
+    }
+    getchar();
+    string s;
+    getline(cin, s);
+    while (!s.empty() && !isupper(s[0])) s.erase(s.begin());
+    vector<char> word;
+    for (int i = 0; i < s.size(); i++)
+    {
+        if(isupper(s[i]) && i == s.size() - 1) word.emplace_back(s[i]);
+
+        if(isupper(s[i]) && i != s.size() - 1)word.emplace_back(s[i]);
+        else
+        {
+            while (i < s.size()-1 && !isupper(s[i+1]))
+            {
+                i++;
+            }
+            for (int j = 0; j < 7; j++)
+            {
+                for (int k = 0; k < word.size(); k++)
+                {
+                    cout << letter[word[k] - 'A'][j];
+                    if (k != word.size() - 1) cout << ' ';
+                }
+                cout << endl;
+            }
+            if (i < s.size() - 1) cout << endl;
+
+            word.clear();
+        }
+    }
+}
+```
+
+    这个是满分的答案，需要注意两点：
+
+* 第一就是给的句子有可能最开始并不是大写字母，所以要提前删除（不删的话就后面改判）
+
+* 第二就是句子的结尾不一定就是非大写字母，有可能最后一位就是大写字母，这个时候，就要把它打印出来
