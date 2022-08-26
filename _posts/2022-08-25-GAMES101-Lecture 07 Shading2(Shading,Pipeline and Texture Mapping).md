@@ -1,6 +1,6 @@
 ---
 title: GAMES101-Lecture 07 Shading2(Shading,Pipeline and Texture Mapping)
-date: 2022-08-025 20:53:00 +0800
+date: 2022-08-25 20:53:00 +0800
 categories: [计算机图形学, GAMES101]
 tags: [图形学, 学习笔记]
 
@@ -85,8 +85,8 @@ k_d(I/r^2)max(0,\pmb{n\cdot l})
 - 1.考虑是一个球，直接圆心到顶点
 
 - 2.顶点相邻面的法线求个平均(根据三角形面积加权)
-
-- $$
+  
+  $$
   N_v = \frac{\sum_iN_i}{\lVert \sum_iN_i \rVert}
   $$
 
