@@ -15,8 +15,6 @@ mermaid: true
 
 ---
 
-## Lecture 09 : Shading3(Texture Mapping cont.)
-
 ### 1. Interpolation Across Triangles: Barycentric Coordinates(重心坐标)
 
 - 为了获得三角形内值的平滑过渡
@@ -119,3 +117,47 @@ mermaid: true
   - 解决：Anisotropic Filtering 各向异性过滤，这样就可以近似成长方形，可以在一个长条形区域快速查询(Ripmap)。但仍然存在问题：就是如果是个倾斜的矩形，还是不好框。开销增加了3倍
   
   - EWA filtering : 拆成很多不同的圆形去覆盖一个不规则的矩形（多次查询），代价开销大
+
+### 作业3
+
+* 作业描述：
+  
+      在这次编程任务中，我们会进一步模拟现代图形技术。我们在代码中添加了
+  
+  Object Loader(用于加载三维模型), Vertex Shader 与 Fragment Shader，并且支持
+  
+  了纹理映射。
+  
+      而在本次实验中，你需要完成的任务是:
+  
+  1. 修改函数 rasterize_triangle(const Triangle& t) in rasterizer.cpp: 在此
+  
+  处实现与作业 2 类似的插值算法，实现法向量、颜色、纹理颜色的插值。
+  
+  2. 修改函数 get_projection_matrix() in main.cpp: 将你自己在之前的实验中
+  
+  实现的投影矩阵填到此处，此时你可以运行 ./Rasterizer output.png normal
+  
+  来观察法向量实现结果。
+  
+  3. 修改函数 phong_fragment_shader() in main.cpp: 实现 Blinn-Phong 模型计
+  
+  算 Fragment Color.
+  
+  4. 修改函数 texture_fragment_shader() in main.cpp: 在实现 Blinn-Phong
+  
+  的基础上，将纹理颜色视为公式中的 kd，实现 Texture Shading Fragment
+  
+  Shader.
+  
+  5. 修改函数 bump_fragment_shader() in main.cpp: 在实现 Blinn-Phong 的
+  
+  基础上，仔细阅读该函数中的注释，实现 Bump mapping.
+  
+  6. 修改函数 displacement_fragment_shader() in main.cpp: 在实现 Bump
+  
+  mapping 的基础上，实现 displacement mapping
+
+* 上来报错namespace "std" has no member "optional"，这是因为optional是C++17新特性，我的vs默认是C++14，在项目属性->常规中修改标准版本为C++17即可
+
+* 
