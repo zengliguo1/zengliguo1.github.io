@@ -326,58 +326,56 @@ using namespace std;
 */
 struct player
 {
-	int w, r;
+    int w, r;
 };
 const int maxn = 1010;
 vector<player> playerlist(maxn);
 int p, g;
 int main()
 {
-	cin >> p >> g;
-	for (int i = 0; i < p; i++)
-	{
-		cin >> playerlist[i].w;
-	}
-	queue<int> q;
-	int groupCnt, matchMem = p;
-	for (int i = 0; i < p; i++)
-	{
-		int order;
-		cin >> order;
-		q.push(order);
-	}
-	while (q.size() != 1)
-	{
-		matchMem = q.size();
-		if (matchMem % g == 0) groupCnt = matchMem / g;
-		else groupCnt = matchMem / g + 1;
-		for (int i = 0; i < groupCnt; i ++)
-		{
-			int max = q.front();
-			playerlist[q.front()].r = groupCnt + 1;
-			q.pop();
-			for (int j = 1; j < g; j++)
-			{
-				if (i * g + j >= matchMem) break;
-				if (playerlist[q.front()].w > playerlist[max].w)
-				{
-					max = q.front();
-				}
-				playerlist[q.front()].r = groupCnt + 1;
-				q.pop();
-			}
-			q.push(max);
-		}
-	}
-	playerlist[q.front()].r = 1;
-	for (int i = 0; i < p; i++)
-	{
-		if (i != 0) cout << ' ';
-		cout << playerlist[i].r;
-	}
+    cin >> p >> g;
+    for (int i = 0; i < p; i++)
+    {
+        cin >> playerlist[i].w;
+    }
+    queue<int> q;
+    int groupCnt, matchMem = p;
+    for (int i = 0; i < p; i++)
+    {
+        int order;
+        cin >> order;
+        q.push(order);
+    }
+    while (q.size() != 1)
+    {
+        matchMem = q.size();
+        if (matchMem % g == 0) groupCnt = matchMem / g;
+        else groupCnt = matchMem / g + 1;
+        for (int i = 0; i < groupCnt; i ++)
+        {
+            int max = q.front();
+            playerlist[q.front()].r = groupCnt + 1;
+            q.pop();
+            for (int j = 1; j < g; j++)
+            {
+                if (i * g + j >= matchMem) break;
+                if (playerlist[q.front()].w > playerlist[max].w)
+                {
+                    max = q.front();
+                }
+                playerlist[q.front()].r = groupCnt + 1;
+                q.pop();
+            }
+            q.push(max);
+        }
+    }
+    playerlist[q.front()].r = 1;
+    for (int i = 0; i < p; i++)
+    {
+        if (i != 0) cout << ' ';
+        cout << playerlist[i].r;
+    }
 }
-
-
 ```
 
     队列的一道模拟题，有点绕，有两点非常重要：他给的顺序意思是6号第一个，0号第二个，8号第三个......而不是0号是第6个，1号是第0个，2号是第8个，因为我理解错了，测试样例就没看懂，卡住了。第二处就是，我在想怎么搞排名，要不要用栈来存淘汰的，最后再输出排名，但实际上淘汰的时候就已经知道排名了，只要能够算出组数，那么淘汰的人的名次就是组数+1，这一点很巧妙，省下很多功夫。注意：
