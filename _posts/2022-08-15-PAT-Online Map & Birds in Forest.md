@@ -2,7 +2,7 @@
 title: PAT-Online Map & Birds in Forest
 date: 2022-08-15 21:39:00 +0800
 categories: [算法刷题, PAT]
-tags: [Djkstra, 并查集]
+tags: [Dijkstra, 并查集]
 
 pin: false
 author: 
@@ -242,88 +242,88 @@ int n;
 set<int> birds, isRoot;
 void Init()
 {
-	for (int i = 0; i <maxn; i++)
-	{
-		parent[i] = i;
-	}
-	fill(Rank.begin(), Rank.begin() + maxn, 0);
+    for (int i = 0; i <maxn; i++)
+    {
+        parent[i] = i;
+    }
+    fill(Rank.begin(), Rank.begin() + maxn, 0);
 }
 
 int Find(int b)
 {
-	int a = b;
-	while (b != parent[b])
-	{
-		b = parent[b];
-	}
-	
-	while (a != parent[a])
-	{
-		int z = a;
-		a = parent[a];
-		parent[z] = b;
-	}
-	return b;
+    int a = b;
+    while (b != parent[b])
+    {
+        b = parent[b];
+    }
+
+    while (a != parent[a])
+    {
+        int z = a;
+        a = parent[a];
+        parent[z] = b;
+    }
+    return b;
 }
 
 void Union(int a, int b)
 {
-	a = Find(a);
-	b = Find(b);
-	if (a == b) return;
-	if (Rank[a] > Rank[b])
-	{
-		parent[b] = a;
-	}
-	else if (Rank[b] > Rank[a])
-	{
-		parent[a] = b;
-	}
-	else
-	{
-		parent[b] = a;
-		Rank[a]++;
-	}
+    a = Find(a);
+    b = Find(b);
+    if (a == b) return;
+    if (Rank[a] > Rank[b])
+    {
+        parent[b] = a;
+    }
+    else if (Rank[b] > Rank[a])
+    {
+        parent[a] = b;
+    }
+    else
+    {
+        parent[b] = a;
+        Rank[a]++;
+    }
 }
 
 int main()
 {
-	//freopen("input.txt", "r", stdin);
-	cin >> n;
-	Init();
-	for (int i = 0; i < n; i++)
-	{
-		int k, b0;
-		cin >> k >> b0;
-		birds.insert(b0);
-		for (int j = 1; j < k; j++)
-		{
-			int bj;
-			cin >> bj;
-			Union(b0, bj);
-			birds.insert(bj);
-		}
-	}
-	for (int b : birds)
-	{
-		isRoot.insert(Find(b));
-	}
-	cout << isRoot.size() << ' ' << birds.size() << endl;
-	int q;
-	cin >> q;
-	while (q--)
-	{
-		int b1, b2;
-		cin >> b1 >> b2;
-		if (Find(b1) == Find(b2))
-		{
-			cout << "Yes" << endl;
-		}
-		else
-		{
-			cout << "No" << endl;
-		}
-	}
+    //freopen("input.txt", "r", stdin);
+    cin >> n;
+    Init();
+    for (int i = 0; i < n; i++)
+    {
+        int k, b0;
+        cin >> k >> b0;
+        birds.insert(b0);
+        for (int j = 1; j < k; j++)
+        {
+            int bj;
+            cin >> bj;
+            Union(b0, bj);
+            birds.insert(bj);
+        }
+    }
+    for (int b : birds)
+    {
+        isRoot.insert(Find(b));
+    }
+    cout << isRoot.size() << ' ' << birds.size() << endl;
+    int q;
+    cin >> q;
+    while (q--)
+    {
+        int b1, b2;
+        cin >> b1 >> b2;
+        if (Find(b1) == Find(b2))
+        {
+            cout << "Yes" << endl;
+        }
+        else
+        {
+            cout << "No" << endl;
+        }
+    }
 }
 ```
 

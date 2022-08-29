@@ -2,7 +2,7 @@
 title: PAT-All Roads Lead to Rome & Topological Order & Family Property
 date: 2022-08-14 22:46:00 +0800
 categories: [算法刷题, PAT]
-tags: [Djkstra, 拓扑排序, 并查集]
+tags: [Dijkstra, 拓扑排序, 并查集]
 
 pin: false
 author: 
