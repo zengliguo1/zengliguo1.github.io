@@ -235,51 +235,51 @@ vector<int> rec;
 bool inRec[maxn] = {false};
 bool comp(int r1, int r2)
 {
-	if (times[r1] != times[r2])
-	{
-		return times[r1] > times[r2];
-	}
-	else return r1 < r2;
+    if (times[r1] != times[r2])
+    {
+        return times[r1] > times[r2];
+    }
+    else return r1 < r2;
 }
 int main()
 {
-	int n, k, r;
-	memset(times, 0, sizeof(times));
-	cin >> n >> k >> r;
-	rec.emplace_back(r);
-	times[r]++;
-	inRec[r] = true;
-	for (int i = 0; i < n - 1; i++)
-	{
-		cin >> r;
-		cout << r << ":";
-		for (int j = 0; j < k && j < rec.size(); j++)
-		{
-			cout << ' ' << rec[j];
-		}
-		cout << endl;
-		if (i == n - 2)break;
-		times[r]++;
-		if (inRec[r] == false)
-		{
-			if (rec.size() < k)
-			{
-				rec.emplace_back(r);
-				inRec[r] = true;
-			}
-			else
-			{
-				if (times[rec.back()] < times[r] || (times[rec.back()] == times[r] && r < rec.back()))
-				{
-					inRec[rec.back()] = false;
-					rec.pop_back();
-					rec.emplace_back(r);
-					inRec[r] = true;
-				}
-			}
-		}
-		sort(rec.begin(), rec.end(), comp);
-	}
+    int n, k, r;
+    memset(times, 0, sizeof(times));
+    cin >> n >> k >> r;
+    rec.emplace_back(r);
+    times[r]++;
+    inRec[r] = true;
+    for (int i = 0; i < n - 1; i++)
+    {
+        cin >> r;
+        cout << r << ":";
+        for (int j = 0; j < k && j < rec.size(); j++)
+        {
+            cout << ' ' << rec[j];
+        }
+        cout << endl;
+        if (i == n - 2)break;
+        times[r]++;
+        if (inRec[r] == false)
+        {
+            if (rec.size() < k)
+            {
+                rec.emplace_back(r);
+                inRec[r] = true;
+            }
+            else
+            {
+                if (times[rec.back()] < times[r] || (times[rec.back()] == times[r] && r < rec.back()))
+                {
+                    inRec[rec.back()] = false;
+                    rec.pop_back();
+                    rec.emplace_back(r);
+                    inRec[r] = true;
+                }
+            }
+        }
+        sort(rec.begin(), rec.end(), comp);
+    }
 }
 ```
 
@@ -310,56 +310,56 @@ using namespace std;
 const int maxn = 22;
 struct node
 {
-	string v;
-	int left, right;
+    string v;
+    int left, right;
 }tree[maxn];
 bool isRoot[maxn] = { false };
 int Realroot;
 void travelsal(int root)
 {
-	if (root == -1) return;
-	if (root == Realroot)
-	{
-		travelsal(tree[root].left);
-		cout << tree[root].v;
-		travelsal(tree[root].right);
-	}
-	else if (tree[root].left == -1 && tree[root].right != -1)
-	{
-		//pre
-		cout << '(';
-		cout << tree[root].v;
-		travelsal(tree[root].right);
-		cout << ')';
-	}
-	else//in
-	{
-		if(tree[root].left != -1) cout << '(';
-		travelsal(tree[root].left);
-		cout << tree[root].v;
-		travelsal(tree[root].right);
-		if (tree[root].right != -1) cout << ')';	
-	}
+    if (root == -1) return;
+    if (root == Realroot)
+    {
+        travelsal(tree[root].left);
+        cout << tree[root].v;
+        travelsal(tree[root].right);
+    }
+    else if (tree[root].left == -1 && tree[root].right != -1)
+    {
+        //pre
+        cout << '(';
+        cout << tree[root].v;
+        travelsal(tree[root].right);
+        cout << ')';
+    }
+    else//in
+    {
+        if(tree[root].left != -1) cout << '(';
+        travelsal(tree[root].left);
+        cout << tree[root].v;
+        travelsal(tree[root].right);
+        if (tree[root].right != -1) cout << ')';    
+    }
 }
 int main()
 {
-	int n;
-	cin >> n;
-	for (int i = 1; i <= n; i++)
-	{
-		cin >>tree[i].v >> tree[i].left >> tree[i].right;
-		if (tree[i].left != -1) isRoot[tree[i].left] = true;
-		if (tree[i].right != -1) isRoot[tree[i].right] = true;
-	}
-	for (int i = 1; i <= n ; i++)
-	{
-		if (isRoot[i] == false)
-		{
-			Realroot = i;
-			break;
-		}
-	}
-	travelsal(Realroot);
+    int n;
+    cin >> n;
+    for (int i = 1; i <= n; i++)
+    {
+        cin >>tree[i].v >> tree[i].left >> tree[i].right;
+        if (tree[i].left != -1) isRoot[tree[i].left] = true;
+        if (tree[i].right != -1) isRoot[tree[i].right] = true;
+    }
+    for (int i = 1; i <= n ; i++)
+    {
+        if (isRoot[i] == false)
+        {
+            Realroot = i;
+            break;
+        }
+    }
+    travelsal(Realroot);
 }
 ```
 
@@ -386,120 +386,232 @@ int dis[maxn], transCnt[maxn], pre[maxn];
 bool vis[maxn];
 void Dijkstra(int s)
 {
-	fill(dis, dis + maxn, inf);
-	fill(transCnt, transCnt + maxn, 0);
-	fill(vis, vis + maxn, false);
-	dis[s] = 0;
-	transCnt[s] = 0;
-	for (int i = 0; i < station2index.size(); i++)
-	{
-		int u = -1, min = inf;
-		for (int j = 0; j < station2index.size(); j++)
-		{
-			if (vis[j] == false && dis[j] < min)
-			{
-				min = dis[j];
-				u = j;
-			}
-		}
-		if (u == -1) return;
-		vis[u] = true;
-		for (auto n : neighbor[u])
-		{
-			if (vis[n] == false)
-			{
-				int trCnt = transCnt[u];
-				if (station2line[index2station[u]].size() > 1 && u != s)trCnt++;
-				if (dis[u] + 1 < dis[n])
-				{
-					dis[n] = dis[u] + 1;
-					pre[n] = u;
-					transCnt[n] = trCnt;
-				}
-				if (dis[u] + 1 == dis[n] && trCnt < transCnt[n])
-				{
-					dis[n] = dis[u] + 1;
-					pre[n] = u;
-					transCnt[n] = trCnt;
-				}
-			}
-		}
-	}
+    fill(dis, dis + maxn, inf);
+    fill(transCnt, transCnt + maxn, 0);
+    fill(vis, vis + maxn, false);
+    dis[s] = 0;
+    transCnt[s] = 0;
+    for (int i = 0; i < station2index.size(); i++)
+    {
+        int u = -1, min = inf;
+        for (int j = 0; j < station2index.size(); j++)
+        {
+            if (vis[j] == false && dis[j] < min)
+            {
+                min = dis[j];
+                u = j;
+            }
+        }
+        if (u == -1) return;
+        vis[u] = true;
+        for (auto n : neighbor[u])
+        {
+            if (vis[n] == false)
+            {
+                int trCnt = transCnt[u];
+                if (station2line[index2station[u]].size() > 1 && u != s)trCnt++;
+                if (dis[u] + 1 < dis[n])
+                {
+                    dis[n] = dis[u] + 1;
+                    pre[n] = u;
+                    transCnt[n] = trCnt;
+                }
+                if (dis[u] + 1 == dis[n] && trCnt < transCnt[n])
+                {
+                    dis[n] = dis[u] + 1;
+                    pre[n] = u;
+                    transCnt[n] = trCnt;
+                }
+            }
+        }
+    }
 }
 vector<int> path;
 void dfs(int start, int cur)
 {
-	
-	if (cur == start)
-	{
-		path.emplace_back(cur);
-		return;
-	}
-	dfs(start,index2station[pre[station2index[cur]]]);
-	//transfer
-	if(station2line[cur].size() > 1) path.emplace_back(cur);
+
+    if (cur == start)
+    {
+        path.emplace_back(cur);
+        return;
+    }
+    dfs(start,index2station[pre[station2index[cur]]]);
+    //transfer
+    if(station2line[cur].size() > 1) path.emplace_back(cur);
 }
 int stationsLine(int s1, int s2)
 {
-	for (auto l1 : station2line[s1])
-	{
-		for (auto l2 : station2line[s2])
-		{
-			if (l1 == l2) return l1;
-		}
-	}
-	return -1;
+    for (auto l1 : station2line[s1])
+    {
+        for (auto l2 : station2line[s2])
+        {
+            if (l1 == l2) return l1;
+        }
+    }
+    return -1;
 }
 void printPath()
 {
-	for (int i = 0; i < path.size() - 1; i++)
-	{
-		int line = stationsLine(path[i], path[i+1]);
-		printf("Take Line#%d from %04d to %04d.\n", line, path[i], path[i + 1]);
-	}
+    for (int i = 0; i < path.size() - 1; i++)
+    {
+        int line = stationsLine(path[i], path[i+1]);
+        printf("Take Line#%d from %04d to %04d.\n", line, path[i], path[i + 1]);
+    }
 }
 int main()
 {
-	int n, m, index = 0;
+    int n, m, index = 0;
+    cin >> n;
+    for (int i = 1; i <= n; i++)
+    {
+        cin >> m;
+        vector<int> line(m);
+        for (int j = 0; j < m; j++)
+        {
+            int station;
+            cin >> station;
+            if (!station2index.count(station))
+            {
+                station2index[station] = index;
+                index2station[index] = station;
+                index++;
+            }
+            station2line[station].insert(i);
+            line[j] = station2index[station];
+        }
+        for (int j = 0; j < m - 1; j++)
+        {
+            neighbor[line[j]].emplace_back(line[j + 1]);
+            neighbor[line[j + 1]].emplace_back(line[j]);
+        }
+    }
+    int k;
+    cin >> k;
+    while (k--)
+    {
+        int start, end;
+        cin >> start >> end;
+        Dijkstra(station2index[start]);
+        cout << dis[station2index[end]]<<endl;
+        path.clear();
+        dfs(start, end);
+        path.emplace_back(end);
+        printPath();
+    }
+}
+```
+
+    这些代码写了一个半小时，也没写完，最后超时9min才写完，就这也就拿了16/30分，麻了。关键是debug了很久，光算最短路的时候就debug了一会儿，发现n写成了u，哎。还有就是各种哈希映射太多了，有的搞混了，要么中断，要么答案有问题。我看网上是有用dfs写的，今天不早了，明天看看。
+
+```cpp
+#include<iostream>
+#include<vector>
+#include<unordered_map>
+#include<cstdio>
+using namespace std;
+const int maxn = 10000;
+const int inf = 0x3fffffff;
+vector<vector<int> > neighbor(maxn);
+unordered_map<int, int> line;//记录两个节点所在线路
+int Start, End, minDis, minStop;
+bool vis[maxn] = { false };
+vector<int> tmppath, path;
+int getStops(vector<int> v)
+{
+	int preline = line[v[0]*maxn + v[1]], cnt = 0;
+	for (int i = 1; i < v.size() - 1; i++)
+	{
+		int curLine = line[v[i] * maxn + v[i + 1]];
+		if (curLine != preline)
+		{
+			cnt++;
+			preline = curLine;
+		}
+	}
+	return cnt;
+}
+void dfs(int curS, int curDis)
+{
+	if (curS == End && (curDis < minDis || (curDis == minDis && getStops(tmppath) < minStop)))
+	{
+		path = tmppath;
+		minDis = curDis;
+		minStop = getStops(tmppath);
+		return;
+	}
+	for (int n : neighbor[curS])
+	{
+		if (vis[n] == false)
+		{
+			vis[n] = true;
+			tmppath.emplace_back(n);
+			dfs(n, curDis + 1);
+			tmppath.pop_back();
+			vis[n] = false;
+		}
+	}
+
+}
+
+
+int main()
+{
+	int n, m;
 	cin >> n;
 	for (int i = 1; i <= n; i++)
 	{
 		cin >> m;
-		vector<int> line(m);
-		for (int j = 0; j < m; j++)
+		int preS, curS;
+		cin >> preS;
+		for (int j = 1; j < m; j++)
 		{
-			int station;
-			cin >> station;
-			if (!station2index.count(station))
-			{
-				station2index[station] = index;
-				index2station[index] = station;
-				index++;
-			}
-			station2line[station].insert(i);
-			line[j] = station2index[station];
-		}
-		for (int j = 0; j < m - 1; j++)
-		{
-			neighbor[line[j]].emplace_back(line[j + 1]);
-			neighbor[line[j + 1]].emplace_back(line[j]);
+			cin >> curS;
+			neighbor[preS].emplace_back(curS);
+			neighbor[curS].emplace_back(preS);
+			line[preS * maxn + curS] = i;
+			line[curS * maxn + preS] = i;
+			preS = curS;
 		}
 	}
 	int k;
 	cin >> k;
 	while (k--)
 	{
-		int start, end;
-		cin >> start >> end;
-		Dijkstra(station2index[start]);
-		cout << dis[station2index[end]]<<endl;
-		path.clear();
-		dfs(start, end);
-		path.emplace_back(end);
-		printPath();
+		cin >> Start >> End;
+		vis[Start] = true;
+		minDis = inf;
+		tmppath.emplace_back(Start);
+		dfs(Start, 0);
+		tmppath.pop_back();
+		vis[Start] = false;
+		cout << minDis << endl;
+		int preline = line[path[0] * maxn + path[1]], preS = Start;
+		for (int i = 1; i < path.size() -1 ; i++)
+		{
+			if (line[path[i] * maxn + path[i + 1]] != preline)
+			{
+				printf("Take Line#%d from %04d to %04d.\n", preline, preS, path[i]);
+				preline = line[path[i] * maxn + path[i + 1]];
+				preS = path[i];
+			}
+		}
+		printf("Take Line#%d from %04d to %04d.\n", preline, preS, path.back());
 	}
 }
-
 ```
 
-    这些代码写了一个半小时，也没写完，最后超时9min才写完，就这也就拿了16/30分，麻了。关键是debug了很久，光算最短路的时候就debug了一会儿，发现n写成了u，哎。还有就是各种哈希映射太多了，有的搞混了，要么中断，要么答案有问题。我看网上是有用dfs写的，今天不早了，明天看看。
+    看了柳神的思路，真是非常妙：
+
+* 直接使用车站号作为数组下标，毕竟也就1万了（我还傻乎乎地去哈希来哈希去）
+
+* 如何判断某个车站位于几号线呢？直接设置一个哈希表`line[preS*10000 + curS]`代表着上一个车站到当前车站所属线路，这样的话完美解决中转站可能属于好几条线的问题，两个车站必定只属于一条线，而中转站的判断，恰恰根据三个站点中前两个和后两个是否属于一条线，如果不属于，说明三个的中央就是中转站
+
+* 使用深度优先遍历即可，要使用`vis`数组
+
+    尽管该方法很巧妙，但我写完后依旧debug了会儿，麻了。注意：
+
+* `vis`数组赋值我竟然用了`==`，实在是无语
+
+* minDis在每次询问都要重置为inf，不然根本dfs不出正确答案
+
+* 因为这次是读取的时候直接互相加邻接表（第一次我是先存到数组，再互相加邻接表），所以要储存上一个站点preS，我一开始忘了存
