@@ -15,7 +15,7 @@ mermaid: true
 
 ---
 
-    今天的模拟测试并不是很理想，不知道是否跟状态有关。跟昨天一样，超时9min，很奇怪，昨天也差不多超时这么长时间，怎么回事呢？而且不同的时，今天3h9min32s只拿了75分，要是按3h算，最后一题没写完，那就只有59分，还没我上次PAT考的分高，麻了。接下来好好复盘下吧。
+    今天的模拟测试并不是很理想，不知道是否跟状态有关。跟昨天一样，超时9min，很奇怪，昨天也差不多超时这么长时间，怎么回事呢？而且不同的是，今天3h9min32s只拿了75分，要是按3h算，最后一题没写完，那就只有59分，还没我上次PAT考的分高，麻了。接下来好好复盘下吧。
 
 ## A1128 [N Queens Puzzle](https://pintia.cn/problem-sets/994805342720868352/problems/994805348915855360)
 
@@ -109,6 +109,8 @@ int main()
 * 还有就是，我是一遍读取一遍判断的，如果判断为NO就会提前退出，但！是！提前退出后，后面还有数字没读的，结果就把后面剩余的部分读到下一个棋盘里去了！所以提前退出的话，要把这一行剩下的数据用`getline`读掉！
 
 * 上面两处小错debug了好久，第一题浪费的时间足够把最后一题的第一版写完了！
+
+    去看了眼柳神的代码，太强了，判断是否在斜着的，只要判断两个点横坐标相减与纵坐标相减是否相等就行了，如果在一列，那么行差和列差是相等的！想象下，如果两点在一条对角线上，那么两个点分别为一个四边形的左上角和右下角，那么这个四边形就是正方形！
 
 ## A1129 [Recommendation System](https://pintia.cn/problem-sets/994805342720868352/problems/994805348471259136)
 
@@ -518,85 +520,85 @@ bool vis[maxn] = { false };
 vector<int> tmppath, path;
 int getStops(vector<int> v)
 {
-	int preline = line[v[0]*maxn + v[1]], cnt = 0;
-	for (int i = 1; i < v.size() - 1; i++)
-	{
-		int curLine = line[v[i] * maxn + v[i + 1]];
-		if (curLine != preline)
-		{
-			cnt++;
-			preline = curLine;
-		}
-	}
-	return cnt;
+    int preline = line[v[0]*maxn + v[1]], cnt = 0;
+    for (int i = 1; i < v.size() - 1; i++)
+    {
+        int curLine = line[v[i] * maxn + v[i + 1]];
+        if (curLine != preline)
+        {
+            cnt++;
+            preline = curLine;
+        }
+    }
+    return cnt;
 }
 void dfs(int curS, int curDis)
 {
-	if (curS == End && (curDis < minDis || (curDis == minDis && getStops(tmppath) < minStop)))
-	{
-		path = tmppath;
-		minDis = curDis;
-		minStop = getStops(tmppath);
-		return;
-	}
-	for (int n : neighbor[curS])
-	{
-		if (vis[n] == false)
-		{
-			vis[n] = true;
-			tmppath.emplace_back(n);
-			dfs(n, curDis + 1);
-			tmppath.pop_back();
-			vis[n] = false;
-		}
-	}
+    if (curS == End && (curDis < minDis || (curDis == minDis && getStops(tmppath) < minStop)))
+    {
+        path = tmppath;
+        minDis = curDis;
+        minStop = getStops(tmppath);
+        return;
+    }
+    for (int n : neighbor[curS])
+    {
+        if (vis[n] == false)
+        {
+            vis[n] = true;
+            tmppath.emplace_back(n);
+            dfs(n, curDis + 1);
+            tmppath.pop_back();
+            vis[n] = false;
+        }
+    }
 
 }
 
 
 int main()
 {
-	int n, m;
-	cin >> n;
-	for (int i = 1; i <= n; i++)
-	{
-		cin >> m;
-		int preS, curS;
-		cin >> preS;
-		for (int j = 1; j < m; j++)
-		{
-			cin >> curS;
-			neighbor[preS].emplace_back(curS);
-			neighbor[curS].emplace_back(preS);
-			line[preS * maxn + curS] = i;
-			line[curS * maxn + preS] = i;
-			preS = curS;
-		}
-	}
-	int k;
-	cin >> k;
-	while (k--)
-	{
-		cin >> Start >> End;
-		vis[Start] = true;
-		minDis = inf;
-		tmppath.emplace_back(Start);
-		dfs(Start, 0);
-		tmppath.pop_back();
-		vis[Start] = false;
-		cout << minDis << endl;
-		int preline = line[path[0] * maxn + path[1]], preS = Start;
-		for (int i = 1; i < path.size() -1 ; i++)
-		{
-			if (line[path[i] * maxn + path[i + 1]] != preline)
-			{
-				printf("Take Line#%d from %04d to %04d.\n", preline, preS, path[i]);
-				preline = line[path[i] * maxn + path[i + 1]];
-				preS = path[i];
-			}
-		}
-		printf("Take Line#%d from %04d to %04d.\n", preline, preS, path.back());
-	}
+    int n, m;
+    cin >> n;
+    for (int i = 1; i <= n; i++)
+    {
+        cin >> m;
+        int preS, curS;
+        cin >> preS;
+        for (int j = 1; j < m; j++)
+        {
+            cin >> curS;
+            neighbor[preS].emplace_back(curS);
+            neighbor[curS].emplace_back(preS);
+            line[preS * maxn + curS] = i;
+            line[curS * maxn + preS] = i;
+            preS = curS;
+        }
+    }
+    int k;
+    cin >> k;
+    while (k--)
+    {
+        cin >> Start >> End;
+        vis[Start] = true;
+        minDis = inf;
+        tmppath.emplace_back(Start);
+        dfs(Start, 0);
+        tmppath.pop_back();
+        vis[Start] = false;
+        cout << minDis << endl;
+        int preline = line[path[0] * maxn + path[1]], preS = Start;
+        for (int i = 1; i < path.size() -1 ; i++)
+        {
+            if (line[path[i] * maxn + path[i + 1]] != preline)
+            {
+                printf("Take Line#%d from %04d to %04d.\n", preline, preS, path[i]);
+                preline = line[path[i] * maxn + path[i + 1]];
+                preS = path[i];
+            }
+        }
+        printf("Take Line#%d from %04d to %04d.\n", preline, preS, path.back());
+    }
 }
 ```
 
