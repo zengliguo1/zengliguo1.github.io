@@ -29,43 +29,43 @@ int n, h, co[maxn],predix[maxn],maxb = 1, minpos;
 int l, r;
 int main()
 {
-	cin >> n >> h;
-	for (int i = 0; i < n; i++)
-	{
-		cin >> co[i];
-	}
-	if (n == 1)
-	{
-		cout << co[0] - h << ' ' << 1;
-		return 0;
-	}
-	l = 0, r = 1;
-	while (r < n && l < r)
-	{
-		while (r < n && co[r] - co[l] <= h )
-		{
-			r++;
-		}
-		if (co[r] - co[l] > h)
-		{
-			if (r - l > maxb)
-			{
-				maxb = r - l;
-				minpos = co[r-1] - h;
-			}
-		}
-		else if (r == n && co[r] - co[l] <= h)
-		{
-			
-			if (r - l + 1> maxb)
-			{
-				maxb = r - l + 1;
-				minpos = co[r - 1] - h;
-			}
-		}
-		l++;
-	}
-	cout << minpos << ' ' << maxb;
+    cin >> n >> h;
+    for (int i = 0; i < n; i++)
+    {
+        cin >> co[i];
+    }
+    if (n == 1)
+    {
+        cout << co[0] - h << ' ' << 1;
+        return 0;
+    }
+    l = 0, r = 1;
+    while (r < n && l < r)
+    {
+        while (r < n && co[r] - co[l] <= h )
+        {
+            r++;
+        }
+        if (co[r] - co[l] > h)
+        {
+            if (r - l > maxb)
+            {
+                maxb = r - l;
+                minpos = co[r-1] - h;
+            }
+        }
+        else if (r == n && co[r] - co[l] <= h)
+        {
+
+            if (r - l + 1> maxb)
+            {
+                maxb = r - l + 1;
+                minpos = co[r - 1] - h;
+            }
+        }
+        l++;
+    }
+    cout << minpos << ' ' << maxb;
 }
 ```
 
@@ -85,45 +85,45 @@ bool bigger[maxn];
 bool pivot[maxn];
 int main()
 {
-	cin >> k;
-	while (k--)
-	{
-		scanf("%d", &n);
-		//cin >> n;
-		sequence.clear();
-		for (int i = 0; i < n; i++)
-		{
-			scanf("%d", &tmp);
-			//cin >> tmp;
-			sequence.emplace_back(tmp);
-		}
-		fill(bigger, bigger + n, false);
-		fill(pivot, pivot + n, false);
-		maxL = -1, minR = 0x3fffffff;
-		cnt = 0;
-		for (int i = 0; i < n; i++)
-		{
-			if (sequence[i] > maxL)
-			{
-				bigger[i] = true;
-				maxL = sequence[i];
-			}
-		}
-		for (int i = n - 1; i >= 0; i--)
-		{
-			if (bigger[i] && sequence[i] < minR)
-			{
-				cnt++;
-				pivot[i] = true;
-				if (cnt == 3) break;
-			}
-			if (sequence[i] < minR)minR = sequence[i];
-		}
-		if (cnt >= 3) cout << "Yes" << endl;
-		else if (cnt == 2 && (pivot[0] || pivot[n - 1]))cout << "Yes" << endl;
-		else cout << "No" << endl;
+    cin >> k;
+    while (k--)
+    {
+        scanf("%d", &n);
+        //cin >> n;
+        sequence.clear();
+        for (int i = 0; i < n; i++)
+        {
+            scanf("%d", &tmp);
+            //cin >> tmp;
+            sequence.emplace_back(tmp);
+        }
+        fill(bigger, bigger + n, false);
+        fill(pivot, pivot + n, false);
+        maxL = -1, minR = 0x3fffffff;
+        cnt = 0;
+        for (int i = 0; i < n; i++)
+        {
+            if (sequence[i] > maxL)
+            {
+                bigger[i] = true;
+                maxL = sequence[i];
+            }
+        }
+        for (int i = n - 1; i >= 0; i--)
+        {
+            if (bigger[i] && sequence[i] < minR)
+            {
+                cnt++;
+                pivot[i] = true;
+                if (cnt == 3) break;
+            }
+            if (sequence[i] < minR)minR = sequence[i];
+        }
+        if (cnt >= 3) cout << "Yes" << endl;
+        else if (cnt == 2 && (pivot[0] || pivot[n - 1]))cout << "Yes" << endl;
+        else cout << "No" << endl;
 
-	}
+    }
 }
 ```
 
@@ -139,7 +139,7 @@ const int maxn = 10010;
 
 struct node
 {
-	int ol = -1, follows = 0;
+    int ol = -1, follows = 0;
 };
 vector<node> user(maxn);
 vector<vector<int>> fan(maxn);
@@ -147,50 +147,50 @@ vector<int> ans;
 int n, t, follow, f, maxc = 0;
 int main()
 {
-	cin >> n >> t;
-	for (int i = 1; i <= n; i++)
-	{
-		cin >> follow;
-		user[i].follows = follow;
-		for (int j = 0; j < follow; j++)
-		{
-			cin >> f;
-			fan[f].emplace_back(i);
-		}
-	}
-	for (int i = 1; i <= n; i++)
-	{
-		if (fan[i].size() / user[i].follows >= t)
-		{
-			user[i].ol = 1;
-		}
-	}
-	for (int i = 1; i <= n; i++)
-	{
-		if (user[i].ol == 1)
-		{
-			int cnt = 0;
-			for (int fa : fan[i])
-			{
-				if (user[fa].ol == 1) cnt++;
-			}
-			if (cnt > maxc)
-			{
-				maxc = cnt;
-				ans.clear();
-				ans.emplace_back(i);
-			}
-			else if (cnt == maxc)
-			{
-				ans.emplace_back(i);
-			}
-		}
-	}
-	for (int i = 0; i < ans.size(); i++)
-	{
-		if (i != 0) cout << ' ';
-		cout << ans[i];
-	}
+    cin >> n >> t;
+    for (int i = 1; i <= n; i++)
+    {
+        cin >> follow;
+        user[i].follows = follow;
+        for (int j = 0; j < follow; j++)
+        {
+            cin >> f;
+            fan[f].emplace_back(i);
+        }
+    }
+    for (int i = 1; i <= n; i++)
+    {
+        if (fan[i].size() / user[i].follows >= t)
+        {
+            user[i].ol = 1;
+        }
+    }
+    for (int i = 1; i <= n; i++)
+    {
+        if (user[i].ol == 1)
+        {
+            int cnt = 0;
+            for (int fa : fan[i])
+            {
+                if (user[fa].ol == 1) cnt++;
+            }
+            if (cnt > maxc)
+            {
+                maxc = cnt;
+                ans.clear();
+                ans.emplace_back(i);
+            }
+            else if (cnt == maxc)
+            {
+                ans.emplace_back(i);
+            }
+        }
+    }
+    for (int i = 0; i < ans.size(); i++)
+    {
+        if (i != 0) cout << ' ';
+        cout << ans[i];
+    }
 }
 ```
 
@@ -206,94 +206,94 @@ using namespace std;
 const int maxn = 2010;
 struct node
 {
-	int v, level;
-	node* left = nullptr, * right = nullptr;
-	node(int _v, int _l) : v(_v), level(_l) {}
+    int v, level;
+    node* left = nullptr, * right = nullptr;
+    node(int _v, int _l) : v(_v), level(_l) {}
 };
 vector<int> in, pre, post;
 int maxl = 0;
 node* build(int inL, int inR, int preL, int preR, int level)
 {
-	if (inL > inR) return nullptr;
-	node* n = new node(pre[preL], level);
-	if (level > maxl) maxl = level;
-	int index;
-	for (int i = inL; i <= inR; i++)
-	{
-		if (in[i] == pre[preL]) index = i;
-	}
-	n->left = build(inL, index - 1, preL + 1, preL + index - inL, level + 1);
-	n->right = build(index + 1, inR, preL + index - inL + 1, preR, level + 1);
-	return n;
+    if (inL > inR) return nullptr;
+    node* n = new node(pre[preL], level);
+    if (level > maxl) maxl = level;
+    int index;
+    for (int i = inL; i <= inR; i++)
+    {
+        if (in[i] == pre[preL]) index = i;
+    }
+    n->left = build(inL, index - 1, preL + 1, preL + index - inL, level + 1);
+    n->right = build(index + 1, inR, preL + index - inL + 1, preR, level + 1);
+    return n;
 }
 bool f1 = true, f2 = true, f3 = true;
 void levelTravelsal(node* root)
 {
-	queue<node*> q;
-	q.push(root);
-	bool iscom = false;
-	int leaflevel = -1;
-	while (!q.empty())
-	{
-		node* top = q.front();
-		q.pop();
-		if (!top->left && !top->right)
-		{
-			if (leaflevel == -1)leaflevel = top->level;
-			else if (leaflevel != top->level)
-			{
-				f1 = false;
-			}
-			if (maxl - 1 > top->level) f3 = false;
-		}
+    queue<node*> q;
+    q.push(root);
+    bool iscom = false;
+    int leaflevel = -1;
+    while (!q.empty())
+    {
+        node* top = q.front();
+        q.pop();
+        if (!top->left && !top->right)
+        {
+            if (leaflevel == -1)leaflevel = top->level;
+            else if (leaflevel != top->level)
+            {
+                f1 = false;
+            }
+            if (maxl - 1 > top->level) f3 = false;
+        }
 
-		if ((top->left && !top->right) || (!top->left && top->right))
-		{
-			f1 = false;
-			if (top->level < maxl - 1) f3 = false;
-		}
-		if (top->left && iscom) f2 = false;
-		if (top->left)q.push(top->left);
-		else iscom = true;
-		if (top->right && iscom) f2 = false;
-		if (top->right) q.push(top->right);
-		else iscom = true;
-	}
+        if ((top->left && !top->right) || (!top->left && top->right))
+        {
+            f1 = false;
+            if (top->level < maxl - 1) f3 = false;
+        }
+        if (top->left && iscom) f2 = false;
+        if (top->left)q.push(top->left);
+        else iscom = true;
+        if (top->right && iscom) f2 = false;
+        if (top->right) q.push(top->right);
+        else iscom = true;
+    }
 }
 void postTravelsal(node* root)
 {
-	if (root == nullptr) return;
-	postTravelsal(root->left);
-	postTravelsal(root->right);
-	post.emplace_back(root->v);
+    if (root == nullptr) return;
+    postTravelsal(root->left);
+    postTravelsal(root->right);
+    post.emplace_back(root->v);
 }
 int main()
 {
-	int n, tmp;
-	cin >> n;
-	for (int i = 0; i < n; i++)
-	{
-		cin >> tmp;
-		in.emplace_back(tmp);
-	}
-	for (int i = 0; i < n; i++)
-	{
-		cin >> tmp;
-		pre.emplace_back(tmp);
-	}
-	node* root;
-	root = build(0, n - 1, 0, n - 1, 0);
-	levelTravelsal(root);
-	if (f1) cout << 1 << endl;
-	else if (f2) cout << 2 << endl;
-	else if (f3)cout << 3 << endl;
-	else cout << 0 << endl;
-	postTravelsal(root);
-	for (int i = 0; i < n; i++)
-	{
-		if (i != 0) cout << ' ';
-		cout << post[i];
-	}
+    int n, tmp;
+    cin >> n;
+    for (int i = 0; i < n; i++)
+    {
+        cin >> tmp;
+        in.emplace_back(tmp);
+    }
+    for (int i = 0; i < n; i++)
+    {
+        cin >> tmp;
+        pre.emplace_back(tmp);
+    }
+    node* root;
+    root = build(0, n - 1, 0, n - 1, 0);
+    levelTravelsal(root);
+    if (f1) cout << 1 << endl;
+    else if (f2) cout << 2 << endl;
+    else if (f3)cout << 3 << endl;
+    else cout << 0 << endl;
+    postTravelsal(root);
+    for (int i = 0; i < n; i++)
+    {
+        if (i != 0) cout << ' ';
+        cout << post[i];
+    }
 
 }
 ```
