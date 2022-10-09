@@ -63,6 +63,12 @@ mermaid: true
   
   * 决定向量的前后
 
+* 投影
+  
+  [![xG3YqK.jpg](https://s1.ax1x.com/2022/10/08/xG3YqK.jpg)](https://imgse.com/i/xG3YqK)
+
+* 1
+
 * 叉乘
   
   * 右手坐标系：$\vec{x}\times\vec{y}=+\vec{z}$
