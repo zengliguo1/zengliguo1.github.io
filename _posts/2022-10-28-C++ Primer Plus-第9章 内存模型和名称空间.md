@@ -49,7 +49,7 @@ mermaid: true
     #ifndef COORDIN_H_
     #define COORDIN_H_
     /////......
-    #emdif
+    #endif
     ```
   
   * 编译器首次遇到该文件时，名称COORDIN_H_没有定义（根据include文件名来选择名称，并加上下划线，为了创建一个在其他地方不太可能被定义的名称），此时编译器查看`#ifndef`和`#endif`之间的内容；如果COORDIN_H_已经被定义了，从而跳到`#endif`后面的一行
