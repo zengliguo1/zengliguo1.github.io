@@ -78,7 +78,7 @@ mermaid: true
   
   - 在类中声明一个枚举：
     
-    ```CPP
+    ```cpp
     class Bakery
     {
     private:
@@ -91,7 +91,7 @@ mermaid: true
   
   - 使用关键字`static`
     
-    ```CPP
+    ```cpp
     class Bakery
     {
     private:
