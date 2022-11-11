@@ -132,9 +132,12 @@ mermaid: true
     ```cpp
     Stone(double lbs);//构造函数
     ```
-
+    
     Stone cat;
     cat = 19.6;//double转换为Stone类型
+    
+    ```
+    
     ```
 
 * C++新增了关键字`explicit`来关闭隐式自动转换这种自动特性，但仍然允许显式强制类型转换：
@@ -165,5 +168,3 @@ mermaid: true
     ```
 
 * 转换函数和友元函数配合，可以实现**数字=类+数字**和**数字=数字+类**
-
-
