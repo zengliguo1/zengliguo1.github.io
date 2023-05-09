@@ -104,7 +104,7 @@ mermaid: true
 
 - **ComPuting Mipmap Level D:**
   
-  [](https://imgse.com/i/v2liZ9)
+  ![](https://imgse.com/i/v2liZ9)
 
 - 图解：某个像素取其上面和右面的像素，映射到uv图，计算在uv图上，两点距离中心点的距离，L1和L2，L取二者较大值，以L为近似方形的边长，D=log_2L。如果区域为1*1，那么D=0，说明就在原来的纹理图上，如果区域为4*4，那么D=2，说明在第2张纹理图（32*32）上，该区域代表这张纹理图的一个像素
 
