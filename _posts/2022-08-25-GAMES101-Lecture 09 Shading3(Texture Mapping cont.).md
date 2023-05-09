@@ -157,7 +157,7 @@ mermaid: true
   6. 修改函数 displacement_fragment_shader() in main.cpp: 在实现 Bump
   
   mapping 的基础上，实现 displacement mapping
+  
+  
 
 * 上来报错namespace "std" has no member "optional"，这是因为optional是C++17新特性，我的vs默认是C++14，在项目属性->常规中修改标准版本为C++17即可
-
-* 
