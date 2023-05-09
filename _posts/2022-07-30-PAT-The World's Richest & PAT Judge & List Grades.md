@@ -228,44 +228,44 @@ using namespace std;
 
 struct stuInfo
 {
-	string name;
-	string id;
-	int grade;
-	stuInfo(string _name, string _id, int _grade) : name(_name), id(_id), grade(_grade) {}
+    string name;
+    string id;
+    int grade;
+    stuInfo(string _name, string _id, int _grade) : name(_name), id(_id), grade(_grade) {}
 };
 
 bool comp(stuInfo& s1, stuInfo& s2)
 {
-	return s1.grade > s2.grade;
+    return s1.grade > s2.grade;
 }
 int main()
 {
-	int N;//学生数
-	cin >> N;
-	vector<stuInfo> stu;
-	//读取数据
-	while (N--)
-	{
-		string _name, _id;
-		int _grade;
-		cin >> _name >> _id >> _grade;
-		stu.emplace_back(stuInfo(_name, _id, _grade));
-	}
-	//排序
-	sort(stu.begin(), stu.end(), comp);
-	//筛选
-	int grade1, grade2;
-	int cnt = 0;
-	cin >> grade1 >> grade2;
-	for (auto s : stu)
-	{
-		if (s.grade >= grade1 && s.grade <= grade2)
-		{
-			cout << s.name << ' ' << s.id << endl;
-			cnt++;
-		}
-	}
-	if (cnt == 0) cout << "NONE";
+    int N;//学生数
+    cin >> N;
+    vector<stuInfo> stu;
+    //读取数据
+    while (N--)
+    {
+        string _name, _id;
+        int _grade;
+        cin >> _name >> _id >> _grade;
+        stu.emplace_back(stuInfo(_name, _id, _grade));
+    }
+    //排序
+    sort(stu.begin(), stu.end(), comp);
+    //筛选
+    int grade1, grade2;
+    int cnt = 0;
+    cin >> grade1 >> grade2;
+    for (auto s : stu)
+    {
+        if (s.grade >= grade1 && s.grade <= grade2)
+        {
+            cout << s.name << ' ' << s.id << endl;
+            cnt++;
+        }
+    }
+    if (cnt == 0) cout << "NONE";
 }
 ```
 
