@@ -81,6 +81,7 @@ $$
 
 ### 4. Rotate(about (0,0)，CCW by default)
 
+* 绕原点旋转
 - 默认逆时针旋转，可由特殊点推导出
 
 $$
@@ -92,9 +93,11 @@ R_\theta=
 \end{matrix}\right]
 $$
 
-### 5. Linear Transforms = Matrices
+* 用一个正方形的两个点来算就能很快算出这个旋转矩阵（1，0）和（0，1）
 
-* 线性变换
+### 5. Linear Transforms = Matrices(same dimension)
+
+* 变换都可以写成线性变换
 
 $$
 \left[
@@ -170,7 +173,7 @@ y + t_y\\
   
   - point + vector = point（一个点沿着一个向量走，最后还是一个点）
   
-  - point + point = 这两个点的中点
+  - point + point = 这两个点的中点(因为第三位数1+1=2，最后的结果想转换成第三位是1需要x和y同时除以2)
     
     $$
     \left(
@@ -192,9 +195,11 @@ w
 
 ### 7.Affine Transformations仿射变换
 
-- Affine map = linear map + translation
+- Affine map = linear map + translation（线性变化+平移）
 
-- 在表示二维情况下的仿射变换式，齐次坐标对应的最后一行才是(0,0,1)，其他情况下有其他的意义
+- 仿射变换都可以转换为齐次坐标的形式
+
+- 在表示二维情况下的仿射变换时，齐次坐标对应的最后一行才是(0,0,1)，其他情况下有其他的意义
 
 ### 8.Inverse Transform
 
@@ -204,11 +209,12 @@ $$
 
 ### 9. Composite Transform(复合变换)
 
+* 矩阵没有交换律但有结合律
 - 从右到左逐个应用矩阵
 
 ### 10. Decomposing Complex Transforms
 
-- 绕C点旋转：先平移，使C移到原点，旋转后，再移回去
+- 绕C点旋转：先平移，使C移到原点，旋转后，再移回去（C点可以是边缘的也可以是中心点）
   
   $T(c)\cdot R(\alpha)\cdot T(-c)$
 
