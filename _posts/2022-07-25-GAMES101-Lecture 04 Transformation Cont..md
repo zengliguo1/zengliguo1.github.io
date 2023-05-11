@@ -217,9 +217,9 @@ x_{-g} & y_{-g} & z_{-g} & 0\\
 
 ### 7. Perspective Projection
 
-![](https://cdn.nlark.com/yuque/0/2023/png/35931279/1683801332534-e88f46f6-6a98-44f3-80c6-51611df37c6b.png)
+​![](https://img-blog.csdnimg.cn/e52c7d3f6cff41d2add484b962c46ee6.png)
 
-* 先把平截头体（frustum）挤成长方体，然后再做一次正交投影
+先把平截头体（frustum）挤成长方体，然后再做一次正交投影
 
 * 规定：1. 近平面永远不变2. 近平面和远平面z不会变化3. 远平面的中心点不变
 
