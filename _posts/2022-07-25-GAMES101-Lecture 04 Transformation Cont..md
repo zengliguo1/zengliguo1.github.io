@@ -187,7 +187,9 @@ x_{-g} & y_{-g} & z_{-g} & 0\\
 
 ### 6.Orthographic Projection
 
-[![p9siY59.jpg](https://s1.ax1x.com/2023/05/11/p9siY59.jpg)](https://imgse.com/i/p9siY59)
+![](https://img-blog.csdnimg.cn/e52c7d3f6cff41d2add484b962c46ee6.png)
+
+* 
 
 * 因为是看向-z方向，所以f小于n
 
