@@ -256,3 +256,31 @@ z\\
 $$
 
 - 是先做的旋转再做的平移
+
+### 12. 补充
+
+$$
+R_\theta=
+\left(
+\begin{matrix}
+\cos\theta & -\sin\theta\\
+\sin\theta & \cos\theta
+\end{matrix}\right)\\
+
+$$
+
+$$
+R_{-\theta}=
+\left(
+\begin{matrix}
+\cos\theta & \sin\theta\\
+-\sin\theta & \cos\theta
+\end{matrix}\right)=R_\theta^T\\
+
+$$
+
+$$
+R_\theta^T=R_\theta^{-1}
+$$
+
+* 旋转矩阵从定义的角度来看，旋转矩阵的逆矩阵（也就是旋转-$\theta$角）与旋转矩阵的转置是相等的

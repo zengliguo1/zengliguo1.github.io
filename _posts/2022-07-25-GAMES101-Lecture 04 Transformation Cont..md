@@ -15,9 +15,50 @@ mermaid: true
 
 ---
 
+### 0. 3D Transforms
+
+- 再一次使用齐次坐标
+
+- 3D point =$ (x,y,z,1)^T$
+
+- 3D vector =$ (x,y,z,0)^T$
+
+- 使用4×4的矩阵表示仿射变换
+
+$$
+\left(
+\begin{matrix}
+x\prime\\
+y\prime\\
+z\prime\\
+1
+\end{matrix}
+\right)=
+\left(
+\begin{matrix}
+a & b & c & t_x\\
+d & e & f & t_y\\
+g & h & i & t_z\\
+0 & 0 & 0 & 1
+\end{matrix}
+\right)\cdot
+\left(
+\begin{matrix}
+x\\
+y\\
+z\\
+1
+\end{matrix}
+\right)
+$$
+
+- 是先做的旋转再做的平移
+
 ### 1. 3D Transformations
 
 * Rotation:
+  
+  [![p9rvXJf.jpg](https://s1.ax1x.com/2023/05/11/p9rvXJf.jpg)](https://imgse.com/i/p9rvXJf)
   
   * 绕x轴旋转，x坐标是不变的
     
@@ -34,7 +75,7 @@ mermaid: true
 \right)
     $$
   
-  * 绕y轴旋转，y轴有所不同，是因为$z\times x$得到Y轴，而不是$x\times z$得到Y轴，如果是$x\times z$得到Y轴，那么矩阵内元素应该和其他一样，不会反
+  * 绕y轴旋转，y轴有所不同，是因为$z\times x$得到Y轴，而不是$x\times z$得到Y轴，如果是$x\times z$得到Y轴，那么矩阵内元素应该和其他一样，不会反。
     
     $$
     R_x(\alpha)
@@ -69,10 +110,10 @@ mermaid: true
 * 将旋转分解为三个轴方向的旋转，这三个角称为欧拉角 
   
   $$
-  R_xyz(\alpha,\beta,\gamma)=R_x(\alpha)R_y(\beta)R_z(\gamma)
+  R_{xyz}(\alpha,\beta,\gamma)=R_x(\alpha)R_y(\beta)R_z(\gamma)
   $$
 
-* Rodrigues' Rotation Formula:默认n向量是过原点的，沿着n向量旋转α角度，后面那个矩阵是指：通过矩阵的方式计算叉乘
+* Rodrigues' Rotation Formula:默认n向量是过原点的，沿着n向量旋转α角度，后面那个矩阵是指：通过矩阵的方式计算叉乘。想绕任意n向量，就需要借助平移来实现
   
   $$
   R(\pmb{n},\alpha) = cos(\alpha)\pmb{I}+
@@ -85,6 +126,8 @@ n_z & 0 & -n_x\\
 \end{matrix}
 \right)
   $$
+
+* 由于矩阵难以插值，提出了四元数来解决（具体没讲）
 
 ### 3. Viewing transformation(观测变换)
 
@@ -104,9 +147,15 @@ n_z & 0 & -n_x\\
   
   * 将相机放在原点，注视方向是-z，向上方向为y
   
+  * [![p9s9280.jpg](https://s1.ax1x.com/2023/05/11/p9s9280.jpg)](https://imgse.com/i/p9s9280)
+  
   * 先平移，再旋转$M_{view}=R_{view}T_{view}$
   
+  * [![p9sCEM8.jpg](https://s1.ax1x.com/2023/05/11/p9sCEM8.jpg)](https://imgse.com/i/p9sCEM8)
+  
   * 平移矩阵比较简单就不写了，旋转矩阵不直接旋转相机，而是先求世界坐标系旋转到相机的旋转矩阵，然后再求一个逆。也就是将X轴旋转到（g×t），Y轴旋转到t，Z轴旋转到-g。
+  
+  * 下面矩阵里的元素是相机坐标系的基向量
     
     $$
     R_{view}^{-1}=
@@ -138,7 +187,11 @@ x_{-g} & y_{-g} & z_{-g} & 0\\
 
 ### 6.Orthographic Projection
 
-* 将长方体$[l,r]\times[b,t]\times[\pmb{f,n}]$平移到原点，再缩放成canonical标准正方体$[-1,1]^3$缩放长宽高至2（因为是-1到1）
+[![p9siY59.jpg](https://s1.ax1x.com/2023/05/11/p9siY59.jpg)](https://imgse.com/i/p9siY59)
+
+* 因为是看向-z方向，所以f小于n
+
+* 将长方体$[l,r]\times[b,t]\times[\pmb{f,n}]$平移到原点，再缩放成canonical标准正方体$[-1,1]^3$缩放长宽高至2（因为是-1到1），下面是平移和缩放的矩阵：
   
   $$
   M_{ortho}=
@@ -160,13 +213,21 @@ x_{-g} & y_{-g} & z_{-g} & 0\\
 \right]
   $$
 
+* 这次变换确实会引起原来物体的拉伸但最后还有一个视口变换会再次拉伸
+
 ### 7. Perspective Projection
+
+![](https://cdn.nlark.com/yuque/0/2023/png/35931279/1683801332534-e88f46f6-6a98-44f3-80c6-51611df37c6b.png)
 
 * 先把平截头体（frustum）挤成长方体，然后再做一次正交投影
 
 * 规定：1. 近平面永远不变2. 近平面和远平面z不会变化3. 远平面的中心点不变
 
+![](https://cdn.nlark.com/yuque/0/2023/png/35931279/1683803203662-93686478-203c-4aa5-bb82-ae5a7c0db0f0.png)
+
 * $y\prime=\frac{n}{z}y$ ，$x\prime=\frac{n}{z}x$（$x\prime,y\prime指远平面变换后的坐标$）
+
+* 其实z是一个变量，不同的z代表不同远近的点，z也可以等于n，这样的话变换后的坐标还是原来的那个坐标
 
 * 那么现在就是说需要一个矩阵乘以坐标后能够成为：
   
@@ -217,9 +278,11 @@ n & 0 & 0 & 0\\
 
 * 观察：
   
-  * 近平面任何点都不变
+  * 近平面任何点都不变，也就是说$(x,y,n)$经过$M_{persp\rightarrow ortho}^{(4\times 4)}$变换后，还是$(x,y,n)$这个点
   
-  * 远平面z都不变
+  ![](https://cdn.nlark.com/yuque/0/2023/png/35931279/1683804448854-6c54006d-86d7-4499-85c7-7581d5eff400.png)
+  
+  * 远平面z都不变，也就是说远平面中心点$(0,0,f)$经过$M_{persp\rightarrow ortho}^{(4\times 4)}$变换后也不变
 
 * 把近平面的点代到公式中，即让z=n，那么
   
@@ -299,6 +362,19 @@ B=-nf
   $$
 
 * 最后，终于解出了矩阵$M_{persp\rightarrow ortho}^{(4\times 4)}$
+
+* $$
+  M_{persp\rightarrow ortho}^{(4\times 4)}
+=
+\left[
+\begin{matrix}
+n & 0 & 0 & 0\\
+0 & n & 0 & 0\\
+0 & 0 & n+f & -nf\\
+0 & 0 & 1 & 0
+\end{matrix}
+\right]
+  $$
 
 * 那么，透视投影矩阵：
   
