@@ -187,8 +187,6 @@ x_{-g} & y_{-g} & z_{-g} & 0\\
 
 ### 6.Orthographic Projection
 
-![](https://img-blog.csdnimg.cn/e52c7d3f6cff41d2add484b962c46ee6.png)
-
 [![p9siY59.jpg](https://s1.ax1x.com/2023/05/11/p9siY59.jpg)](https://imgse.com/i/p9siY59)
 
 * 因为是看向-z方向，所以f小于n
@@ -219,13 +217,12 @@ x_{-g} & y_{-g} & z_{-g} & 0\\
 
 ### 7. Perspective Projection
 
-​![](https://img-blog.csdnimg.cn/e52c7d3f6cff41d2add484b962c46ee6.png)
+[![p9s7dET.jpg](https://s1.ax1x.com/2023/05/12/p9s7dET.jpg)](https://imgse.com/i/p9s7dET)
 
 先把平截头体（frustum）挤成长方体，然后再做一次正交投影
 
 * 规定：1. 近平面永远不变2. 近平面和远平面z不会变化3. 远平面的中心点不变
-
-![](https://cdn.nlark.com/yuque/0/2023/png/35931279/1683803203662-93686478-203c-4aa5-bb82-ae5a7c0db0f0.png)
+  [![p9s7UbV.jpg](https://s1.ax1x.com/2023/05/12/p9s7UbV.jpg)](https://imgse.com/i/p9s7UbV)
 
 * $y\prime=\frac{n}{z}y$ ，$x\prime=\frac{n}{z}x$（$x\prime,y\prime指远平面变换后的坐标$）
 
@@ -281,10 +278,10 @@ n & 0 & 0 & 0\\
 * 观察：
   
   * 近平面任何点都不变，也就是说$(x,y,n)$经过$M_{persp\rightarrow ortho}^{(4\times 4)}$变换后，还是$(x,y,n)$这个点
-  
-  ![](https://cdn.nlark.com/yuque/0/2023/png/35931279/1683804448854-6c54006d-86d7-4499-85c7-7581d5eff400.png)
-  
-  * 远平面z都不变，也就是说远平面中心点$(0,0,f)$经过$M_{persp\rightarrow ortho}^{(4\times 4)}$变换后也不变
+
+[![p9s7wUU.jpg](https://s1.ax1x.com/2023/05/12/p9s7wUU.jpg)](https://imgse.com/i/p9s7wUU)
+
+* 远平面z都不变，也就是说远平面中心点$(0,0,f)$经过$M_{persp\rightarrow ortho}^{(4\times 4)}$变换后也不变
 
 * 把近平面的点代到公式中，即让z=n，那么
   
