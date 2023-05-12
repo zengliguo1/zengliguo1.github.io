@@ -187,7 +187,7 @@ x_{-g} & y_{-g} & z_{-g} & 0\\
 
 ### 6.Orthographic Projection
 
-![1.jpg](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/dacc5a8f-9ff4-4b16-9304-cea7574c43a9/1.jpg)
+![](https://cdn.nlark.com/yuque/0/2023/png/35931279/1683801332534-e88f46f6-6a98-44f3-80c6-51611df37c6b.png)
 
 [![p9siY59.jpg](https://s1.ax1x.com/2023/05/11/p9siY59.jpg)](https://imgse.com/i/p9siY59)
 
