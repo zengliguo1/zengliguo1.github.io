@@ -15,6 +15,8 @@ mermaid: true
 
 ---
 
+这一节其实是沿着上一节的viewing讲剩下的一小部分，然后开了个光栅化的头
+
 ### 1. Perspective Projection
 
 - aspect ratio = width/height宽高比(r就是right，t就是top)

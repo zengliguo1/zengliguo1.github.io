@@ -15,6 +15,8 @@ mermaid: true
 
 ---
 
+这一节其实是一部分变换的内容和观测(Viewing)的内容，按理说变换应该放到上一章，所有的观测放在一章
+
 ### 0. 3D Transforms
 
 - 再一次使用齐次坐标
@@ -113,7 +115,7 @@ $$
   R_{xyz}(\alpha,\beta,\gamma)=R_x(\alpha)R_y(\beta)R_z(\gamma)
   $$
 
-* Rodrigues' Rotation Formula:默认n向量是过原点的，沿着n向量旋转α角度，后面那个矩阵是指：通过矩阵的方式计算叉乘。想绕任意n向量，就需要借助平移来实现
+* Rodrigues' Rotation Formula(这个公式并没有讲推导，应该是直接用):默认n向量是过原点的，沿着n向量旋转α角度，后面那个矩阵是指：通过矩阵的方式计算叉乘。**想绕任意n向量，就需要借助平移来实现**。
   
   $$
   R(\pmb{n},\alpha) = cos(\alpha)\pmb{I}+
@@ -132,6 +134,7 @@ n_z & 0 & -n_x\\
 ### 3. Viewing transformation(观测变换)
 
 * 模型变换->视图变换->投影变换（简称MVP变换）
+* 先摆好模型的位置方向，再摆好摄像机的位置和方向，最后把摄像机和模型同时移动，将相机放在原点，注视方向是-z，向上方向为y，进行投影变换（后续还有一个视口变换）
 
 ### 4.View/ Camera Transformation
 
