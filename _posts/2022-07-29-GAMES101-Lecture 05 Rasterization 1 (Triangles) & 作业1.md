@@ -19,6 +19,8 @@ mermaid: true
 
 ### 1. Perspective Projection
 
+[![p9yJqde.jpg](https://s1.ax1x.com/2023/05/12/p9yJqde.jpg)](https://imgse.com/i/p9yJqde)
+
 - aspect ratio = width/height宽高比(r就是right，t就是top)
   
   $$
@@ -30,6 +32,9 @@ mermaid: true
   $$
   \tan\frac{fovY}{2} = \frac{t}{\lvert n \rvert}
   $$
+* mvp变换
+
+[![p9yYf0S.jpg](https://s1.ax1x.com/2023/05/12/p9yYf0S.jpg)](https://imgse.com/i/p9yYf0S)
 
 ### 2. Canonical Cube to Screen
 
@@ -41,9 +46,11 @@ mermaid: true
   
   - 典型的光栅显示
 
+[![p9yaE7T.jpg](https://s1.ax1x.com/2023/05/12/p9yaE7T.jpg)](https://imgse.com/i/p9yaE7T)
+
 - 变换xy平面：$[-1,1]^2到[0,width]\times[0,height]$
 
-- 视口变换：先缩放，再把中心从原点移到$(\frac{width}{2},\frac{height}{2})$
+- 视口变换：先缩放（因为l到r是-1到1，所以缩放需要缩成$(-\frac{width}{2},\frac{width}{2})$），再把中心从原点移到$(\frac{width}{2},\frac{height}{2})$，这样，原点就在左下角了
   
   $$
   M_{viewport}=
@@ -95,7 +102,9 @@ mermaid: true
 
 - 边界情况：要么不做处理，要么特殊处理。
 
-- 使用包围盒检测三角形附近的点
+- 使用包围盒检测三角形附近的点，也就是三个点x的最大最小，y的最大最小
+
+- 使用每一行的最小最大值进行检测，适合细长且倾斜的三角形
 
 - Aliasing走样：Jaggies锯齿
 
@@ -108,6 +117,12 @@ mermaid: true
   标变换为屏幕坐标并在屏幕上绘制出对应的线框三角形 (在代码框架中，我们已
   
   经提供了 draw_triangle 函数，所以你只需要去构建变换矩阵即可)。
+
+- 环境构建，其实就是添加Eigen库和Opencv的库
+  
+  * 配置库查看这个博客：[手把手教你games101环境搭建（图文并茂）——Visual Studio安装，Eigen库，Opencv配置_亭墨的博客-CSDN博客](https://blog.csdn.net/qq_43419761/article/details/127740207)
+  
+  * 还有就是为了避免每次做新的作业就要配一遍库，创建一个项目属性表：[(vs2019+opencv环境配置，不用每次都设置属性目录_vs 每次都要配置包含目录_小明今天学习了吗的博客-CSDN博客](https://blog.csdn.net/lmh18749503573/article/details/119907943)
 
 - 其实不难，就是写下模型矩阵（旋转矩阵）和透视投影矩阵，但我遇到了很多很多问题，最后不得已去搜索了，查出很多错，实在惭愧，先贴代码吧，之后写下注意事项
 
@@ -191,3 +206,98 @@ Eigen::Matrix4f get_projection_matrix(float eye_fov, float aspect_ratio,
 - 有一个问题就是，在main函数中`r.set_projection(get_projection_matrix(45, 1, -0.1, -50));`，函数传入的zNear和zFar要改成-的，不然会显示反着。
 
 - 有个问题我还是不太懂，就是view矩阵，他其实就是做了个平移，相当于是z减少了5。问题就是相机的初始位置到底在哪里呢？很奇怪，是（0,0）吗，相机的注视方向呢？是沿着Z轴吗？相机的头顶方向呢？其实只要矩阵写对了，就能看到三角形，也许这道作业就是为了让我们了解下model变换和透视投影变换吧，其他的问题可能会在后面解决吧。
+
+### 作业1重做版
+
+* 20023.5.14
+
+* 先说总结，这次跟上次有相似的地方也有不同的地方，但总的来说比上次更加理解了，没想到时隔数月还是又回来学games101了
+
+* 其实代码大差不差，上代码。model矩阵就是用来旋转模型，其实就是控制三角形旋转的矩阵啦，记得要将度数转成弧度，这边记得，下边的tan又又又忘了转换，不过问题不大，没转的话只是相当于eye_fov数字变大了，三角形看起来变小了一点
+
+* ```cpp
+  Eigen::Matrix4f get_model_matrix(float rotation_angle)
+  {
+      Eigen::Matrix4f model = Eigen::Matrix4f::Identity();
+  
+      model(0, 0) = cos(rotation_angle/180.f* MY_PI);
+      model(0, 1) = -sin(rotation_angle / 180.f * MY_PI);
+      model(1, 0) = sin(rotation_angle / 180.f * MY_PI);
+      model(1, 1) = cos(rotation_angle / 180.f * MY_PI);
+  
+      return model;
+  }
+  ```
+
+* ```cpp
+  Eigen::Matrix4f get_projection_matrix(float eye_fov, float aspect_ratio,
+                                        float zNear, float zFar)
+  {
+      //aspect_ratio = r / t;
+      //tan(eye_fov)/2 = t/|n|;
+      Eigen::Matrix4f projection = Eigen::Matrix4f::Identity();
+      float t = tan(eye_fov / 2 /180.f *MY_PI) * abs(zNear);
+      float b = -t;
+      float r = aspect_ratio * t;
+      float l = -r;
+      Eigen::Matrix4f m1 = Eigen::Matrix4f::Identity();//缩放矩阵
+      Eigen::Matrix4f m2 = Eigen::Matrix4f::Identity();//平移矩阵
+      m1(0, 0) = 2.f / (r - l);
+      m1(1, 1) = 2.f / (t - b);
+      m1(2, 2) = 2.f / (zNear - zFar);
+  
+      m2(0, 3) = -(r + l) / 2.f;
+      m2(1, 3) = -(t + b) / 2.f;
+      m2(2, 3) = -(zNear + zFar) / 2.f;
+  
+      Eigen::Matrix4f Mortho = m1 * m2;//正交矩阵
+  
+      //平截头体压缩至长方体矩阵
+      Eigen::Matrix4f Mpersp2ortho;
+      Mpersp2ortho << zNear, 0.f, 0.f, 0.f,
+          0.f, zNear, 0.f, 0.f,
+          0.f, 0.f, zNear + zFar, -zNear * zFar,
+          0.f, 0.f, 1.f, 0.f;
+  
+      projection = Mortho * Mpersp2ortho;
+  
+      return projection;
+  }
+  ```
+
+* 下面放两种tan的对比图
+
+* [![p9cRffA.jpg](https://s1.ax1x.com/2023/05/14/p9cRffA.jpg)](https://imgse.com/i/p9cRffA)
+
+* 在main中设置zNear和zFar是正数（`r.set_projection(get_projection_matrix(45, 1, 0.1, 50));`），所以是倒三角，因为在projection矩阵中的m1矩阵（缩放矩阵）的第三行第三列也就是m1(2, 2)，因为zNear和zFar是正数且前者更小，所以总的结果是负数也就是说缩放的时候直接翻转了，只要把main函数中的设置投影矩阵函数的参数改为负数即可：`r.set_projection(get_projection_matrix(45, 1, -0.1, -50));`
+
+* 接下来是提高部分，直接套课上讲的Rodrigues' Rotation Formula公式即可，需要注意的是矩阵是4\*4的，因为需要齐次坐标，代码如下：
+
+* ```cpp
+  Eigen::Matrix4f get_rotation(Eigen::Vector4f axis, float angle)
+  {
+      Eigen::Matrix4f RotationMatrix;
+      Eigen::Matrix4f IdentityMarix = Eigen::Matrix4f::Identity();
+      Eigen::Matrix4f ProductMatrix;
+      ProductMatrix << 0.f, -axis[2], axis[1], 0.f,
+          axis[2], 0.f, -axis[0], 0.f,
+          -axis[1], axis[0], 0.f, 0.f,
+          0.f, 0.f, 0.f, 1.f;
+  
+      RotationMatrix = cos(angle / 180 * MY_PI) * IdentityMarix + (1 - cos(angle / 180 * MY_PI)) * axis * axis.transpose() + sin(angle / 180 * MY_PI) * ProductMatrix;
+      return RotationMatrix;
+  }
+  ```
+
+* 那么如何调用呢？首先在main函数开头声明旋转轴和角度：
+
+* ```cpp
+      float angle2 = 0;
+      Eigen::Vector4f RotationAxis(1.f,0.f,0.f,0.f);//x轴
+  ```
+
+* 接着是修改while循环中的`r.set_model`函数，为什么修改这个呢，因为set_model就是设置模型的位置矩阵（旋转平移），那么只要将我们的旋转矩阵相乘这个矩阵就相当于设置了模型的矩阵。修改后的函数为：`r.set_model(get_rotation(RotationAxis, angle2)*get_model_matrix(angle));`
+
+* 下面是旋转的情况(绕x轴，因为三角形的z坐标是-2，所以转的时候不是沿着三角形的最下面一条边转的)：
+
+* [![p9cffMt.jpg](https://s1.ax1x.com/2023/05/14/p9cffMt.jpg)](https://imgse.com/i/p9cffMt)
