@@ -270,6 +270,12 @@ Eigen::Matrix4f get_projection_matrix(float eye_fov, float aspect_ratio,
 * [![p9cRffA.jpg](https://s1.ax1x.com/2023/05/14/p9cRffA.jpg)](https://imgse.com/i/p9cRffA)
 
 * 在main中设置zNear和zFar是正数（`r.set_projection(get_projection_matrix(45, 1, 0.1, 50));`），所以是倒三角，因为在projection矩阵中的m1矩阵（缩放矩阵）的第三行第三列也就是m1(2, 2)，因为zNear和zFar是正数且前者更小，所以总的结果是负数也就是说缩放的时候直接翻转了，只要把main函数中的设置投影矩阵函数的参数改为负数即可：`r.set_projection(get_projection_matrix(45, 1, -0.1, -50));`
+  
+  * 详细说一下反转，在看了[《GAMES101》作业框架问题详解 - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/509902950)这篇博客后我有了点自己的理解，为什么z轴反转了三角形就倒过来了，我猜测是z轴翻转后，为了遵循坐标系的原则，导致x和y轴也转了一下。
+  
+  * 如果三角形落在了摄像机后面也相当于z轴翻转了一下，跟上面一样
+  
+  * 总之这个东西怪怪的，我觉得不用再深究了，后面遇到问题再处理，我认为我的猜想目前来看还是站得住脚的
 
 * 接下来是提高部分，直接套课上讲的Rodrigues' Rotation Formula公式即可，需要注意的是矩阵是4\*4的，因为需要齐次坐标，代码如下：
 
