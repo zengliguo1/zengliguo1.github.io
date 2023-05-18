@@ -251,4 +251,6 @@ void rst::rasterizer::rasterize_triangle(const Triangle& t) {
 
 * 上面其实也不一定需要给t加负号，在设置投影矩阵的时候，zNear和zFar都加个负号也行
 
+* 又写了一遍，但大体上差不多，就不再记录了
+
 [![vcwDw8.jpg](https://s1.ax1x.com/2022/08/23/vcwDw8.jpg)](https://imgse.com/i/vcwDw8)
