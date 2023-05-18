@@ -12,8 +12,9 @@ toc: true
 comments: true
 math: true
 mermaid: true
-
 ---
+
+前两点算是上一节光栅化的内容
 
 ### 1. Painter's Algorithm
 
@@ -23,7 +24,11 @@ mermaid: true
 
 - 每个像素永远去记录这个像素所表示的几何最浅的深度
 
+- z目前设置为总为正的，意为与相机的距离
+
 - 生成最终渲染图的同时，还需要另一个图像，储存像素所看到的最浅的深度信息（深度图/深度缓存）
+
+- [![p9R1rJH.jpg](https://s1.ax1x.com/2023/05/16/p9R1rJH.jpg)](https://imgse.com/i/p9R1rJH)
 
 - Z-Buffer Algorithm
   
@@ -43,7 +48,11 @@ mermaid: true
   }
   ```
 
-- 复杂度：O(n)（n个三角形）
+- 复杂度：O(n)（n个三角形\*常数个像素个数）
+
+- 由于深度是浮点型，而浮点型的相等是很困难的，基本上是不会一样的，但也是有出现的可能，但在本课不做讨论
+
+- 不是对每个像素做z-buffer而是每个采样点（比如MSAA）
 
 - 这是一个非常重要的算法，应用在所有的GPU上
 
@@ -51,9 +60,11 @@ mermaid: true
 
 * 对一个物体应用一个材质
 * 一个简单的着色模型：Blinn-Phong Reflectance Model
-* 镜面高光、漫反射、环境光照
+* 镜面高光(Specular highlights)、漫反射(Diffuse reflection)、环境光照(Ambient lighting)
 
 ### 4. Shading is Local（着色具有局部性，不管阴影）
+
+[![p9R8hGQ.jpg](https://s1.ax1x.com/2023/05/16/p9R8hGQ.jpg)](https://imgse.com/i/p9R8hGQ)
 
     先定义一些变量，每一个shading point都有以下inputs（方向都是单位向量）
 
@@ -65,23 +76,31 @@ mermaid: true
 
 * 表面参数，颜色、亮度
 
+* 着色具有局部性，并不会生成阴影
+
 ### 5. Diffuse Reflection
+
+[![p9RGSMR.jpg](https://s1.ax1x.com/2023/05/16/p9RGSMR.jpg)](https://imgse.com/i/p9RGSMR)
 
 * 反射到四面八方
 
-* Lambert's cosine law:$\cos\theta = \vec{l}*\vec{n}$
+* Lambert's cosine law（光线与发现的夹角的余弦）:$\cos\theta = \vec{l}*\vec{n}$
 
 * shading point处接收到的光照能量与cosθ成正比
 
+* [![p9RGMeP.jpg](https://s1.ax1x.com/2023/05/16/p9RGMeP.jpg)](https://imgse.com/i/p9RGMeP)
+
 * 点光源的光线传播的能量衰减与距离半径r^2成反比
 
-* $k_d$是漫反射系数（颜色吸收，1意味着不吸收能量，全部反射出去，0意味着全吸收，表现为黑色；如果是一个向量，就可以表示颜色了），$I/r^2$是光线到达着色点处的能量大小
+* [![p9RGDFU.jpg](https://s1.ax1x.com/2023/05/16/p9RGDFU.jpg)](https://imgse.com/i/p9RGDFU)
+
+* $k_d$是漫反射系数（颜色吸收，1意味着不吸收能量，全部反射出去，0意味着全吸收，表现为黑色；如果是一个向量，就可以表示颜色了，其实就可以是rgb），$I/r^2$是光线到达着色点处的能量大小
   
   $$
   L_d = k_d(I/r^2)max(0, \vec{n}\cdot\vec{l})
   $$
 
-* 当光线方向和法线方向夹角大于90°时不考虑这个光
+* 当光线方向和法线方向夹角大于90°时不考虑这个光，此时$\vec{l}*\vec{n}<0$，因此取0
 
 * 无论从哪个方向看，同一个着色点的亮度是一样的
 
@@ -229,5 +248,7 @@ void rst::rasterizer::rasterize_triangle(const Triangle& t) {
 * 在遍历bounding box的时候，用的是float变量
 
 * 要把main.cpp文件中`get_projection_matrix`函数的`t`值加个负号，才能显示正的三角形（`t`也就是摄像机的向上方向）
+
+* 上面其实也不一定需要给t加负号，在设置投影矩阵的时候，zNear和zFar都加个负号也行
 
 [![vcwDw8.jpg](https://s1.ax1x.com/2022/08/23/vcwDw8.jpg)](https://imgse.com/i/vcwDw8)

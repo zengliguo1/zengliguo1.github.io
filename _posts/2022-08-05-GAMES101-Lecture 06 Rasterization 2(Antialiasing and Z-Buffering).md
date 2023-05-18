@@ -28,7 +28,7 @@ mermaid: true
 [![p9gjSsO.jpg](https://s1.ax1x.com/2023/05/15/p9gjSsO.jpg)](https://imgse.com/i/p9gjSsO)
 
 - 先做一个模糊/滤波，再采样（不能先采样再滤波）
-- 需要先模糊再采样，不能反过来
+- 需要先模糊再采样，不能反过来。那么为什么不能反过来呢，那是因为先采样会发生混叠，如果要完全删掉混叠就要删掉大量信号，这样显然是不对的方法（原因放在后面看，后面会说什么是混叠）
 
 ### 3. Frequency Domain
 
@@ -98,7 +98,7 @@ mermaid: true
 
 [![p92P8MR.jpg](https://s1.ax1x.com/2023/05/15/p92P8MR.jpg)](https://imgse.com/i/p92P8MR)
 
-*  那么如何模糊？使用低通滤波器来卷积（也可以说是求个平均）
+* 那么如何模糊？使用低通滤波器来卷积（也可以说是求个平均）
 
 [![p92Pgdf.jpg](https://s1.ax1x.com/2023/05/15/p92Pgdf.jpg)](https://imgse.com/i/p92Pgdf)
 
