@@ -1,4 +1,4 @@
-```yaml
+---
 title: GAMES101-Lecture 10 Geometry 1 & 作业3
 date: 2023-06-27 17:00:00 +0800
 categories: [计算机图形学, GAMES101]
@@ -10,7 +10,8 @@ toc: true
 comments: true
 math: true
 mermaid: true
-```
+
+---
 
 ## 1. Applications of Textures
 
@@ -279,6 +280,7 @@ Eigen::Matrix4f get_projection_matrix(float eye_fov, float aspect_ratio, float z
     }
 ```
 
+- [![pC00g4x.jpg](https://s1.ax1x.com/2023/06/30/pC00g4x.jpg)](https://imgse.com/i/pC00g4x)
 - 实现`phong_fragment_shader()`。这里需要注意的有一点，就是环境光的光强要用`amb_light_intensity`，如果用`light.intensity`就会全白
 
 ```cpp
@@ -330,6 +332,8 @@ Eigen::Vector3f phong_fragment_shader(const fragment_shader_payload& payload)
 }
 ```
 
+- [![pC00cU1.jpg](https://s1.ax1x.com/2023/06/30/pC00cU1.jpg)](https://imgse.com/i/pC00cU1)
+
 - 第四，实现`texture_fragment_shader()`。只需要让颜色值是return_color就行了，别的跟phong都一样
 
 ```cpp
@@ -342,6 +346,7 @@ Eigen::Vector3f phong_fragment_shader(const fragment_shader_payload& payload)
     }
 ```
 
+- [![pC006ER.jpg](https://s1.ax1x.com/2023/06/30/pC006ER.jpg)](https://imgse.com/i/pC006ER)
 - 第五，实现`bump_fragment_shader()`。在gpt的帮助下，弄懂了bump mapping，目标就是修改法向量，根据凹凸贴图来计算在(u,v)位置下的梯度，公式在框架中给出了，其中h函数的意思就是求height，那么height是怎么来的呢。首先，凹凸贴图其实存的是三通道rgb值，只需要求出这个三维向量的绝对值也就是长度，那么就是高度。其中tbn矩阵是一个局部坐标系（其实这么说也不太准确），通过这个矩阵可以将计算出来的在局部坐标系下的法线转换成世界坐标系下。还有一点是，颜色直接取凹凸图就好
 
 ```cpp
@@ -393,6 +398,7 @@ Eigen::Vector3f bump_fragment_shader(const fragment_shader_payload& payload)
 }
 ```
 
+- [![pC00RC6.jpg](https://s1.ax1x.com/2023/06/30/pC00RC6.jpg)](https://imgse.com/i/pC00RC6)
 - 第六，`实现displacement_fragment_shader()`。实现了凹凸映射，那位移映射也就简单了，直接把点修改下就好，最后再加个phong着色就行
 
 ```cpp
@@ -463,6 +469,7 @@ Eigen::Vector3f displacement_fragment_shader(const fragment_shader_payload& payl
 }
 ```
 
+- [![pC00sb9.jpg](https://s1.ax1x.com/2023/06/30/pC00sb9.jpg)](https://imgse.com/i/pC00sb9)
 - 第七，双线性插值。为了实现我的思路，我还重载了`getColor()`函数。先说双线性插值，我是根据那个点所在的位置来取离它最近的三个点，也就是说这个原本的点可能在四个点的左下角、右下角、左上角、右上角。因为我需要算出是哪四个像素，也就是拿到了四个像素的下标，但是原来的`getColor()`函数是传入浮点型并且小于1的uv，所以我就重载了形参为`int`的`getColor()`函数
 
 ```cpp
@@ -532,3 +539,6 @@ Eigen::Vector3f displacement_fragment_shader(const fragment_shader_payload& payl
         return (c1 + (c2 - c1) * abs(t));
     }
 ```
+
+* [![pC00W8K.jpg](https://s1.ax1x.com/2023/06/30/pC00W8K.jpg)](https://imgse.com/i/pC00W8K)
+* [![pC00LPP.jpg](https://s1.ax1x.com/2023/06/30/pC00LPP.jpg)](https://imgse.com/i/pC00LPP)
