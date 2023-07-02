@@ -148,3 +148,4 @@ mermaid: true
 ### Subdivision,simplification,regularization
 
 [![pC0vGqO.jpg](https://s1.ax1x.com/2023/06/30/pC0vGqO.jpg)](https://imgse.com/i/pC0vGqO)
+![](https://www.notion.so/4a0df59c756b440a87f9057b1c1c1729?pvs=4#4e5dbb2ae4c7464b950193f9592ac8e0)
