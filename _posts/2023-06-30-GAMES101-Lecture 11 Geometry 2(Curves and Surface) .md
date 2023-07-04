@@ -85,7 +85,7 @@ mermaid: true
 
 [![pC0bi28.jpg](https://s1.ax1x.com/2023/06/30/pC0bi28.jpg)](https://imgse.com/i/pC0bi28)
 
-* n是控制点的个数，B是伯恩斯坦多项式
+* n是曲线的degree，如果有3个控制点，那n就是2，B是伯恩斯坦多项式
 
 * 在三维空间中依然适用
 
@@ -148,3 +148,123 @@ mermaid: true
 ### Subdivision,simplification,regularization
 
 [![pC0vGqO.jpg](https://s1.ax1x.com/2023/06/30/pC0vGqO.jpg)](https://imgse.com/i/pC0vGqO)
+
+### 作业4
+
+* 作业描述：
+
+* Bézier 曲线是一种用于计算机图形学的参数曲线。在本次作业中，你需要实
+  
+  现 de Casteljau 算法来绘制由 4 个控制点表示的 Bézier 曲线 (当你正确实现该
+  
+  算法时，你可以支持绘制由更多点来控制的 Bézier 曲线)。
+  
+  你需要修改的函数在提供的 main.cpp 文件中。
+  
+  * bezier：该函数实现绘制 Bézier 曲线的功能。它使用一个控制点序列和一个OpenCV：：Mat 对象作为输入，没有返回值。它会使 t 在 0 到 1 的范围内进行迭代，并在每次迭代中使 t 增加一个微小值。对于每个需要计算的 t，将调用另一个函数 recursive_bezier，然后该函数将返回在 Bézier 曲线上 t处的点。最后，将返回的点绘制在 OpenCV ：：Mat 对象上。
+  
+  * recursive_bezier：该函数使用一个控制点序列和一个浮点数 t 作为输入，实现 de Casteljau 算法来返回 Bézier 曲线上对应点的坐标。
+
+* 这次的作业非常简单，就是平滑得写一小会儿
+
+* 递归就是按ppt的思路递归，没啥好说的
+
+* ```cpp
+  cv::Point2f recursive_bezier(const std::vector<cv::Point2f> &control_points, float t) 
+  {
+      // TODO: Implement de Casteljau's algorithm
+      if (control_points.size() == 1)
+      {
+          return control_points[0];
+      }
+      std::vector<cv::Point2f> new_points;
+      for (int i = 0; i < control_points.size()-1; i++)
+      {
+          float x = t * control_points[i].x + (1 - t) * control_points[i + 1].x;
+          float y = t * control_points[i].y + (1 - t) * control_points[i + 1].y;
+  
+          new_points.emplace_back(x,y);
+      }
+      return recursive_bezier(new_points, t);
+  }
+  ```
+
+* 然后仿照`naive_bezier`函数画点即可
+
+* ```cpp
+  void bezier(const std::vector<cv::Point2f> &control_points, cv::Mat &window) 
+  {
+      // TODO: Iterate through all t = 0 to t = 1 with small steps, and call de Casteljau's 
+      // recursive Bezier algorithm.
+      for (float t = 0.0; t <= 1.0; t += 0.001)
+      {
+          auto point = recursive_bezier(control_points, t);
+          window.at<cv::Vec3b>(point.y, point.x)[1] = 255;
+          }
+  
+      }
+  }
+  ```
+
+* 平滑的话，就是先跟上次作业中的双线性插值一样，判断要平滑的是哪四块像素，然后计算点到四个像素中心的距离d1、d2、d3、d4，根据比例来赋颜色值
+
+* ```cpp
+  void bezier(const std::vector<cv::Point2f> &control_points, cv::Mat &window) 
+  {
+      // TODO: Iterate through all t = 0 to t = 1 with small steps, and call de Casteljau's 
+      // recursive Bezier algorithm.
+      for (float t = 0.0; t <= 1.0; t += 0.001)
+      {
+          auto point = recursive_bezier(control_points, t);
+          window.at<cv::Vec3b>(point.y, point.x)[1] = 255;
+          bool smooth = false;
+          if (smooth)
+          {
+              float d1, d2, d3, d4;
+              int x = point.x;
+              int y = point.y;
+              d1 = dis(point.x, point.y, (float)x + 0.5f, (float)y + 0.5f);
+              int xx, yy;
+              if (point.x - (float)x - 0.5f > 0.f)
+              {
+                  xx = x + 1;
+              }
+              else
+              {
+                  xx = x - 1;
+              }
+              d2 = dis(point.x, point.y, (float)xx + 0.5f, (float)y + 0.5f);
+              setColor(xx, y, 255.f * d1 / d2, window);
+              if (point.y - (float)y - 0.5f > 0.f)
+              {
+                  yy = y + 1;
+              }
+              else yy = y - 1;
+              d3 = dis(point.x, point.y, (float)x + 0.5f, (float)yy + 0.5f);
+              setColor(x, yy, 255.f * d1 / d3, window);
+              d4 = dis(point.x, point.y, (float)xx + 0.5f, (float)yy + 0.5f);
+              setColor(x, yy, 255.f * d1 / d4, window);
+          }
+  
+      }
+  }
+  ```
+
+* 其中，为了方便创建了两个函数
+
+* ```cpp
+  float dis(float x1, float y1, float x2, float y2)
+  {
+      return sqrt( pow(x2 - x1, 2) + pow(y2 - y1, 2));
+  }
+  void setColor(int x, int y, float c, cv::Mat& window)
+  {
+      if (x < 0) x = 0;
+      if (x > window.cols) x = window.cols - 1;
+      if (y < 0) y = 0;
+      if (y > window.rows) y = window.rows - 1;
+      window.at<cv::Vec3b>(y, x)[1] = std::max(c, (float)window.at<cv::Vec3b>(y, x)[1]);
+  }
+  ```
+
+[![pCscx6s.jpg](https://s1.ax1x.com/2023/07/04/pCscx6s.jpg)](https://imgse.com/i/pCscx6s)
