@@ -15,9 +15,11 @@ mermaid: true
 
 ---
 
+## Transformation
+
 这一节其实是沿着上一节的viewing讲剩下的一小部分，然后开了个光栅化的头
 
-### 1. Perspective Projection
+### Perspective Projection
 
 [![p9yJqde.jpg](https://s1.ax1x.com/2023/05/12/p9yJqde.jpg)](https://imgse.com/i/p9yJqde)
 
@@ -36,7 +38,7 @@ mermaid: true
 
 [![p9yYf0S.jpg](https://s1.ax1x.com/2023/05/12/p9yYf0S.jpg)](https://imgse.com/i/p9yYf0S)
 
-### 2. Canonical Cube to Screen
+### Canonical Cube to Screen
 
 - 屏幕
   
@@ -64,15 +66,15 @@ mermaid: true
 \right)
   $$
 
-### 3. Frame Buffer: Memory for a Raster Display
+### Frame Buffer: Memory for a Raster Display
 
 - 图像会存在显存中的不同区域中，告诉显示器显示哪一副图
 
-### 4. LCD(Liquid Crystal Display) Pixel(液晶显示)
+## LCD(Liquid Crystal Display) Pixel(液晶显示)
 
-### 5. LED Array Display 发光二极管
+## LED Array Display 发光二极管
 
-### 6. Triangles-Fundamental Shape Primitives
+## Triangles-Fundamental Shape Primitives
 
 - 三角形：
   
@@ -88,7 +90,7 @@ mermaid: true
     
     - 便于渐变
 
-### 7. Sampling
+### Sampling
 
 - 判断像素的中心是否在三角形内
   
@@ -108,7 +110,7 @@ mermaid: true
 
 - Aliasing走样：Jaggies锯齿
 
-### 作业1
+## 作业1
 
 - 任务描述：本次作业的任务是填写一个旋转矩阵和一个透视投影矩阵。给定三维下三个
   
@@ -200,14 +202,14 @@ Eigen::Matrix4f get_projection_matrix(float eye_fov, float aspect_ratio,
 ```
 
 - 结果：
-  
-  [![vPL6L4.jpg](https://s1.ax1x.com/2022/07/29/vPL6L4.jpg)](https://imgtu.com/i/vPL6L4)
+
+[![vPL6L4.jpg](https://s1.ax1x.com/2022/07/29/vPL6L4.jpg)](https://imgtu.com/i/vPL6L4)
 
 - 有一个问题就是，在main函数中`r.set_projection(get_projection_matrix(45, 1, -0.1, -50));`，函数传入的zNear和zFar要改成-的，不然会显示反着。
 
 - 有个问题我还是不太懂，就是view矩阵，他其实就是做了个平移，相当于是z减少了5。问题就是相机的初始位置到底在哪里呢？很奇怪，是（0,0）吗，相机的注视方向呢？是沿着Z轴吗？相机的头顶方向呢？其实只要矩阵写对了，就能看到三角形，也许这道作业就是为了让我们了解下model变换和透视投影变换吧，其他的问题可能会在后面解决吧。
 
-### 作业1重做版
+## 作业1重做版
 
 * 20023.5.14
 
@@ -267,7 +269,7 @@ Eigen::Matrix4f get_projection_matrix(float eye_fov, float aspect_ratio,
 
 * 下面放两种tan的对比图
 
-* [![p9cRffA.jpg](https://s1.ax1x.com/2023/05/14/p9cRffA.jpg)](https://imgse.com/i/p9cRffA)
+[![p9cRffA.jpg](https://s1.ax1x.com/2023/05/14/p9cRffA.jpg)](https://imgse.com/i/p9cRffA)
 
 * 在main中设置zNear和zFar是正数（`r.set_projection(get_projection_matrix(45, 1, 0.1, 50));`），所以是倒三角，因为在projection矩阵中的m1矩阵（缩放矩阵）的第三行第三列也就是m1(2, 2)，因为zNear和zFar是正数且前者更小，所以总的结果是负数也就是说缩放的时候直接翻转了，只要把main函数中的设置投影矩阵函数的参数改为负数即可：`r.set_projection(get_projection_matrix(45, 1, -0.1, -50));`
   
@@ -306,4 +308,4 @@ Eigen::Matrix4f get_projection_matrix(float eye_fov, float aspect_ratio,
 
 * 下面是旋转的情况(绕x轴，因为三角形的z坐标是-2，所以转的时候不是沿着三角形的最下面一条边转的)：
 
-* [![p9cffMt.jpg](https://s1.ax1x.com/2023/05/14/p9cffMt.jpg)](https://imgse.com/i/p9cffMt)
+[![p9cffMt.jpg](https://s1.ax1x.com/2023/05/14/p9cffMt.jpg)](https://imgse.com/i/p9cffMt)

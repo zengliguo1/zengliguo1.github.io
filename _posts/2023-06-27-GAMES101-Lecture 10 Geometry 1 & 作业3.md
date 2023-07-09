@@ -15,7 +15,7 @@ mermaid: true
 
 ---
 
-## 1. Applications of Textures
+## Applications of Textures
 
 - In modern GPUs, texture = memory + range query (filtering)
 
@@ -25,96 +25,97 @@ mermaid: true
 
 [![pCd3faQjpg](https://s1.ax1x.com/2023/06/28/pCd3faQ.jpg)](https://imgse.com/i/pCd3faQ)
 
-- **Bump Mapping**
-  
-  - 定义的是纹理上任意一个点，高度的相对移动
-  
-  - [![pCd3xi9jpg](https://s1.ax1x.com/2023/06/28/pCd3xi9.jpg)](https://imgse.com/i/pCd3xi9)
-  
-  - 通过凹凸贴图（也可以说是高度贴图），改变了原来的点的高度（实际没改，只是用来算法线），从而改变了法线的方向，制造了凹凸的效果
-  
-  - [![pCdGNAejpg](https://s1.ax1x.com/2023/06/28/pCdGNAe.jpg)](https://imgse.com/i/pCdGNAe)
-  
-  - 对平面来说：该点的切线方向是(1,dp)，dp就是凹凸贴图存的值，那么该点的法线方向就是转90°，也就是(-dp,1)
-  
-  - [![pCd0bEqjpg](https://s1.ax1x.com/2023/06/28/pCd0bEq.jpg)](https://imgse.com/i/pCd0bEq)
-  
-  - 在三维空间中，假设一个法向量(0,0,1)，根据凹凸图某一点uv的梯度值来计算出扰乱后的切线，最后旋转就成了扰乱后的法线也就是(-dp/du,-dp/dv,1)，因为假设的法向量(0,0,1)在local坐标系（局部坐标系stn），所以之后还需要转换
+### Bump Mapping
 
-- **Displacement mapping**
+- 定义的是纹理上任意一个点，高度的相对移动
 
-- [![pCdBwaqjpg](https://s1.ax1x.com/2023/06/28/pCdBwaq.jpg)](https://imgse.com/i/pCdBwaq)
+[![pCd3xi9jpg](https://s1.ax1x.com/2023/06/28/pCd3xi9.jpg)](https://imgse.com/i/pCd3xi9)
+
+- 通过凹凸贴图（也可以说是高度贴图），改变了原来的点的高度（实际没改，只是用来算法线），从而改变了法线的方向，制造了凹凸的效果
+
+[![pCdGNAejpg](https://s1.ax1x.com/2023/06/28/pCdGNAe.jpg)](https://imgse.com/i/pCdGNAe)
+
+- 对平面来说：该点的切线方向是(1,dp)，dp就是凹凸贴图存的值，那么该点的法线方向就是转90°，也就是(-dp,1)
+
+[![pCd0bEqjpg](https://s1.ax1x.com/2023/06/28/pCd0bEq.jpg)](https://imgse.com/i/pCd0bEq)
+
+- 在三维空间中，假设一个法向量(0,0,1)，根据凹凸图某一点uv的梯度值来计算出扰乱后的切线，最后旋转就成了扰乱后的法线也就是(-dp/du,-dp/dv,1)，因为假设的法向量(0,0,1)在local坐标系（局部坐标系stn），所以之后还需要转换
+
+### Displacement mapping
+
+[![pCdBwaqjpg](https://s1.ax1x.com/2023/06/28/pCdBwaq.jpg)](https://imgse.com/i/pCdBwaq)
 
 - 3d生成噪声作为贴图
 
-- [![pCdB0I0jpg](https://s1.ax1x.com/2023/06/28/pCdB0I0.jpg)](https://imgse.com/i/pCdB0I0)
+[![pCdB0I0jpg](https://s1.ax1x.com/2023/06/28/pCdB0I0.jpg)](https://imgse.com/i/pCdB0I0)
 
 - 环境光遮罩贴图
 
-- [![pCdBrGTjpg](https://s1.ax1x.com/2023/06/28/pCdBrGT.jpg)](https://imgse.com/i/pCdBrGT)
+[![pCdBrGTjpg](https://s1.ax1x.com/2023/06/28/pCdBrGT.jpg)](https://imgse.com/i/pCdBrGT)
 
 - 体渲染
 
-- [![pCdBsRUjpg](https://s1.ax1x.com/2023/06/28/pCdBsRU.jpg)](https://imgse.com/i/pCdBsRU)
+[![pCdBsRUjpg](https://s1.ax1x.com/2023/06/28/pCdBsRU.jpg)](https://imgse.com/i/pCdBsRU)
 
-## 2. Geometry
+## Geometry
 
 [![pCdDeYVjpg](https://s1.ax1x.com/2023/06/28/pCdDeYV.jpg)](https://imgse.com/i/pCdDeYV)
 
-- implicit隐式几何
-  
-  - 点满足一些特殊的关系，比如一个球的方程，并不给实际的点
-  
-  - [![pCdD2p8jpg](https://s1.ax1x.com/2023/06/28/pCdD2p8.jpg)](https://imgse.com/i/pCdD2p8)
-  
-  - [![pCdDcffjpg](https://s1.ax1x.com/2023/06/28/pCdDcff.jpg)](https://imgse.com/i/pCdDcff)
-  
-  - 难点在于哪些点符合这个关系，很难从式子看出来是什么模型。但是，给定一个点，判断这个点在不在这个面上，很容易。直接把点代入式子，如果是0在面上，大于0在外，小于0在内
+### implicit隐式几何
 
-- explicit显式几何
-  
-  [![pCdDTkqjpg](https://s1.ax1x.com/2023/06/28/pCdDTkq.jpg)](https://imgse.com/i/pCdDTkq)
+- 点满足一些特殊的关系，比如一个球的方程，并不给实际的点
+
+[![pCdD2p8jpg](https://s1.ax1x.com/2023/06/28/pCdD2p8.jpg)](https://imgse.com/i/pCdD2p8)
+
+[![pCdDcffjpg](https://s1.ax1x.com/2023/06/28/pCdDcff.jpg)](https://imgse.com/i/pCdDcff)
+
+- 难点在于哪些点符合这个关系，很难从式子看出来是什么模型。但是，给定一个点，判断这个点在不在这个面上，很容易。直接把点代入式子，如果是0在面上，大于0在外，小于0在内
+
+### explicit显式几何
+
+[![pCdDTkqjpg](https://s1.ax1x.com/2023/06/28/pCdDTkq.jpg)](https://imgse.com/i/pCdDTkq)
 
 - 要么直接给出，要么通过参数映射的方式给出
 
 - 把所有uv找一遍就知道在三维空间中长什么样，所以采样更简单；但是判断某个点是否在平面的里外，很难
 
-- [![pCdDI7njpg](https://s1.ax1x.com/2023/06/28/pCdDI7n.jpg)](https://imgse.com/i/pCdDI7n)
+[![pCdDI7njpg](https://s1.ax1x.com/2023/06/28/pCdDI7n.jpg)](https://imgse.com/i/pCdDI7n)
 
-- [![pCdD50sjpg](https://s1.ax1x.com/2023/06/28/pCdD50s.jpg)](https://imgse.com/i/pCdD50s)
+[![pCdD50sjpg](https://s1.ax1x.com/2023/06/28/pCdD50s.jpg)](https://imgse.com/i/pCdD50s)
 
-- [![pCdrnAIjpg](https://s1.ax1x.com/2023/06/28/pCdrnAI.jpg)](https://imgse.com/i/pCdrnAI)
+[![pCdrnAIjpg](https://s1.ax1x.com/2023/06/28/pCdrnAI.jpg)](https://imgse.com/i/pCdrnAI)
 
-- **CSG(constructive solid geometry)(implicit)**
+### CSG(constructive solid geometry)(implicit)
+
+- 通过基本的几何的组合来构造几何
+
+[![pCdrNEnjpg](https://s1.ax1x.com/2023/06/28/pCdrNEn.jpg)](https://imgse.com/i/pCdrNEn)
+
+### Distance Functions(implicit)
+
+[![pCdsoWVjpg](https://s1.ax1x.com/2023/06/28/pCdsoWV.jpg)](https://imgse.com/i/pCdsoWV)
+
+- 距离函数是指空间中任意一个点到一个模型的最短距离，如果这个点在模型的面外就是正的，如果在面内，就是负的
+
+[![pCdsIJ0jpg](https://s1.ax1x.com/2023/06/28/pCdsIJ0.jpg)](https://imgse.com/i/pCdsIJ0)
+
+- A是一个物体挡住窗口1/3时候的一张图，B是该物体挡住窗口的2/3时候的一张图，现在的目标是求出这两个状态中间状态的样子
   
-  - 通过基本的几何的组合来构造几何
+  - 如果拿两张图做一个线性blend(相加除以二)，那么左边黑，中间灰，右边白
   
-  - [![pCdrNEnjpg](https://s1.ax1x.com/2023/06/28/pCdrNEn.jpg)](https://imgse.com/i/pCdrNEn)
+  - 但是我们希望的结果是运动的中间态也就是左边一半是黑的，右边一半是白的
 
-- Distance Functions(implicit)
-  [![pCdsoWVjpg](https://s1.ax1x.com/2023/06/28/pCdsoWV.jpg)](https://imgse.com/i/pCdsoWV)
-  
-  - 距离函数是指空间中任意一个点到一个模型的最短距离，如果这个点在模型的面外就是正的，如果在面内，就是负的
-  
-  - [![pCdsIJ0jpg](https://s1.ax1x.com/2023/06/28/pCdsIJ0.jpg)](https://imgse.com/i/pCdsIJ0)
-  
-  - A是一个物体挡住窗口1/3时候的一张图，B是该物体挡住窗口的2/3时候的一张图，现在的目标是求出这两个状态中间状态的样子
-    
-    - 如果拿两张图做一个线性blend(相加除以二)，那么左边黑，中间灰，右边白
-    
-    - 但是我们希望的结果是运动的中间态也就是左边一半是黑的，右边一半是白的
-  
-  - SDF是signed distance function。对A和B计算距离函数也就是变换成SDF(A)和SDF(B)，再通过距离函数来blend，这样的话结果中间就会是0，最后再恢复
+- SDF是signed distance function。对A和B计算距离函数也就是变换成SDF(A)和SDF(B)，再通过距离函数来blend，这样的话结果中间就会是0，最后再恢复
 
-- [![pCds5iqjpg](https://s1.ax1x.com/2023/06/28/pCds5iq.jpg)](https://imgse.com/i/pCds5iq)
+[![pCds5iqjpg](https://s1.ax1x.com/2023/06/28/pCds5iq.jpg)](https://imgse.com/i/pCds5iq)
 
-- Level Set Methods水平集方法（类似距离函数）
+### Level Set Methods水平集方法（类似距离函数）
 
-- [![pCdg9S0jpg](https://s1.ax1x.com/2023/06/28/pCdg9S0.jpg)](https://imgse.com/i/pCdg9S0)
+[![pCdg9S0jpg](https://s1.ax1x.com/2023/06/28/pCdg9S0.jpg)](https://imgse.com/i/pCdg9S0)
 
 - Fractals分形(自相似)(递归)
 
-### 作业3
+## 作业3
 
 - 作业描述：
   
@@ -282,7 +283,8 @@ Eigen::Matrix4f get_projection_matrix(float eye_fov, float aspect_ratio, float z
     }
 ```
 
-- [![pC00g4x.jpg](https://s1.ax1x.com/2023/06/30/pC00g4x.jpg)](https://imgse.com/i/pC00g4x)
+[![pC00g4x.jpg](https://s1.ax1x.com/2023/06/30/pC00g4x.jpg)](https://imgse.com/i/pC00g4x)
+
 - 实现`phong_fragment_shader()`。这里需要注意的有一点，就是环境光的光强要用`amb_light_intensity`，如果用`light.intensity`就会全白
 
 ```cpp
@@ -334,7 +336,7 @@ Eigen::Vector3f phong_fragment_shader(const fragment_shader_payload& payload)
 }
 ```
 
-- [![pC00cU1.jpg](https://s1.ax1x.com/2023/06/30/pC00cU1.jpg)](https://imgse.com/i/pC00cU1)
+[![pC00cU1.jpg](https://s1.ax1x.com/2023/06/30/pC00cU1.jpg)](https://imgse.com/i/pC00cU1)
 
 - 第四，实现`texture_fragment_shader()`。只需要让颜色值是return_color就行了，别的跟phong都一样
 
@@ -348,7 +350,8 @@ Eigen::Vector3f phong_fragment_shader(const fragment_shader_payload& payload)
     }
 ```
 
-- [![pC006ER.jpg](https://s1.ax1x.com/2023/06/30/pC006ER.jpg)](https://imgse.com/i/pC006ER)
+[![pC006ER.jpg](https://s1.ax1x.com/2023/06/30/pC006ER.jpg)](https://imgse.com/i/pC006ER)
+
 - 第五，实现`bump_fragment_shader()`。在gpt的帮助下，弄懂了bump mapping，目标就是修改法向量，根据凹凸贴图来计算在(u,v)位置下的梯度，公式在框架中给出了，其中h函数的意思就是求height，那么height是怎么来的呢。首先，凹凸贴图其实存的是三通道rgb值，只需要求出这个三维向量的绝对值也就是长度，那么就是高度。其中tbn矩阵是一个局部坐标系（其实这么说也不太准确），通过这个矩阵可以将计算出来的在局部坐标系下的法线转换成世界坐标系下。还有一点是，颜色直接取凹凸图就好
 
 ```cpp
@@ -400,7 +403,8 @@ Eigen::Vector3f bump_fragment_shader(const fragment_shader_payload& payload)
 }
 ```
 
-- [![pC00RC6.jpg](https://s1.ax1x.com/2023/06/30/pC00RC6.jpg)](https://imgse.com/i/pC00RC6)
+[![pC00RC6.jpg](https://s1.ax1x.com/2023/06/30/pC00RC6.jpg)](https://imgse.com/i/pC00RC6)
+
 - 第六，`实现displacement_fragment_shader()`。实现了凹凸映射，那位移映射也就简单了，直接把点修改下就好，最后再加个phong着色就行
 
 ```cpp
@@ -471,7 +475,8 @@ Eigen::Vector3f displacement_fragment_shader(const fragment_shader_payload& payl
 }
 ```
 
-- [![pC00sb9.jpg](https://s1.ax1x.com/2023/06/30/pC00sb9.jpg)](https://imgse.com/i/pC00sb9)
+[![pC00sb9.jpg](https://s1.ax1x.com/2023/06/30/pC00sb9.jpg)](https://imgse.com/i/pC00sb9)
+
 - 第七，双线性插值。为了实现我的思路，我还重载了`getColor()`函数。先说双线性插值，我是根据那个点所在的位置来取离它最近的三个点，也就是说这个原本的点可能在四个点的左下角、右下角、左上角、右上角。因为我需要算出是哪四个像素，也就是拿到了四个像素的下标，但是原来的`getColor()`函数是传入浮点型并且小于1的uv，所以我就重载了形参为`int`的`getColor()`函数
 
 ```cpp
@@ -542,5 +547,5 @@ Eigen::Vector3f displacement_fragment_shader(const fragment_shader_payload& payl
     }
 ```
 
-* [![pC00W8K.jpg](https://s1.ax1x.com/2023/06/30/pC00W8K.jpg)](https://imgse.com/i/pC00W8K)
-* [![pC00LPP.jpg](https://s1.ax1x.com/2023/06/30/pC00LPP.jpg)](https://imgse.com/i/pC00LPP)
+[![pC00W8K.jpg](https://s1.ax1x.com/2023/06/30/pC00W8K.jpg)](https://imgse.com/i/pC00W8K)
+[![pC00LPP.jpg](https://s1.ax1x.com/2023/06/30/pC00LPP.jpg)](https://imgse.com/i/pC00LPP)

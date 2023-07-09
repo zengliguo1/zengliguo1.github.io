@@ -15,7 +15,8 @@ mermaid: true
 
 ---
 
-### 1. Scale
+## Transformation
+### Scale
 
 $$
 \left[
@@ -35,7 +36,7 @@ y
 \end{matrix}\right]
 $$
 
-### 2.Reflection Matrix
+### Reflection Matrix
 
 - 沿y轴翻转
 
@@ -57,7 +58,7 @@ y
 \end{matrix}\right]
 $$
 
-### 3. Shear Matrix
+### Shear Matrix
 
 - 水平剪切，水平方向上都移动了a×y
 
@@ -79,7 +80,7 @@ y
 \end{matrix}\right]
 $$
 
-### 4. Rotate(about (0,0)，CCW by default)
+### Rotate(about (0,0)，CCW by default)
 
 * 绕原点旋转
 - 默认逆时针旋转，可由特殊点推导出
@@ -95,7 +96,7 @@ $$
 
 * 用一个正方形的两个点来算就能很快算出这个旋转矩阵（1，0）和（0，1）
 
-### 5. Linear Transforms = Matrices(same dimension)
+### Linear Transforms = Matrices(same dimension)
 
 * 变换都可以写成线性变换
 
@@ -122,7 +123,7 @@ $$
 x\prime=Mx
 $$
 
-### 6. Transiation
+## Transiation
 
 - 平移变换不是线性变换，但我们不希望把平移变换当成一个特殊的变换
 
@@ -193,7 +194,7 @@ w
 \right),w\neq0
     $$
 
-### 7.Affine Transformations仿射变换
+### Affine Transformations仿射变换
 
 - Affine map = linear map + translation（线性变化+平移）
 
@@ -201,24 +202,24 @@ w
 
 - 在表示二维情况下的仿射变换时，齐次坐标对应的最后一行才是(0,0,1)，其他情况下有其他的意义
 
-### 8.Inverse Transform
+### Inverse Transform
 
 $$
 M^-1
 $$
 
-### 9. Composite Transform(复合变换)
+### Composite Transform(复合变换)
 
 * 矩阵没有交换律但有结合律
 - 从右到左逐个应用矩阵
 
-### 10. Decomposing Complex Transforms
+### Decomposing Complex Transforms
 
 - 绕C点旋转：先平移，使C移到原点，旋转后，再移回去（C点可以是边缘的也可以是中心点）
   
   $T(c)\cdot R(\alpha)\cdot T(-c)$
 
-### 11. 3D Transforms
+## 3D Transforms
 
 - 再一次使用齐次坐标
 
@@ -257,7 +258,7 @@ $$
 
 - 是先做的旋转再做的平移
 
-### 12. 补充
+## 补充
 
 $$
 R_\theta=

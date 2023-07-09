@@ -15,7 +15,9 @@ mermaid: true
 
 ---
 
-### 1. Specular Term(Blinn-Phong)
+## Blinn-Phong(后半部分)
+
+### Specular Term(Blinn-Phong)
 
  [![p9h6wIU.jpg](https://s1.ax1x.com/2023/05/19/p9h6wIU.jpg)](https://imgse.com/i/p9h6wIU)
 
@@ -23,7 +25,7 @@ mermaid: true
 
 - 注视方向加光照方向（平行四边形法则）就能得到半程向量的方向，如果h和n（法线方向）接近，就说明和镜面反射方向很接近，就能看到高光
 
-- [![p9h6sz9.jpg](https://s1.ax1x.com/2023/05/19/p9h6sz9.jpg)](https://imgse.com/i/p9h6sz9)
+[![p9h6sz9.jpg](https://s1.ax1x.com/2023/05/19/p9h6sz9.jpg)](https://imgse.com/i/p9h6sz9)
 
 - $$
   \pmb{h}(半程向量)=bisector(\pmb{v},\pmb{l})
@@ -44,13 +46,13 @@ mermaid: true
 
 - 这里不考虑吸收和不吸收的颜色是因为phong是个经验模型，简化了这一点
 
-- [![p9h6bLt.jpg](https://s1.ax1x.com/2023/05/19/p9h6bLt.jpg)](https://imgse.com/i/p9h6bLt)
+[![p9h6bLt.jpg](https://s1.ax1x.com/2023/05/19/p9h6bLt.jpg)](https://imgse.com/i/p9h6bLt)
 
 - 加个p的指数是为了降低余弦的“容忍度”，p越大，那么度数增加一点就会让$max(0,\pmb{n\cdot h})^p$值下降很多，意味着，偏很小的角度就看不到高光了，p通常取100到200。相同物体，同一方向去看的话，随着p增大，高光范围会逐渐缩小成一个点
 
-- [![p9hc9Qs.jpg](https://s1.ax1x.com/2023/05/19/p9hc9Qs.jpg)](https://imgse.com/i/p9hc9Qs)
+[![p9hc9Qs.jpg](https://s1.ax1x.com/2023/05/19/p9hc9Qs.jpg)](https://imgse.com/i/p9hc9Qs)
 
-### 2. Ambient Term
+### Ambient Term
 
 - 假设来自四面八方的环境光照强度一样，那么环境光照强度就是一个常数（实际上不是这样），$k_a$是环境光系数，其实就是颜色，$I_a$是环境光照的强度
 
@@ -58,7 +60,7 @@ mermaid: true
   L_a = k_aI_a
   $$
 
-### 3. Blinn-Phong Reflection Model
+### Blinn-Phong Reflection Model
 
 [![p9hcGFO.jpg](https://s1.ax1x.com/2023/05/19/p9hcGFO.jpg)](https://imgse.com/i/p9hcGFO)
 
@@ -72,7 +74,7 @@ k_d(I/r^2)max(0,\pmb{n\cdot l})
 +k_s(I/r^2)max(0,\pmb{n\cdot h})^p
   $$
 
-### 4.Shading Frequencies(着色频率)
+## Shading Frequencies(着色频率)
 
 [![p9hc57V.jpg](https://s1.ax1x.com/2023/05/19/p9hc57V.jpg)](https://imgse.com/i/p9hc57V)
 
@@ -126,11 +128,11 @@ k_d(I/r^2)max(0,\pmb{n\cdot l})
 
 - 当面出现的频率较高时，使用平滑着色也可以。
 
-- [![p9h2aZt.jpg](https://s1.ax1x.com/2023/05/19/p9h2aZt.jpg)](https://imgse.com/i/p9h2aZt)
+[![p9h2aZt.jpg](https://s1.ax1x.com/2023/05/19/p9h2aZt.jpg)](https://imgse.com/i/p9h2aZt)
 
 - 当面数超过像素数，Phong着色开销自然也会比平滑着色小了
 
-### 5. Defining Per-vertex Normal Vectors
+### Defining Per-vertex Normal Vectors
 
 [![p9hROXj.jpg](https://s1.ax1x.com/2023/05/19/p9hROXj.jpg)](https://imgse.com/i/p9hROXj)
 
@@ -142,7 +144,7 @@ k_d(I/r^2)max(0,\pmb{n\cdot l})
   N_v = \frac{\sum_iN_i}{\lVert \sum_iN_i \rVert}
   $$
 
-### 6. Graphics(Real-time Rendering)Pipline
+## Graphics(Real-time Rendering)Pipline
 
 [![p9hWM9O.jpg](https://s1.ax1x.com/2023/05/19/p9hWM9O.jpg)](https://imgse.com/i/p9hWM9O)
 
@@ -168,7 +170,7 @@ k_d(I/r^2)max(0,\pmb{n\cdot l})
 
 - 如果是顶点着色，那么在Vertex Processing阶段，如果是Phong着色，在Fragment Processing阶段
 
-### 7. Shader Programs
+### Shader Programs
 
 [![p9hIef0.jpg](https://s1.ax1x.com/2023/05/19/p9hIef0.jpg)](https://imgse.com/i/p9hIef0)
 
@@ -178,22 +180,22 @@ k_d(I/r^2)max(0,\pmb{n\cdot l})
 
 - 像素着色器：算像素最后的颜色
 
-### 8. GPU
+## GPU
 
 [![p9hoOPI.jpg](https://s1.ax1x.com/2023/05/19/p9hoOPI.jpg)](https://imgse.com/i/p9hoOPI)
 [![p9hoqIA.jpg](https://s1.ax1x.com/2023/05/19/p9hoqIA.jpg)](https://imgse.com/i/p9hoqIA)
 
-### 9. Texture Mapping
+## Texture Mapping
 
 [![p9hTtsO.jpg](https://s1.ax1x.com/2023/05/19/p9hTtsO.jpg)](https://imgse.com/i/p9hTtsO)
 
 - 任何三维物体的表面都是二维的
 
-- [![p9hT6Qf.jpg](https://s1.ax1x.com/2023/05/19/p9hT6Qf.jpg)](https://imgse.com/i/p9hT6Qf)
+[![p9hT6Qf.jpg](https://s1.ax1x.com/2023/05/19/p9hT6Qf.jpg)](https://imgse.com/i/p9hT6Qf)
 
 - UV图（纹理图），u和v的范围都在[0,1]
 
-- [![p9h7pSx.jpg](https://s1.ax1x.com/2023/05/19/p9h7pSx.jpg)](https://imgse.com/i/p9h7pSx)
+[![p9h7pSx.jpg](https://s1.ax1x.com/2023/05/19/p9h7pSx.jpg)](https://imgse.com/i/p9h7pSx)
 
 - 三角形每个顶点都对应着一个uv
 

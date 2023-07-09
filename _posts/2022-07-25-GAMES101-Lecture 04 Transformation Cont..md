@@ -17,7 +17,7 @@ mermaid: true
 
 这一节其实是一部分变换的内容和观测(Viewing)的内容，按理说变换应该放到上一章，所有的观测放在一章
 
-### 0. 3D Transforms
+## 3D Transforms
 
 - 再一次使用齐次坐标
 
@@ -56,16 +56,16 @@ $$
 
 - 是先做的旋转再做的平移
 
-### 1. 3D Transformations
+### 3D Transformations
 
 * Rotation:
+
+[![p9rvXJf.jpg](https://s1.ax1x.com/2023/05/11/p9rvXJf.jpg)](https://imgse.com/i/p9rvXJf)
+
+* 绕x轴旋转，x坐标是不变的
   
-  [![p9rvXJf.jpg](https://s1.ax1x.com/2023/05/11/p9rvXJf.jpg)](https://imgse.com/i/p9rvXJf)
-  
-  * 绕x轴旋转，x坐标是不变的
-    
-    $$
-    R_x(\alpha)
+  $$
+  R_x(\alpha)
 =
 \left(
 \begin{matrix}
@@ -75,12 +75,12 @@ $$
 0 & 0 & 0 & 1
 \end{matrix}
 \right)
-    $$
+  $$
+
+* 绕y轴旋转，y轴有所不同，是因为$z\times x$得到Y轴，而不是$x\times z$得到Y轴，如果是$x\times z$得到Y轴，那么矩阵内元素应该和其他一样，不会反。
   
-  * 绕y轴旋转，y轴有所不同，是因为$z\times x$得到Y轴，而不是$x\times z$得到Y轴，如果是$x\times z$得到Y轴，那么矩阵内元素应该和其他一样，不会反。
-    
-    $$
-    R_x(\alpha)
+  $$
+  R_x(\alpha)
 =
 \left(
 \begin{matrix}
@@ -90,12 +90,12 @@ $$
 0 & 0 & 0 & 1
 \end{matrix}
 \right)
-    $$
+  $$
+
+* 绕z轴旋转
   
-  * 绕z轴旋转
-    
-    $$
-    R_x(\alpha)
+  $$
+  R_x(\alpha)
 =
 \left(
 \begin{matrix}
@@ -105,9 +105,9 @@ $$
 0 & 0 & 0 & 1
 \end{matrix}
 \right)
-    $$
+  $$
 
-### 2. 3D Rotation
+### 3D Rotation
 
 * 将旋转分解为三个轴方向的旋转，这三个角称为欧拉角 
   
@@ -131,12 +131,12 @@ n_z & 0 & -n_x\\
 
 * 由于矩阵难以插值，提出了四元数来解决（具体没讲）
 
-### 3. Viewing transformation(观测变换)
+### Viewing transformation(观测变换)
 
 * 模型变换->视图变换->投影变换（简称MVP变换）
 * 先摆好模型的位置方向，再摆好摄像机的位置和方向，最后把摄像机和模型同时移动，将相机放在原点，注视方向是-z，向上方向为y，进行投影变换（后续还有一个视口变换）
 
-### 4.View/ Camera Transformation
+### View/ Camera Transformation
 
 * 定义相机：
   
@@ -149,19 +149,19 @@ n_z & 0 & -n_x\\
 * 重要的观测：
   
   * 将相机放在原点，注视方向是-z，向上方向为y
+
+[![p9s9280.jpg](https://s1.ax1x.com/2023/05/11/p9s9280.jpg)](https://imgse.com/i/p9s9280)
+
+* 先平移，再旋转$M_{view}=R_{view}T_{view}$
+
+[![p9sCEM8.jpg](https://s1.ax1x.com/2023/05/11/p9sCEM8.jpg)](https://imgse.com/i/p9sCEM8)
+
+* 平移矩阵比较简单就不写了，旋转矩阵不直接旋转相机，而是先求世界坐标系旋转到相机的旋转矩阵，然后再求一个逆。也就是将X轴旋转到（g×t），Y轴旋转到t，Z轴旋转到-g。
+
+* 下面矩阵里的元素是相机坐标系的基向量
   
-  * [![p9s9280.jpg](https://s1.ax1x.com/2023/05/11/p9s9280.jpg)](https://imgse.com/i/p9s9280)
-  
-  * 先平移，再旋转$M_{view}=R_{view}T_{view}$
-  
-  * [![p9sCEM8.jpg](https://s1.ax1x.com/2023/05/11/p9sCEM8.jpg)](https://imgse.com/i/p9sCEM8)
-  
-  * 平移矩阵比较简单就不写了，旋转矩阵不直接旋转相机，而是先求世界坐标系旋转到相机的旋转矩阵，然后再求一个逆。也就是将X轴旋转到（g×t），Y轴旋转到t，Z轴旋转到-g。
-  
-  * 下面矩阵里的元素是相机坐标系的基向量
-    
-    $$
-    R_{view}^{-1}=
+  $$
+  R_{view}^{-1}=
 \left[
 \begin{matrix}
 x_{\hat{g}\times\hat{t}} & x_t & x_{-g} & 0\\
@@ -180,15 +180,15 @@ x_{-g} & y_{-g} & z_{-g} & 0\\
 0 & 0 & 0 & 1
 \end{matrix}
 \right]
-    $$
-  
-  * 那么怎么理解呢，可以假设旋转矩阵乘以一个列向量$(1,0,0)^T$，也就是x轴的单位向量，结果是$(x{\hat{g}\times\hat{t}},y_{\hat{g}\times\hat{t}},z_{\hat{g}\times\hat{t}})^T$
+  $$
 
-### 5. Projection transformation
+* 那么怎么理解呢，可以假设旋转矩阵乘以一个列向量$(1,0,0)^T$，也就是x轴的单位向量，结果是$(x{\hat{g}\times\hat{t}},y_{\hat{g}\times\hat{t}},z_{\hat{g}\times\hat{t}})^T$
+
+### Projection transformation
 
 * 正交投影和透视投影
 
-### 6.Orthographic Projection
+### Orthographic Projection
 
 [![p9siY59.jpg](https://s1.ax1x.com/2023/05/11/p9siY59.jpg)](https://imgse.com/i/p9siY59)
 
@@ -218,14 +218,15 @@ x_{-g} & y_{-g} & z_{-g} & 0\\
 
 * 这次变换确实会引起原来物体的拉伸但最后还有一个视口变换会再次拉伸
 
-### 7. Perspective Projection
+### Perspective Projection
 
 [![p9s7dET.jpg](https://s1.ax1x.com/2023/05/12/p9s7dET.jpg)](https://imgse.com/i/p9s7dET)
 
-先把平截头体（frustum）挤成长方体，然后再做一次正交投影
+* 先把平截头体（frustum）挤成长方体，然后再做一次正交投影
 
 * 规定：1. 近平面永远不变2. 近平面和远平面z不会变化3. 远平面的中心点不变
-  [![p9s7UbV.jpg](https://s1.ax1x.com/2023/05/12/p9s7UbV.jpg)](https://imgse.com/i/p9s7UbV)
+
+[![p9s7UbV.jpg](https://s1.ax1x.com/2023/05/12/p9s7UbV.jpg)](https://imgse.com/i/p9s7UbV)
 
 * $y\prime=\frac{n}{z}y$ ，$x\prime=\frac{n}{z}x$（$x\prime,y\prime指远平面变换后的坐标$）
 
@@ -384,7 +385,7 @@ n & 0 & 0 & 0\\
   M_{persp}=M_{ortho}M_{persp\rightarrow ortho}
   $$
 
-### 作业0
+## 作业0
 
 * 作业描述：给定一个点 P=(2,1), 将该点绕原点先逆时针旋转 45◦，再平移 (1,2), 计算出
   

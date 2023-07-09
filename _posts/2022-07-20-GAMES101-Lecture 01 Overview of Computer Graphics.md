@@ -15,7 +15,6 @@ mermaid: true
 
 ---
 
-## Lecture 01 Overview of Computer Graphics
 
 ### 1. What is Computer Graphics?
 
