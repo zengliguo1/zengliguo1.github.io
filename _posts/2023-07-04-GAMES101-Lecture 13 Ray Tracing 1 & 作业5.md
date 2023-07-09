@@ -1,5 +1,5 @@
 ---
-title: GAMES101-Lecture 13 Ray Tracing 1(Whitted-Style Ray Tracing)
+title: GAMES101-Lecture 13 Ray Tracing 1(Whitted-Style Ray Tracing) & 作业5
 date: 2023-07-06 14:32:00 +0800
 categories: [计算机图形学, GAMES101]
 tags: [图形学, 学习笔记]
@@ -156,3 +156,59 @@ mermaid: true
 * 为什么要axis-aligned呢
   
   * 为了使计算相对容易
+
+## 作业5
+
+* 题目要求：
+  
+  * 在这部分的课程中，我们将专注于使用光线追踪来渲染图像。在光线追踪中
+  
+  最重要的操作之一就是找到光线与物体的交点。一旦找到光线与物体的交点，就
+  
+  可以执行着色并返回像素颜色。在这次作业中，我们需要实现两个部分：光线的
+  
+  生成和光线与三角的相交。本次代码框架的工作流程为：
+  
+  1. 从 main 函数开始。我们定义场景的参数，添加物体（球体或三角形）到场景
+  
+  中，并设置其材质，然后将光源添加到场景中。
+  
+  2. 调用 Render(scene) 函数。在遍历所有像素的循环里，生成对应的光线并将
+  
+  返回的颜色保存在帧缓冲区（framebuffer）中。在渲染过程结束后，帧缓冲
+  
+  区中的信息将被保存为图像。
+  
+  3. 在生成像素对应的光线后，我们调用 CastRay 函数，该函数调用 trace 来
+  
+  查询光线与场景中最近的对象的交点。
+  
+  4. 然后，我们在此交点执行着色。我们设置了三种不同的着色情况，并且已经
+  
+  为你提供了代码。
+  
+  你需要修改的函数是：
+  
+  * Renderer.cpp 中的 Render()：这里你需要为每个像素生成一条对应的光
+  
+  线，然后调用函数 castRay() 来得到颜色，最后将颜色存储在帧缓冲区的相
+  
+  应像素中。
+  
+  * Triangle.hpp 中的 rayTriangleIntersect(): v0, v1, v2 是三角形的三个
+  
+  顶点，orig 是光线的起点，dir 是光线单位化的方向向量。tnear, u, v 是你需
+  
+  要使用我们课上推导的 Moller-Trumbore 算法来更新的参数。
+
+* 第一，是第一个生成光线，这个需要找到每个像素的世界坐标，而这个过程是从像素坐标->NDC坐标->Screen坐标->世界坐标，在课程中并没有详细地讲，但其实在光栅化的时候说过。可是我还是不清楚，所以参考了博客[光线追踪：生成相机光线 (scratchapixel.com)](https://www.scratchapixel.com/lessons/3d-basic-rendering/ray-tracing-generating-camera-rays/generating-camera-rays.html)
+
+* 此时，生成的图片是有两个球体的：
+
+[![pC2Pt4s.jpg](https://s1.ax1x.com/2023/07/09/pC2Pt4s.jpg)](https://imgse.com/i/pC2Pt4s)
+
+* 第二，也就是通过Moller-Trumbore 算法来计算值，这个在课程有讲，所以直接套公式就行，其中算出来的t就是函数中的形参tnear，b1就是函数中的形参u，b2是函数中的形参v
+
+* 在做的时候，我把更新tnear、u、v放在了检测出射线和三角形相交的代码块中，导致图片中地面的颜色是黑色的，实际上每次都应该更新，因为这个光线（也就是primary ray）没有打到三角形（也就是平面）的话，应该是有颜色的，如果不更新uv，就无法正常计算颜色了
+
+[![pC2PTVe.jpg](https://s1.ax1x.com/2023/07/09/pC2PTVe.jpg)](https://imgse.com/i/pC2PTVe)
