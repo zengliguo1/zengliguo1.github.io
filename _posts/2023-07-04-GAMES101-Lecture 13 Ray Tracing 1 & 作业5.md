@@ -203,11 +203,50 @@ mermaid: true
 
 * 第一，是第一个生成光线，这个需要找到每个像素的世界坐标，而这个过程是从像素坐标->NDC坐标->Screen坐标->世界坐标，在课程中并没有详细地讲，但其实在光栅化的时候说过。可是我还是不清楚，所以参考了博客[光线追踪：生成相机光线 (scratchapixel.com)](https://www.scratchapixel.com/lessons/3d-basic-rendering/ray-tracing-generating-camera-rays/generating-camera-rays.html)
 
+* 只需要在Render函数的注释下面算出dir的x和y即可
+
+```cpp
+    for (int j = 0; j < scene.height; ++j)
+    {
+        for (int i = 0; i < scene.width; ++i)
+        {
+            // generate primary ray direction
+            float x;
+            float y;
+            // TODO: Find the x and y positions of the current pixel to get the direction
+            // vector that passes through it.
+            // Also, don't forget to multiply both of them with the variable *scale*, and
+            // x (horizontal) variable with the *imageAspectRatio*            
+            //这个地方的细节在课程中并没有提及，所以还是得查
+            //目标是将屏幕上的像素转换为世界坐标中
+            //首先先将像素转换到NDC空间中
+            x = ((float)i + 0.5f) / scene.width;
+            y = ((float)j + 0.5f) / scene.height;
+            //再将x，y转换到screen空间中
+            x = 2 * x - 1.f;
+            y = -(2 * y - 1.f);//y轴方向向下，所以取个负值
+            //然后现在的坐标是在正方形中的坐标，要根据宽高比拉伸一下
+            x *= imageAspectRatio;
+            //最后是计算在世界坐标系中的像素坐标,其实应该乘以相机到平面的距离，但是默认都是1，所以不用乘
+            x *= scale;
+            y *= scale;
+            Vector3f dir = Vector3f(x, y, -1); // Don't forget to normalize this direction!
+            dir = normalize(dir);
+            framebuffer[m++] = castRay(eye_pos, dir, scene, 0);
+        }
+        UpdateProgress(j / (float)scene.height);
+    }
+```
+
 * 此时，生成的图片是有两个球体的：
 
 [![pC2Pt4s.jpg](https://s1.ax1x.com/2023/07/09/pC2Pt4s.jpg)](https://imgse.com/i/pC2Pt4s)
 
 * 第二，也就是通过Moller-Trumbore 算法来计算值，这个在课程有讲，所以直接套公式就行，其中算出来的t就是函数中的形参tnear，b1就是函数中的形参u，b2是函数中的形参v
+
+```cpp
+
+```
 
 * 在做的时候，我把更新tnear、u、v放在了检测出射线和三角形相交的代码块中，导致图片中地面的颜色是黑色的，实际上每次都应该更新，因为这个光线（也就是primary ray）没有打到三角形（也就是平面）的话，应该是有颜色的，如果不更新uv，就无法正常计算颜色了
 
