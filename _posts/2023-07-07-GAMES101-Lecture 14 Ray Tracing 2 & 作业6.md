@@ -290,7 +290,7 @@ inline Intersection Triangle::getIntersection(Ray ray)
 
     // TODO find ray triangle intersection
     if (t_tmp < 0) return inter;
-        
+
     inter.happened = true;//是否相交
     inter.coords = ray(t_tmp);//交点坐标
     inter.normal = normal;//交点处三角形法线
@@ -326,7 +326,6 @@ inline bool Bounds3::IntersectP(const Ray& ray, const Vector3f& invDir,
 
     return false;
 }
-
 ```
 
 #### getIntersection函数
