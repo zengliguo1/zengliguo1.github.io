@@ -31,7 +31,7 @@ mermaid: true
 ### Radiance
 
 * 单位立体角、单位面积（projected unit area）上的光的能量，相当于单位面积上的Radiant Intensity，也相当于单位solid angle的Irradiance
-* 单位面积指的是接受辐射的微小面积dA
+* 单位面积指的是发射辐射的微小面积dA
 * 往solid angle方向辐射能量，$\theta$指的是面的法线和solid angle的方向夹角
 
 [![pC2WPRx.jpg](https://s1.ax1x.com/2023/07/10/pC2WPRx.jpg)](https://imgse.com/i/pC2WPRx)
@@ -112,7 +112,7 @@ mermaid: true
 
 [![pC2vrPP.jpg](https://s1.ax1x.com/2023/07/10/pC2vrPP.jpg)](https://imgse.com/i/pC2vrPP)
 
-* 然后推导，其中右边的L是(E+KL)，K算子具有泰勒展开的性质
+* **然后推导，其中右边的L是(E+KL)，K算子具有泰勒展开的性质**
 
 [![pC2vB5t.jpg](https://s1.ax1x.com/2023/07/10/pC2vB5t.jpg)](https://imgse.com/i/pC2vB5t)
 
