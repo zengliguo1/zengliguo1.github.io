@@ -1,7 +1,7 @@
 ---
 title: GAMES101-Lecture 15 Ray Tracing 3(Light Transport & Global Illumination)
 date: 2023-07-10 15:07:00 +0800
-categories: [, GAMES101]
+categories: [Computer Graphics, GAMES101]
 tags: [图形学, 学习笔记]
 
 pin: false
