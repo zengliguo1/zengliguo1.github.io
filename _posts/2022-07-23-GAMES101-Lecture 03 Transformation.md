@@ -1,7 +1,7 @@
 ---
 title: GAMES101-Lecture 03 Transformation
 date: 2022-07-23 22:20:00 +0800
-categories: [计算机图形学, GAMES101]
+categories: [Computer Graphics, GAMES101]
 tags: [图形学, 学习笔记]
 
 pin: false
@@ -16,6 +16,7 @@ mermaid: true
 ---
 
 ## Transformation
+
 ### Scale
 
 $$

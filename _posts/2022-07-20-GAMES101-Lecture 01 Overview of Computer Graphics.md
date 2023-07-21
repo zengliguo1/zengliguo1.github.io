@@ -1,7 +1,7 @@
 ---
 title: GAMES101-Lecture 01 Overview of Computer Graphics
 date: 2022-07-20 11:40:00 +0800
-categories: [计算机图形学, GAMES101]
+categories: [Computer Graphics, GAMES101]
 tags: [图形学, 学习笔记]
 
 pin: false
@@ -14,7 +14,6 @@ math: false
 mermaid: true
 
 ---
-
 
 ### 1. What is Computer Graphics?
 

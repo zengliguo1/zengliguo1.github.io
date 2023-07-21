@@ -1,7 +1,7 @@
 ---
 title: GAMES101-Lecture 08 Shading2(Shading,Pipeline and Texture Mapping)
 date: 2022-08-25 20:53:00 +0800
-categories: [计算机图形学, GAMES101]
+categories: [Computer Graphics, GAMES101]
 tags: [图形学, 学习笔记]
 
 pin: false

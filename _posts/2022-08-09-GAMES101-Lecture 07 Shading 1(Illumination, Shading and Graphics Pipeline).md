@@ -1,7 +1,7 @@
 ---
 title: GAMES101-Lecture 07 Shading 1(Illumination, Shading and Graphics Pipeline) & 作业2
 date: 2022-08-09 18:08:00 +0800
-categories: [计算机图形学, GAMES101]
+categories: [Computer Graphics, GAMES101]
 tags: [图形学, 学习笔记]
 
 pin: false

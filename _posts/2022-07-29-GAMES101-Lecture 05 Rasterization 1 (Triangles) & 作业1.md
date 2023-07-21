@@ -1,7 +1,7 @@
 ---
 title: GAMES101-Lecture 05 Rasterization 1 (Triangles) & 作业1
 date: 2022-07-29 21:46:00 +0800
-categories: [计算机图形学, GAMES101]
+categories: [Computer Graphics, GAMES101]
 tags: [图形学, 学习笔记]
 
 pin: false

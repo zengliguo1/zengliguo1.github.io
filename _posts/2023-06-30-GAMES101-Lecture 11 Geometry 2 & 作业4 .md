@@ -1,7 +1,7 @@
 ---
 title: GAMES101-Lecture 11 Geometry 2(Curves and Surface) & 作业4
 date: 2023-06-30 17:00:00 +0800
-categories: [计算机图形学, GAMES101]
+categories: [Computer Graphics, GAMES101]
 tags: [图形学, 学习笔记]
 
 pin: false
