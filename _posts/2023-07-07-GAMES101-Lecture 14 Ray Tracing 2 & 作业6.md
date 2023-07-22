@@ -1,5 +1,5 @@
 ---
-title: GAMES101-Lecture 14 Ray Tracing 2
+title: GAMES101-Lecture 14 Ray Tracing 2(Acceleration & Radiometry) & 作业6
 date: 2023-07-07 14:32:00 +0800
 categories: [Computer Graphics, GAMES101]
 tags: [图形学, 学习笔记]
