@@ -125,7 +125,7 @@ $E=p*(Lo/P)+(1-P)*0=Lo$
 
 * 伪代码：
 
-[![pCbmsLq.jpg](https://s1.ax1x.com/2023/07/21/pCbmsLq.jpg)](https://imgse.com/i/pCbmsLq)
+[![pCqngLn.jpg](https://s1.ax1x.com/2023/07/22/pCqngLn.jpg)](https://imgse.com/i/pCqngLn)
 
 ### 尚存的问题
 
