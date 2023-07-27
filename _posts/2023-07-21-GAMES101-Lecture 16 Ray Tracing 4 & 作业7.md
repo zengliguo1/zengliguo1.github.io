@@ -680,7 +680,7 @@ scene.Add(&bunny);
 
 | Diffuse                                                                                   | Microfacet                                                                                |
 | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
-| [![pCXlf6f.jpg](https://s1.ax1x.com/2023/07/25/pCXlf6f.jpg)](https://imgse.com/i/pCXlf6f) | [![pCXlW1P.jpg](https://s1.ax1x.com/2023/07/25/pCXlW1P.jpg)](https://imgse.com/i/pCXlW1P) |
+| [![pCX0WIP.jpg](https://s1.ax1x.com/2023/07/25/pCX0WIP.jpg)](https://imgse.com/i/pCX0WIP) | [![pCXlW1P.jpg](https://s1.ax1x.com/2023/07/25/pCXlW1P.jpg)](https://imgse.com/i/pCXlW1P) |
 
 * 看看bunny的臀部的话，还是能多少看出来一点Microfacet的小小震撼的23333
 
