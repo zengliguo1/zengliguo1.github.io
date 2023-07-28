@@ -207,6 +207,8 @@ mermaid: true
 
 * 运行时间很长
 
+[![pCzrS5d.jpg](https://s1.ax1x.com/2023/07/28/pCzrS5d.jpg)](https://imgse.com/i/pCzrS5d)
+
 ## Surface Models
 
 ### Translucent material(BSSRDF)
@@ -231,11 +233,15 @@ L( $ x_ {0} $ , $ \omega _ {0} $ )= $ \int _ {A} $ $ \int _ {H^ {2}} $ S( $ x_ {
 
 * 会有珠圆玉润的效果
 
+[![pCzDxVe.jpg](https://s1.ax1x.com/2023/07/28/pCzDxVe.jpg)](https://imgse.com/i/pCzDxVe)
+
 ### Cloth
 
 * 由缠绕的纤维组成
 
 * 纤维缠绕会形成股ply，股再缠绕形成线yarn
+
+[![pCzDzUH.jpg](https://s1.ax1x.com/2023/07/28/pCzDzUH.jpg)](https://imgse.com/i/pCzDzUH)
 
 * BRDF
 
@@ -253,8 +259,20 @@ L( $ x_ {0} $ , $ \omega _ {0} $ )= $ \int _ {A} $ $ \int _ {H^ {2}} $ S( $ x_ {
 
 * 使用BRDF over a pixel，使用p-NDF(说实话，我的理解就是根据normal map来生成一个像素的pdf分布)
 
+[![pCzDOKK.jpg](https://s1.ax1x.com/2023/07/28/pCzDOKK.jpg)](https://imgse.com/i/pCzDOKK)
+
+[![pCzDH81.jpg](https://s1.ax1x.com/2023/07/28/pCzDH81.jpg)](https://imgse.com/i/pCzDH81)
+
+[![pCzDbgx.jpg](https://s1.ax1x.com/2023/07/28/pCzDbgx.jpg)](https://imgse.com/i/pCzDbgx)
+
+[![pCzDqv6.jpg](https://s1.ax1x.com/2023/07/28/pCzDqv6.jpg)](https://imgse.com/i/pCzDqv6)
+
 * 波动光学（巨复杂，需要在负数域上积分）
+
+[![pCzDjbD.jpg](https://s1.ax1x.com/2023/07/28/pCzDjbD.jpg)](https://imgse.com/i/pCzDjbD)
 
 ### Procedural appearance
 
 * 噪声函数，使用噪声函数来程序化生成纹理、地形、水面
+
+[![pCzDXDO.jpg](https://s1.ax1x.com/2023/07/28/pCzDXDO.jpg)](https://imgse.com/i/pCzDXDO)
