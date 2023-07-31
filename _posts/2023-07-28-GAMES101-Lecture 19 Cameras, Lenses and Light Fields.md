@@ -29,6 +29,8 @@ mermaid: true
 
 * 更长的焦距对应更小更远的视场
 
+[![pPpxKEV.jpg](https://s1.ax1x.com/2023/07/31/pPpxKEV.jpg)](https://imgse.com/i/pPpxKEV)
+
 ### Effect of Sensor Size on FOV
 
 * 更大的传感器，对应更大更近的视场
@@ -39,6 +41,8 @@ mermaid: true
   
   * film用来决定最后存成什么样的格式
 
+
+
 ## Exposure
 
 * H = T \* E
@@ -48,6 +52,8 @@ mermaid: true
 * 快门控制进光时间
 
 * 光圈大小和焦距会影响到irradiance
+
+[![pPpxMNT.jpg](https://s1.ax1x.com/2023/07/31/pPpxMNT.jpg)](https://imgse.com/i/pPpxMNT)
 
 ### Exposure Controls
 
@@ -75,9 +81,11 @@ mermaid: true
 
 ### Constant Exposure: F-Stop vs Shutter Speed
 
-
+[![pPpxQ4U.jpg](https://s1.ax1x.com/2023/07/31/pPpxQ4U.jpg)](https://imgse.com/i/pPpxQ4U)
 
 ## Thin Lens Approximation
+
+[![pPpxnH0.jpg](https://s1.ax1x.com/2023/07/31/pPpxnH0.jpg)](https://imgse.com/i/pPpxnH0)
 
 * 薄透镜近似
 
