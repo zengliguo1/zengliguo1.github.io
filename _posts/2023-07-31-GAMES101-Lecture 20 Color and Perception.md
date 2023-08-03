@@ -117,15 +117,21 @@ mermaid: true
 
 [![pP98pqA.jpg](https://s1.ax1x.com/2023/07/31/pP98pqA.jpg)](https://imgse.com/i/pP98pqA)
 
+[![pPC3xXQ.jpg](https://s1.ax1x.com/2023/08/01/pPC3xXQ.jpg)](https://imgse.com/i/pPC3xXQ)
+
 ### Tristimulus Theory of Color
 
 * SPD和人们感知细胞的积分得到的就是感知到的颜色
+
+[![pPC3v6g.jpg](https://s1.ax1x.com/2023/08/01/pPC3v6g.jpg)](https://imgse.com/i/pPC3v6g)
 
 ### Metamerism(同色异谱)
 
 * 两种SPD不同的光，但被感知到的颜色确实相同的
 
 * 通过一些方法混合成人类看起来一样的光，其背后的光谱不一定相同
+
+[![pPC3j1S.jpg](https://s1.ax1x.com/2023/08/01/pPC3j1S.jpg)](https://imgse.com/i/pPC3j1S)
 
 ### Color Reproduction / Matching
 
@@ -136,6 +142,8 @@ mermaid: true
 #### CIE RGB Color Matching Experiment
 
 * 每种波长的颜色由三种颜色按不同系数相加得到
+
+[![pPC3Xp8.jpg](https://s1.ax1x.com/2023/08/01/pPC3Xp8.jpg)](https://imgse.com/i/pPC3Xp8)
 
 ### Color Space
 
@@ -153,6 +161,10 @@ mermaid: true
   
   * 固定Y，可视化x，y
 
+[![pPC3omd.jpg](https://s1.ax1x.com/2023/08/01/pPC3omd.jpg)](https://imgse.com/i/pPC3omd)
+
+[![pPC3T0A.jpg](https://s1.ax1x.com/2023/08/01/pPC3T0A.jpg)](https://imgse.com/i/pPC3T0A)
+
 ### Perceptually Organized Color Spaces
 
 #### HSV Color Space
@@ -160,6 +172,8 @@ mermaid: true
 * 专为艺术家而定
 
 * 色调、饱和度、亮度
+
+[![pPC3qtP.jpg](https://s1.ax1x.com/2023/08/01/pPC3qtP.jpg)](https://imgse.com/i/pPC3qtP)
 
 #### CIELAB Space
 
@@ -173,6 +187,8 @@ mermaid: true
 
 * 人脑会自动处理互补色（好玩
 
+[![pPC37TI.jpg](https://s1.ax1x.com/2023/08/01/pPC37TI.jpg)](https://imgse.com/i/pPC37TI)
+
 ### CMYK: A Subtractive Color Space
 
 * 减色系统
@@ -180,3 +196,5 @@ mermaid: true
 * 蓝绿色、品红色、黄色和黑色
 
 * 为什么一定要黑色，因为印刷要考虑成本，黑色墨水好造，便宜
+
+[![pPC3bkt.jpg](https://s1.ax1x.com/2023/08/01/pPC3bkt.jpg)](https://imgse.com/i/pPC3bkt)
