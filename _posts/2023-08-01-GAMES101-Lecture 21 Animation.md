@@ -192,3 +192,5 @@ mermaid: true
 * 通过真实的动画生成方式产生了恐怖谷效应
 
 ## The Production Pipeline
+
+[![pPFpSUA.jpg](https://s1.ax1x.com/2023/08/03/pPFpSUA.jpg)](https://imgse.com/i/pPFpSUA)
