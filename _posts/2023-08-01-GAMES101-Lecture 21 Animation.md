@@ -67,7 +67,7 @@ mermaid: true
 
 * Internal Damping for Spring
   
-  * 前面的$\frac{b-a}{||b-a||}$是用来算后面$\dot{b}-\dot{a}$的方向的，也就是取正号还是负号，但是这个力必须得沿着速度方向投影，才算真正能作用到弹簧上的力，所以后面要点乘一个$\frac{b-a}{||b-a||}$
+  * 前面的 $\frac{b-a}{||b-a||}$ 是用来算后面 $\dot{b}-\dot{a}$ 的方向的，也就是取正号还是负号，但是这个力必须得沿着速度方向投影，才算真正能作用到弹簧上的力，所以后面要点乘一个 $\frac{b-a}{||b-a||}$
 
 [![pPifJWq.jpg](https://s1.ax1x.com/2023/08/03/pPifJWq.jpg)](https://imgse.com/i/pPifJWq)
 
