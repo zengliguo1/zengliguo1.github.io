@@ -13,7 +13,7 @@ order: 4
 
 - 性 别：男&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;年 龄：23
 
-- 手 机：*******8771&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;邮 箱：[13692538764@163.com](mailto:13692538764@163.com)
+- 手 机：13692538764&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;邮 箱：[13692538764@163.com](mailto:13692538764@163.com)
 
 - 专 业：物联网工程&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;岗 位：嵌入式软件工程师
 
