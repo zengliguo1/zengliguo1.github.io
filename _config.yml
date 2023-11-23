@@ -21,9 +21,9 @@ timezone:
 # jekyll-seo-tag settings › https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
 # ↓ --------------------------
 
-title: CALL1CE # the main title
+title: 曾理国 # the main title
 
-tagline: 一位正在练习敲代码的OW2玩家 # it will display as the sub-title
+tagline: 一位正在练习敲代码的玩家 # it will display as the sub-title
 
 description: >- # used by seo meta and the atom feed
   这是通过Chirpy主题配置而成的
@@ -32,13 +32,13 @@ description: >- # used by seo meta and the atom feed
 url: ""
 
 github:
-  username: CALL1CE # change to your github username
+  username: 曾理国 # change to your github username
 
 social:
   # Change to your full name.
   # It will be displayed as the default author of the posts and the copyright owner in the Footer
-  name: CALL1CE
-  email: 563638083@qq.com # change to your email address
+  name: 曾理国
+  email: 13692538764@163.com # change to your email address
   links:
     # The first element serves as the copyright owner's link
     # change to your twitter homepage
@@ -80,7 +80,7 @@ theme_mode: # [light|dark]
 img_cdn:
 
 # the avatar on sidebar, support local or CORS resources
-avatar: ./assets/config/CALL1CE.jpg
+avatar: ./assets/config/11.jpg
 
 # boolean type, the global switch for ToC in posts.
 toc: true
